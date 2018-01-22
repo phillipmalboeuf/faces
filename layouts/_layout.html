@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="turbolinks-cache-control" content="no-cache">
+
+    <title>{% block title %}Faces{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="/files/all.css">
+  </head>
+
+  <body>
+    <script>
+      window.components = []
+    </script>
+
+    <header class="header">{% block header %}{% endblock %}</header>
+    <section class="main" role="main">{% block main %}{% endblock %}</section>
+    <footer class="footer">{% block footer %}{% endblock %}</footer>
+
+    {% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.1.1/turbolinks.js" data-turbolinks-eval="false" data-turbolinks-suppress-warning></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js" data-turbolinks-eval="false"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js" data-turbolinks-eval="false"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js" data-turbolinks-eval="false"></script>
+    
+    <script src="/files/app.js?v={{timestamp}}" data-turbolinks-eval="false" async></script>
+    <script src="//localhost:35729/livereload.js" async></script>
+    {% endblock %}
+  </body>
+</html>

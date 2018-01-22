@@ -1,0 +1,19 @@
+.button,
+button {
+  position: relative;
+  display: inline-block;
+
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+
+  background: blue;
+  padding: 0.666rem;
+  border: 1px solid;
+
+  &:active {
+    top: 1px;
+  }
+}

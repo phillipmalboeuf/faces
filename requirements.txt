@@ -1,0 +1,14 @@
+Flask==0.12.2
+Flask-Celery==2.4.3
+Flask-Script==2.0.6
+celery==4.1.0
+Cerberus==1.1
+mandrill==1.0.57
+Markdown==2.6.11
+pycrypto==2.6.1
+pymongo==3.6.0
+algoliasearch==1.15.2
+tornado==4.5.3
+pyinstaller==3.3.1
+pyobjc==4.1
+pywebview==1.8
