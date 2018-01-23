@@ -9,6 +9,7 @@ from threading import Thread
 import subprocess
 import webview
 import webbrowser
+import sys
 
 from core import app
 
@@ -24,13 +25,13 @@ if __name__ == '__main__':
   if app.config['ENVIRONMENT'] == 'DEVELOPMENT':
     # app.run(port=8080, threaded=True)
 
-    thread = Thread(target=app.run, kwargs={'port': 8080, 'threaded': True, 'use_reloader': False})
-    thread.daemon = True
-    thread.start()
+    server = Thread(target=app.run, kwargs={'port': 8080, 'threaded': True, 'use_reloader': False})
+    server.daemon = True
+    server.start()
 
-    thread = Thread(target=subprocess.run, args=(['grunt']))
-    thread.daemon = True
-    thread.start()
+    grunt = Thread(target=subprocess.run, args=([app.path + '/node_modules/grunt/bin/grunt']), kwargs={'cwd': sys._MEIPASS})
+    grunt.daemon = True
+    grunt.start()
 
     webview.create_window('Class', 'http://localhost:8080/start')
 

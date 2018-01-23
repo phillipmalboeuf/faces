@@ -5,8 +5,10 @@ mongodb
 *.pem
 /node_modules
 /.sass-cache
+/build
 npm-debug.log
 *.map
 *.db
+server
 
 /Design

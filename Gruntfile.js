@@ -43,6 +43,7 @@ module.exports = function(grunt) {
       options: {
         livereload: true,
         interrupt: true,
+        forever: false,
         debounceDelay: 120
       },
       html: {

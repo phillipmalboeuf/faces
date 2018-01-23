@@ -1,15 +1,16 @@
 
 from flask import Flask
 import os
+import pathlib
 import sys
 
-
 if getattr(sys, 'frozen', False):
-    app_path = os.path.abspath(os.path.dirname(sys.executable))
-    app_path = app_path.replace('/server.app/Contents/MacOS', '')
-elif __file__:
-    app_path = os.path.abspath(os.path.dirname(__file__))+'/..'
-
+  app_path = str(pathlib.Path(sys.executable))
+  app_path = app_path.replace('/server.app/Contents/MacOS', '')
+  app_path = app_path.replace('/server', '')
+else:
+  app_path = str(pathlib.Path(__file__))
+  app_path = app_path.replace('/core/__init__.py', '')
 
 app = Flask(__name__, static_folder=app_path+'/files', template_folder=app_path+'/layouts')
 

@@ -10,6 +10,7 @@
     "babel-preset-react": "^6.24.1",
     "grunt": "^1.0.1",
     "grunt-babel": "^7.0.0",
+    "grunt-cli": "^1.2.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.0.0",
