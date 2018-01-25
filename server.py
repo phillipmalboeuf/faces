@@ -29,7 +29,7 @@ if __name__ == '__main__':
     server.daemon = True
     server.start()
 
-    grunt = Thread(target=subprocess.run, args=([app.path + '/node_modules/grunt/bin/grunt']), kwargs={'cwd': sys._MEIPASS})
+    grunt = Thread(target=subprocess.run, args=([f'grunt --path={app.path}']), kwargs={'shell': True, 'cwd': sys._MEIPASS})
     grunt.daemon = True
     grunt.start()
 

@@ -3,6 +3,7 @@
 
 window.Core = {
   init() {
+    console.log("TEST")
     this.render()
   },
 

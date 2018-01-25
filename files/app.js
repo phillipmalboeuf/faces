@@ -1,15 +1,12 @@
 "use strict";
 
 var Component = function Component(props) {
-  return React.createElement(
-    "p",
-    null,
-    props.message
-  );
+  return React.createElement("p", null, props.message);
 };
 
 window.Core = {
   init: function init() {
+    console.log("TEST");
     this.render();
   },
   render: function render() {

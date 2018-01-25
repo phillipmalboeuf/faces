@@ -1,17 +1,15 @@
 module.exports = function(grunt) {
 
-
+  const path = grunt.option('path') || '';
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
 
     sass: {
       options: {
       },
       compile: {
-        files: {
-          'files/all.css': 'styles/all.scss',
-        }
+        src: `${path}styles/all.scss`,
+        dest: `${path}files/all.css`
       }
     },
 
@@ -20,8 +18,8 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['scripts/components/**/*.js', 'scripts/app.js'],
-        dest: 'files/app.js',
+        src: [`${path}scripts/components/**/*.js`, `${path}scripts/app.js`],
+        dest: `files/app.js`,
       },
     },
 
@@ -32,9 +30,8 @@ module.exports = function(grunt) {
         plugins: ['transform-object-rest-spread', 'transform-class-properties']
       },
       compile: {
-        files: {
-          'files/app.js': 'files/app.js',
-        }
+        src: `files/app.js`,
+        dest: `${path}files/app.js`
       }
     },
 
@@ -43,24 +40,26 @@ module.exports = function(grunt) {
       options: {
         livereload: true,
         interrupt: true,
-        forever: false,
-        debounceDelay: 120
+        forever: false
       },
       html: {
-        files: 'layouts/**/*.html'
+        files: `${path}layouts/**/*.html`
       },
       sass: {
-        files: 'styles/**/*.scss',
+        files: `${path}styles/**/*.scss`,
         tasks: ['sass'],
         options: {
           livereload: false
         }
       },
       css: {
-        files: 'files/all.css'
+        files: `${path}files/all.css`,
+        options: {
+          spawn: false
+        }
       },
       babel: {
-        files: 'scripts/**/*.js',
+        files: `${path}scripts/**/*.js`,
         tasks: ['concat', 'babel']
       }
     }
