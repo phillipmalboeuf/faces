@@ -29,11 +29,14 @@ if __name__ == '__main__':
     server.daemon = True
     server.start()
 
-    grunt = Thread(target=subprocess.run, args=([f'grunt --path={app.path}']), kwargs={'shell': True, 'cwd': sys._MEIPASS})
-    grunt.daemon = True
-    grunt.start()
+    grunt = subprocess.Popen([f'grunt', f'--path={app.path}/'], cwd=(sys._MEIPASS if hasattr(sys, '_MEIPASS') else app.path))
 
     webview.create_window('Class', 'http://localhost:8080/start')
+
+    server.join()
+    grunt.kill()
+
+
 
   else:
     server = HTTPServer(WSGIContainer(app))
