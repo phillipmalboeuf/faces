@@ -7,9 +7,9 @@ import os
 def page():
 
   data = {
+    'timestamp': app.timestamp,
     'current_path': request.path,
-    'root': request.host_url,
-    'debugging': app.config['DEBUG']
+    'root': request.host_url
   }
 
   return render_template('pages/' + request.endpoint + '.html', **data)
