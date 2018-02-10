@@ -89,7 +89,10 @@ footer {
 .flat_top { margin-top: 0 !important; }
 .normal_top { margin-top: $vertical_rythm; }
 .medium_top { margin-top: $vertical_rythm*2; }
-.overflow_top {margin-top: -$vertical_rythm*2; } 
+.overflow_top {margin-top: -$vertical_rythm*2; }
+
+.border_top { border-top: 1px solid $grey; }
+.border_bottom { border-bottom: 1px solid $grey; }
 
 .relative { position: relative; }
 .hide { display: none !important; }

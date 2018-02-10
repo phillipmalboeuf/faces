@@ -55,13 +55,13 @@ textarea,
 
   font-family: $alternate_font;
   font-size: $base_size;
-  font-weight: $bold;
+  font-weight: normal;
   line-height: 1;
 
   color: $black;
   background: $white;
   padding: $vertical_rythm/4;
-  // border: 1px solid transparent;
+  border: 1px solid transparent;
   border-radius: $border_radius;
 
   &:active {
@@ -139,11 +139,6 @@ input[type="file"] {
   -moz-outline-style: none;
 }
 
-::-webkit-input-placeholder,
-::-moz-placeholder,
-::placeholder, {
-  color: $black;
-  opacity: 1;
-}
-
+::-webkit-input-placeholder, ::-webkit-input-placeholder { color: $grey--dark; }
+:-moz-placeholder, :-moz-placeholder { color: $grey--dark; }
 

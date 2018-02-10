@@ -13,14 +13,14 @@
 <div class="padded padded--big_top white_back">
   <div class="grid grid--center grid--guttered">
     <div class="col col--10of12">
-      <h1 class="max_width">{{faces[1].first_name}} {{faces[1].last_name}} is <span class="highlight">available</span> for freelance <span class="underline">modeling</span>.</h1>
+      <h1 class="max_width">{{faces[1].first_name}} {{faces[1].last_name}} is <span class="highlight">available</span> for freelance {% for category in faces[1].categories %}<a href="" class="underline">{{category|category_action}}</a>{% if not loop.last %} / {% endif %}{% endfor %}.</h1>
     </div>
 
     <div class="col col--12of12">
       <div class="grid grid--guttered full_images">
         {% for face in faces %}
         <div class="col col--3of12">
-          <img class="rounded shadowed" src="/files/face.jpg">
+          <a href="/files/face.jpg" target="_blank"><img class="rounded shadowed" src="/files/face.jpg"></a>
         </div>
         {% endfor %}
       </div>
@@ -30,6 +30,9 @@
       <div class="max_width">
         <h2>Bio</h2>
         <p>{{faces[1].bio}}</p>
+
+        <h2>Appeared in</h2>
+        <p>{% for link in faces[1].links %}<a href="{{link.url}}" target="_blank">{{link.label}}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
 
         <h2>Tags</h2>
         <p>{% for tag in faces[1].tags %}<span class="tag">{{tag}}</span> {% endfor %}</p>

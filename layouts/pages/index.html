@@ -21,6 +21,10 @@
   </div>
 </div>
 
+<form class="padded padded--tight shadowed white_back" action="/faces">
+  <input type="search" placeholder="Search profiles by name, city...">
+</form>
+
 <div class="padded">
   <div class="padded padded--tight">
     <div class="grid grid--guttered">
@@ -35,8 +39,8 @@
   <a href="/face" class="block padded padded--tight white_back small_bottom rounded">
     <div class="grid grid--guttered grid--middle">
       <div class="col col--1of12"><img class="rounded shadowed" src="/files/face.jpg" alt="{{face.first_name}}'s Photo"></div>
-      <div class="col col--4of12">{{face.first_name}} {{face.last_name|first}}</div>
-      <div class="col col--3of12">{{face.categories|join(' / ')}}</div>
+      <div class="col col--4of12">{{face.first_name}} {{face.last_name|first}}.</div>
+      <div class="col col--3of12">{% for category in face.categories %}{{category|category}}{% if not loop.last %} / {% endif %}{% endfor %}</div>
       <div class="col col--2of12">{{face.city}}</div>
       <div class="col col--2of12">{{face.is_available}}</div>
     </div>

@@ -470,6 +470,12 @@ header {
 .overflow_top {
   margin-top: -4rem; }
 
+.border_top {
+  border-top: 1px solid #F7F7F7; }
+
+.border_bottom {
+  border-bottom: 1px solid #F7F7F7; }
+
 .relative {
   position: relative; }
 
@@ -1227,11 +1233,12 @@ textarea,
   width: 100%;
   font-family: "HK Grotesk Pro", sans-serif;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 1;
   color: #383838;
   background: #FFF;
   padding: 0.5rem;
+  border: 1px solid transparent;
   border-radius: 4px; }
   input[type="text"]:active,
   input[type="password"]:active,
@@ -1381,11 +1388,11 @@ input[type="file"] {
   outline: none;
   -moz-outline-style: none; }
 
-::-webkit-input-placeholder,
-::-moz-placeholder,
-::placeholder {
-  color: #383838;
-  opacity: 1; }
+::-webkit-input-placeholder, ::-webkit-input-placeholder {
+  color: #AAAAAA; }
+
+:-moz-placeholder, :-moz-placeholder {
+  color: #AAAAAA; }
 
 img {
   display: block;
