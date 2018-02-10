@@ -18,20 +18,12 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
-          exclude_binaries=True,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
           name='server',
           debug=False,
           strip=False,
           upx=True,
-          console=False )
-coll = COLLECT(exe,
-               a.binaries,
-               a.zipfiles,
-               a.datas,
-               strip=False,
-               upx=True,
-               name='server')
-app = BUNDLE(coll,
-             name='server.app',
-             icon=None,
-             bundle_identifier=None)
+          runtime_tmpdir=None,
+          console=True )

@@ -1,0 +1,22 @@
+// #IMAGES
+
+img {
+  display: block;
+  max-width: 100%;
+
+  .full_images &,
+  &.img--full {
+    width: 100%;
+  } 
+
+  &.img--clickable {
+    cursor: pointer;
+    position: relative;
+
+    border: 1px solid $black;
+
+    &:active {
+      top: 1px;
+    }
+  }
+}

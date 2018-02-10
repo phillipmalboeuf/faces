@@ -3,7 +3,7 @@
 
 window.Core = {
   init() {
-    console.log("TEST")
+    console.log("FACES")
     this.render()
   },
 
@@ -15,7 +15,7 @@ window.Core = {
       element = document.querySelectorAll(window.components[i]["element"])[0]
       element.setAttribute("data-component", window.components[i]["component"])
       
-      ReactDOM.render(window[window.components[i]["component"]](data), element)
+      ReactDOM.render(React.createElement(window[window.components[i]["component"]], data), element)
     }
   },
 

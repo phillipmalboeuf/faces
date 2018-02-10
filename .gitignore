@@ -10,5 +10,7 @@ npm-debug.log
 *.map
 *.db
 server
+server.app
+secret.py
 
 /Design

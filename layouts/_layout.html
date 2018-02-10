@@ -9,7 +9,7 @@
 
     <title>{% block title %}Faces{% endblock %}</title>
 
-    <link rel="stylesheet" type="text/css" href="/files/all.css">
+    <link rel="stylesheet" type="text/css" href="/files/all.css?v={{timestamp}}">
   </head>
 
   <body>
@@ -17,7 +17,7 @@
       window.components = []
     </script>
 
-    <header class="header">{% block header %}{% endblock %}</header>
+    <header class="header">{% block header %}<a href="/">{% include 'icons/logo.html' %}</a>{% endblock %}</header>
     <section class="main" role="main">{% block main %}{% endblock %}</section>
     <footer class="footer">{% block footer %}{% endblock %}</footer>
 
@@ -28,7 +28,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js" data-turbolinks-eval="false"></script>
     
     <script src="/files/app.js?v={{timestamp}}" data-turbolinks-eval="false" async></script>
-    <script src="//localhost:35729/livereload.js" async></script>
+    
+    {% if development %}
+    <script src="//localhost:35729/livereload.js" async></script>    
+    {% endif %}
     {% endblock %}
   </body>
 </html>

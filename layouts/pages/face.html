@@ -1,0 +1,40 @@
+ 
+{% extends '_layout.html' %}
+
+{% block header %}
+<div class="grid grid--middle grid--guttered">
+  <div class="col col--1of12">{{super()}}</div>
+  <div class="col col--9of12"><a class="pill" href="https://fac.es/route">fac.es/route</a></div>
+  <div class="col col--2of12 text_right"><a href="mailto:" class="button">Message {{faces[1].first_name}}</a></div>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <div class="grid grid--center grid--guttered">
+    <div class="col col--10of12">
+      <h1 class="max_width">{{faces[1].first_name}} {{faces[1].last_name}} is <span class="highlight">available</span> for freelance <span class="underline">modeling</span>.</h1>
+    </div>
+
+    <div class="col col--12of12">
+      <div class="grid grid--guttered full_images">
+        {% for face in faces %}
+        <div class="col col--3of12">
+          <img class="rounded shadowed" src="/files/face.jpg">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col col--10of12">
+      <div class="max_width">
+        <h2>Bio</h2>
+        <p>{{faces[1].bio}}</p>
+
+        <h2>Tags</h2>
+        <p>{% for tag in faces[1].tags %}<span class="tag">{{tag}}</span> {% endfor %}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

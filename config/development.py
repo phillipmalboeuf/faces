@@ -1,6 +1,6 @@
 
 import os
 
-DEBUG = True
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'DEVELOPMENT').upper()
+DEBUG = ENVIRONMENT == 'DEVELOPMENT'
 TIMEZONE = 'US/Eastern'

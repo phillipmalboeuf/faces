@@ -22,7 +22,7 @@
     "url": ""
   },
   "scripts": {
-    "build": "pyinstaller server.py --distpath=../content/ --windowed --add-data=Gruntfile.js:. --add-data=package.json:. --add-data=node_modules:node_modules --noconfirm"
+    "build": "pyinstaller server.py --distpath=./ --onefile --add-data=Gruntfile.js:. --add-data=package.json:. --add-data=node_modules:node_modules --noconfirm"
   },
   "author": "Phillip Malboeuf <phillip.malboeuf@gmail.com>",
   "dependencies": {}

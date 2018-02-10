@@ -73,7 +73,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['concat', 'babel', 'sass', 'watch']);
+  grunt.registerTask('default', ['watch']);
   grunt.registerTask('scripts', ['concat', 'babel']);
 };
 

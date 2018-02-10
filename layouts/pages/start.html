@@ -1,12 +1,15 @@
 {% extends '_layout.html' %}
 
+
+{% block header %}{% endblock %}
+
 {% block main %}
+<div class="padded">
+  <h1>Faces</h1>
+  <p>Your server is now running at the address <a href="/browser">http://localhost:8080</a>.</p>
 
-<h1>Faces</h1>
-<p>Your server is now running at the address <a href="/browser">http://localhost:8080</a>.</p>
-
-<a href="/browser" class="button">Open Browser</a>
-
+  <a href="/browser" class="button">Open Browser</a>
+</div>
 {% endblock %}
 
 

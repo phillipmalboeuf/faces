@@ -20,6 +20,9 @@ app = Flask(__name__, static_folder=app_path+'/files', template_folder=app_path+
 app.path = app_path
 app.config.from_pyfile(app.path+'/config/development.py')
 
+app.jinja_env.add_extension('jinja2.ext.do')
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
+
 app.timestamp = datetime.now(timezone(app.config['TIMEZONE'])).isoformat()
 
 

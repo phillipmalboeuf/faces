@@ -5,17 +5,12 @@ from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 
-from threading import Thread
-import subprocess
-import webview
-import webbrowser
-import sys
-
 from core import app
 
 
 @app.route('/browser')
 def browser():
+  import webbrowser
   webbrowser.open_new('http://localhost:8080')
   
   return redirect('/start')
@@ -23,18 +18,23 @@ def browser():
 
 if __name__ == '__main__':
   if app.config['ENVIRONMENT'] == 'DEVELOPMENT':
-    # app.run(port=8080, threaded=True)
+    app.run(port=8080, threaded=True)
 
-    server = Thread(target=app.run, kwargs={'port': 8080, 'threaded': True, 'use_reloader': False})
-    server.daemon = True
-    server.start()
+    # from threading import Thread
+    # import subprocess
+    # import webview
+    # import sys
 
-    grunt = subprocess.Popen([f'grunt', f'--path={app.path}/'], cwd=(sys._MEIPASS if hasattr(sys, '_MEIPASS') else app.path))
+    # server = Thread(target=app.run, kwargs={'port': 8080, 'threaded': True, 'use_reloader': False})
+    # server.daemon = True
+    # server.start()
 
-    webview.create_window('Class', 'http://localhost:8080/start')
+    # grunt = subprocess.Popen([f'grunt', f'--path={app.path}/'],
+    #   cwd=(sys._MEIPASS if hasattr(sys, '_MEIPASS') else app.path))
 
-    server.join()
-    grunt.kill()
+    # webview.create_window('Class', 'http://localhost:8080/start')
+
+    # grunt.kill()
 
 
 

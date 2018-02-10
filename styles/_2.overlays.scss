@@ -1,0 +1,110 @@
+
+// #OVERLAYS
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 100vw;
+
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 20;
+
+  // opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 0, 0);
+
+  transition: opacity $very_slow, transform $very_slow, visibility 0s linear $very_slow;
+
+  &.overlay--bottom_right {
+    top: 100vh;
+    left: auto;
+    right: $gutter;
+    width: $vertical_rythm*10;
+    height: auto;
+  }
+
+  &.overlay--show {
+    // opacity: 1;
+    visibility: visible;
+    transform: translate3d(-100%, 0, 0);
+
+    transition: opacity $very_slow, transform $very_slow, visibility 0s;
+
+    &.overlay--bottom_right {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+}
+
+  .overlay__container {
+    min-height: 100vh;
+    // overflow-y: auto;
+
+    .overlay--bottom_right & {
+      min-height: 0;
+    }
+  }
+
+.toggle_button {
+  position: relative;
+  z-index: 21;
+
+  &.toggle_button--fixed {
+    position: fixed;
+    top: $vertical_rythm*1.5;
+    right: 5vw;
+  }
+
+  rect {
+    transform: translate(0, 0) rotate(0deg);
+    transform-origin: 50% 50%;
+    transition: transform $very_slow;
+  }
+
+  &.toggle_button--showed {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+
+    &.toggle_button--fixed {
+      color: inherit;
+
+      &:hover,
+      &:focus {
+        color: $white;
+      }
+    }
+
+    rect {
+      &:nth-child(1) { transform: translate(0, 200%) rotate(45deg); }
+      &:nth-child(2) { transform: rotate(-45deg); }
+      &:nth-child(3) { transform: translate(0, -200%) rotate(-45deg); }
+    }
+
+    &:hover,
+    &:focus {
+      rect {
+        &:nth-child(1) { transform: translate(0, 180%) rotate(40deg); }
+        &:nth-child(2) { transform: rotate(-40deg); }
+        &:nth-child(3) { transform: translate(0, -180%) rotate(-40deg); }
+      }
+    }
+  }
+}
+
+.bottom_button {
+  position: fixed;
+  bottom: $vertical_rythm*2;
+  right: 5vw;
+
+  &:active {
+    top: auto;
+    bottom: $vertical_rythm*1.95;
+  }
+}
+

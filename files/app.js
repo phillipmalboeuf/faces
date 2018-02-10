@@ -1,12 +1,16 @@
 "use strict";
 
 var Component = function Component(props) {
-  return React.createElement("p", null, props.message);
+  return React.createElement(
+    "p",
+    null,
+    props.message
+  );
 };
 
 window.Core = {
   init: function init() {
-    console.log("TEST");
+    console.log("FACES");
     this.render();
   },
   render: function render() {
@@ -17,7 +21,7 @@ window.Core = {
       element = document.querySelectorAll(window.components[i]["element"])[0];
       element.setAttribute("data-component", window.components[i]["component"]);
 
-      ReactDOM.render(window[window.components[i]["component"]](data), element);
+      ReactDOM.render(React.createElement(window[window.components[i]["component"]], data), element);
     }
   },
   destroy: function destroy() {
