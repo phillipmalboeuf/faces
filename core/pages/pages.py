@@ -13,6 +13,7 @@ import os
 
 # from core.models.cms.piece import Piece
 # from core.models.cms.author import Author
+from core.models.faces.face import Face
 
 
 def page(lang=None):
@@ -23,6 +24,7 @@ def page(lang=None):
 	response = {
 		# 'pieces': Piece._values(lang),
 		# 'authors': Author.list(lang=lang),
+		'faces': Face.list(lang=lang),
 		'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
 		'current_path': request.path,
 		'root': request.host_url,

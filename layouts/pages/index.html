@@ -15,7 +15,7 @@
   <div class="grid grid--guttered full_images">
     {% for face in faces %}
     <div class="col col--3of12">
-      <a href="/face"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces"></a>
+      <a href="/faces/{{face.handle}}"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces"></a>
     </div>
     {% endfor %}
   </div>
