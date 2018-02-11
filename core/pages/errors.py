@@ -24,22 +24,22 @@ def not_found(error):
 		return raise_error('server', 'not_found', 404, no_abort=True)
 
 	else:
-		cached_template = app.caches['/errors'].get(request.path)
-		if cached_template is None or app.config['DEBUG']:
-			response = {
-				# 'pieces': Piece._values(),
-				'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
-				'current_path': request.path,
-				'root': request.host_url,
-				'development': app.config['ENVIRONMENT'] == 'DEVELOPMENT'
-			}
-			# response['pieces_json'] = json.dumps(response['pieces'], sort_keys=False, default=json_formater)
-			response['lang_route'] = '/'
+		# cached_template = app.caches['/errors'].get(request.path)
+		# if cached_template is None or app.config['DEBUG']:
+		response = {
+			# 'pieces': Piece._values(),
+			'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
+			'current_path': request.path,
+			'root': request.host_url,
+			'development': app.config['ENVIRONMENT'] == 'DEVELOPMENT'
+		}
+		# response['pieces_json'] = json.dumps(response['pieces'], sort_keys=False, default=json_formater)
+		response['lang_route'] = '/'
 
-			render = render_template('errors/' + str(error.code) + '.html', **response)
-			app.caches['/errors'].set(request.path, render, timeout=0)
-			return render
+		render = render_template('errors/' + str(error.code) + '.html', **response)
+		# app.caches['/errors'].set(request.path, render, timeout=0)
+		return render
 
-		else:
-			return cached_template
+		# else:
+		# 	return cached_template
 

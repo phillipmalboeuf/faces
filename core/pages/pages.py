@@ -18,73 +18,33 @@ import os
 def page(lang=None):
 	request.url_rule.lang = lang
 
-	cached_template = app.caches['/pages'].get(request.path)
-	if cached_template is None or request.current_session_is_admin or app.config['DEBUG']:
-		response = {
-			# 'pieces': Piece._values(lang),
-			# 'authors': Author.list(lang=lang),
-			'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
-			'current_path': request.path,
-			'root': request.host_url,
-			'development': app.config['ENVIRONMENT'] == 'DEVELOPMENT',
-			'faces': [
-				{
-				'first_name': 'Samia',
-				'last_name': 'Liamani',
-				'is_available': True,
-				'categories': ['model', 'photographer'],
-				'links': [{'label': 'Frank & Oak', 'url': 'https://frankandoak.com'}],
-				'tags': ['Woman', 'Asian'],
-				'city': 'Montréal',
-				'bio': 'Hello! I\'m a fashion blogger and shop owner. Originally from Montreal, but currently living in Seoul, South Korea.'
-				},
-				{
-				'first_name': 'Charles',
-				'last_name': 'Deluvio',
-				'is_available': True,
-				'categories': ['model', 'photographer'],
-				'links': [{'label': 'Frank & Oak', 'url': 'https://frankandoak.com'},{'label': 'Frank & Oak', 'url': 'https://frankandoak.com'}],
-				'tags': ['Man', 'Asian'],
-				'city': 'Montréal',
-				'bio': 'Hello! I\'m a fashion blogger and shop owner. Originally from Montreal, but currently living in Seoul, South Korea.'
-				},
-				{
-				'first_name': 'Celia',
-				'last_name': 'Spenard-Ko',
-				'is_available': True,
-				'categories': ['model', 'photographer'],
-				'tags': ['Woman', 'Asian'],
-				'city': 'Montréal',
-				'bio': 'Hello! I\'m a fashion blogger and shop owner. Originally from Montreal, but currently living in Seoul, South Korea.'
-				},
-				{
-				'first_name': 'Phillip',
-				'last_name': 'Malboeuf',
-				'is_available': True,
-				'categories': ['model', 'photographer'],
-				'tags': ['Man', 'Caucasian'],
-				'city': 'Montréal',
-				'bio': 'Hello! I\'m a fashion blogger and shop owner. Originally from Montreal, but currently living in Seoul, South Korea.'
-				}
-			]
-		}
-		# response['pieces_json'] = json.dumps(response['pieces'], sort_keys=False, default=json_formater)
+	# cached_template = app.caches['/pages'].get(request.path)
+	# if cached_template is None or request.current_session_is_admin or app.config['DEBUG']:
+	response = {
+		# 'pieces': Piece._values(lang),
+		# 'authors': Author.list(lang=lang),
+		'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
+		'current_path': request.path,
+		'root': request.host_url,
+		'development': app.config['ENVIRONMENT'] == 'DEVELOPMENT'
+	}
+	# response['pieces_json'] = json.dumps(response['pieces'], sort_keys=False, default=json_formater)
 
-		if lang is None:
-			response['lang_route'] = '/'
-			response['current_path'] = request.path
-		else:
-			response['lang'] = lang
-			response['lang_route'] = '/' + lang + '/'
-			response['current_path'] = request.path.replace(response['lang_route'], '/')
-
-		render = render_template('pages/' + request.endpoint + '.html', **response)
-		if not request.current_session_is_admin:
-			app.caches['/pages'].set(request.path, render, timeout=0)
-		return render
-
+	if lang is None:
+		response['lang_route'] = '/'
+		response['current_path'] = request.path
 	else:
-		return cached_template
+		response['lang'] = lang
+		response['lang_route'] = '/' + lang + '/'
+		response['current_path'] = request.path.replace(response['lang_route'], '/')
+
+	render = render_template('pages/' + request.endpoint + '.html', **response)
+	# if not request.current_session_is_admin:
+	# 	app.caches['/pages'].set(request.path, render, timeout=0)
+	return render
+
+	# else:
+	# 	return cached_template
 
 
 app.caches['/pages'] = SimpleCache()

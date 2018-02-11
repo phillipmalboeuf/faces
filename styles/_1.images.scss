@@ -19,4 +19,8 @@ img {
       top: 1px;
     }
   }
+
+  &.img--small {
+    width: $vertical_rythm*6;
+  }
 }

@@ -36,8 +36,8 @@ app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 app.timestamp = datetime.now(timezone(app.config['TIMEZONE'])).isoformat()
 
-# app.mongo = MongoClient(app.config['MONGO_URI'], connect=False)
-# app.db = app.mongo[app.config['MONGO_DB']]
+app.mongo = MongoClient(app.config['MONGO_URI'], connect=False)
+app.db = app.mongo[app.config['MONGO_DB']]
 app.caches = {}
 
 register('super-json', dumps, loads, content_type='application/x-super-json', content_encoding='utf-8') 
@@ -88,5 +88,9 @@ from core.helpers.filters import *
 # Survey.define_routes()
 # SurveyAnswer.define_routes()
 # SurveyComment.define_routes()
+
+from core.models.faces.face import Face
+
+Face.define_routes()
 
 

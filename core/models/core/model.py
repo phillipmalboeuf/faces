@@ -1,5 +1,5 @@
 from core import app
-from flask import request
+from flask import abort, request
 
 # from core.tasks.search import search_index, search_delete
 

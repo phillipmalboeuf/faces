@@ -1,0 +1,44 @@
+ 
+{% extends '_layout.html' %}
+
+{% block header %}
+<div class="grid grid--middle grid--guttered">
+  <div class="col col--1of12">{{super()}}</div>
+  <div class="col col--9of12"><a class="pill" href="https://fac.es/{{face.handle}}">fac.es/{{face.handle}}</a></div>
+  <div class="col col--2of12 text_right"><a href="/faces/{{face.handle}}/contact" class="button">Message {{face.first_name}}</a></div>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <div class="grid grid--center grid--guttered">
+    <div class="col col--10of12">
+      <div class="normal_bottom"><img class="img--small" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" alt="{{face.first_name}}'s Photo"></div>
+      <h1 class="max_width">{{face.first_name}} {{face.last_name}} is <span class="highlight">available</span> for freelance {% for category in face.categories %}<a href="/faces" class="underline">{{category|category_action}}</a>{% if not loop.last %} / {% endif %}{% endfor %}.</h1>
+    </div>
+
+    <div class="col col--12of12">
+      <div class="grid grid--guttered full_images">
+        {% for photo in face.photos %}
+        <div class="col col--3of12">
+          <a href="{{photo}}" target="_blank"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress"></a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col col--10of12">
+      <div class="max_width">
+        <h2>Bio</h2>
+        <p>{{face.bio}}</p>
+
+        <h2>Appeared in</h2>
+        <p>{% for link in face.links %}<a href="{{link.url}}" target="_blank">{{link.label}}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+
+        <h2>Tags</h2>
+        <p>{% for tag in face.tags %}<a href="/faces/tagged/{{tag}}" class="tag">{{tag}}</a> {% endfor %}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

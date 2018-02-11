@@ -4,7 +4,7 @@
 {% block header %}
 <div class="grid grid--middle grid--spaced">
   <div>{{super()}}</div>
-  <div>Hire everyday people for your instagram photoshoots.</div>
+  <div>Hire everyday people for your photoshoots.</div>
   <div><a href="">Login</a> / <a href="">Sign up</a></div>
 </div>
 {% endblock %}
@@ -15,36 +15,11 @@
   <div class="grid grid--guttered full_images">
     {% for face in faces %}
     <div class="col col--3of12">
-      <a href="/face"><img class="rounded shadowed" src="/files/face.jpg"></a>
+      <a href="/face"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces"></a>
     </div>
     {% endfor %}
   </div>
 </div>
 
-<form class="padded padded--tight shadowed white_back" action="/faces">
-  <input type="search" placeholder="Search profiles by name, city...">
-</form>
-
-<div class="padded">
-  <div class="padded padded--tight">
-    <div class="grid grid--guttered">
-      <div class="col col--5of12">Name</div>
-      <div class="col col--3of12">Is a</div>
-      <div class="col col--2of12">City</div>
-      <div class="col col--2of12">Available?</div>
-    </div>
-  </div>
-
-  {% for face in faces %}
-  <a href="/face" class="block padded padded--tight white_back small_bottom rounded">
-    <div class="grid grid--guttered grid--middle">
-      <div class="col col--1of12"><img class="rounded shadowed" src="/files/face.jpg" alt="{{face.first_name}}'s Photo"></div>
-      <div class="col col--4of12">{{face.first_name}} {{face.last_name|first}}.</div>
-      <div class="col col--3of12">{% for category in face.categories %}{{category|category}}{% if not loop.last %} / {% endif %}{% endfor %}</div>
-      <div class="col col--2of12">{{face.city}}</div>
-      <div class="col col--2of12">{{face.is_available}}</div>
-    </div>
-  </a>
-  {% endfor %}
-</div>
+{% include 'faces/_faces.html' %}
 {% endblock %}

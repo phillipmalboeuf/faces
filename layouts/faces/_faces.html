@@ -1,0 +1,27 @@
+
+<form class="padded padded--tight shadowed white_back" action="/faces">
+  <input type="search" placeholder="Search profiles by name, city...">
+</form>
+
+<div class="padded">
+  <div class="padded padded--tight">
+    <div class="grid grid--guttered">
+      <div class="col col--5of12">Name</div>
+      <div class="col col--3of12">Is a</div>
+      <div class="col col--2of12">City</div>
+      <div class="col col--2of12">Available?</div>
+    </div>
+  </div>
+
+  {% for face in faces %}
+  <a href="/faces/{{face.handle}}" class="block padded padded--tight white_back small_bottom rounded">
+    <div class="grid grid--guttered grid--middle">
+      <div class="col col--1of12"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=300&h=300&crop=faces" alt="{{face.first_name}}'s Photo"></div>
+      <div class="col col--4of12">{{face.first_name}} {{face.last_name|first}}.</div>
+      <div class="col col--3of12">{% for category in face.categories %}{{category|category}}{% if not loop.last %} / {% endif %}{% endfor %}</div>
+      <div class="col col--2of12">{{face.city}}</div>
+      <div class="col col--2of12">{{face.is_available}}</div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
