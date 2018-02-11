@@ -7,8 +7,7 @@ mandrill==1.0.57
 Markdown==2.6.11
 pycrypto==2.6.1
 pymongo==3.6.0
+python-dateutil==2.6.1
+boto3==1.5.24
 algoliasearch==1.15.2
 tornado==4.5.3
-pyinstaller==3.3.1
-pyobjc==4.1
-pywebview[cocoa]==1.8
