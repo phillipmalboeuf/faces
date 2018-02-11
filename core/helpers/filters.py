@@ -40,6 +40,17 @@ def category_filter(category):
 
 	return None
 
+@app.template_filter('tag')
+def category_filter(tag, category):
+
+	for c in app.config['CATEGORIES']:
+		if category == c['key']:
+			for t in c['tags']:
+				if tag == t['key']:
+					return t['title']
+
+	return None
+
 @app.template_filter('category_action')
 def category_action_filter(category):
 

@@ -2,7 +2,29 @@ CATEGORIES = [
   {
     'title': 'Model',
     'action': 'modeling',
-    'key': 'model'
+    'key': 'model',
+    'tags': [
+      {
+        'title': 'Woman',
+        'key': 'woman',
+      },
+      {
+        'title': 'Asian',
+        'key': 'asian',
+      },
+      {
+        'title': 'Caucasian',
+        'key': 'caucasian',
+      },
+      {
+        'title': 'Blonde',
+        'key': 'blonde',
+      },
+      {
+        'title': 'Thin',
+        'key': 'thin',
+      }
+    ]
   },
   {
     'title': 'Photographer',
