@@ -3,7 +3,7 @@
 
 window.Core = {
   init() {
-    console.log("FACES")
+    console.log('c:c:')
     this.render()
   },
 
@@ -24,7 +24,7 @@ window.Core = {
     if (elements.length > 0) {
       for (let i = elements.length - 1; i >= 0; i--) {
         if (!elements[i].hasAttribute("data-turbolinks-permanent")) {
-          ReactDOM.unmountComponentAtNode(elements[i])  
+          ReactDOM.unmountComponentAtNode(elements[i])
         }
       }
     }

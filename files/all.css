@@ -792,47 +792,47 @@ em,
   .hide_on_phone {
     display: none !important; } }
 
-.grid {
+.grid, .overlay {
   width: 100%;
   display: flex;
   flex-wrap: wrap; }
-  .grid.grid--center {
+  .grid.grid--center, .overlay {
     justify-content: center; }
-  .grid.grid--right {
+  .grid.grid--right, .grid--right.overlay {
     justify-content: flex-end; }
-  .grid.grid--spaced {
+  .grid.grid--spaced, .grid--spaced.overlay {
     justify-content: space-between; }
-  .grid.grid--spaced_around {
+  .grid.grid--spaced_around, .grid--spaced_around.overlay {
     justify-content: space-around; }
-  .grid.grid--vertically_spaced {
+  .grid.grid--vertically_spaced, .grid--vertically_spaced.overlay {
     align-content: space-between; }
-  .grid.grid--vertically_spaced_around {
+  .grid.grid--vertically_spaced_around, .grid--vertically_spaced_around.overlay {
     align-content: space-around; }
-  .grid.grid--vertically_centered {
+  .grid.grid--vertically_centered, .grid--vertically_centered.overlay {
     align-content: center; }
-  .grid.grid--stretch {
+  .grid.grid--stretch, .grid--stretch.overlay {
     align-items: stretch; }
-  .grid.grid--middle {
+  .grid.grid--middle, .overlay {
     align-items: center; }
-  .grid.grid--top {
+  .grid.grid--top, .grid--top.overlay {
     align-items: flex-start; }
-  .grid.grid--bottom {
+  .grid.grid--bottom, .grid--bottom.overlay {
     align-items: flex-end; }
-  .grid.grid--reverse {
+  .grid.grid--reverse, .grid--reverse.overlay {
     flex-direction: row-reverse; }
-  .grid.grid--nowrap {
+  .grid.grid--nowrap, .grid--nowrap.overlay {
     flex-wrap: nowrap; }
-  .grid.grid--full {
+  .grid.grid--full, .grid--full.overlay {
     width: 100%; }
-  .grid.grid--grow *:first-child {
+  .grid.grid--grow *:first-child, .grid--grow.overlay *:first-child {
     flex-grow: 1; }
-  .grid.grid--guttered {
+  .grid.grid--guttered, .grid--guttered.overlay {
     width: auto;
     margin-left: -2rem; }
-    .grid.grid--guttered > .col {
+    .grid.grid--guttered > .col, .grid--guttered.overlay > .col {
       padding-left: 2rem;
       padding-bottom: 4rem; }
-    .grid.grid--guttered:last-child {
+    .grid.grid--guttered:last-child, .grid--guttered.overlay:last-child {
       margin-bottom: -4rem; }
 
 .col.col--1of12 {
@@ -1410,71 +1410,37 @@ img {
 .overlay {
   position: fixed;
   top: 0;
-  left: 100vw;
+  left: 0;
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
   z-index: 20;
+  opacity: 0;
   visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  transition: opacity 0.999s, transform 0.999s, visibility 0s linear 0.999s; }
-  .overlay.overlay--bottom_right {
-    top: 100vh;
-    left: auto;
-    right: 2rem;
-    width: 20rem;
-    height: auto; }
+  transition: opacity 0.666s, visibility 0s linear 0.666s; }
   .overlay.overlay--show {
+    opacity: 1;
     visibility: visible;
-    transform: translate3d(-100%, 0, 0);
-    transition: opacity 0.999s, transform 0.999s, visibility 0s; }
-    .overlay.overlay--show.overlay--bottom_right {
-      transform: translate3d(0, -100%, 0); }
+    transition: opacity 0.666s, visibility 0s; }
+
+button.overlay__back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.9); }
 
 .overlay__container {
-  min-height: 100vh; }
-  .overlay--bottom_right .overlay__container {
-    min-height: 0; }
-
-.toggle_button {
   position: relative;
-  z-index: 21; }
-  .toggle_button.toggle_button--fixed {
-    position: fixed;
-    top: 3rem;
-    right: 5vw; }
-  .toggle_button rect {
-    transform: translate(0, 0) rotate(0deg);
-    transform-origin: 50% 50%;
-    transition: transform 0.999s; }
-  .toggle_button.toggle_button--showed {
-    color: #FFF; }
-    .toggle_button.toggle_button--showed:hover, .toggle_button.toggle_button--showed:focus {
-      color: #1B52DD; }
-    .toggle_button.toggle_button--showed.toggle_button--fixed {
-      color: inherit; }
-      .toggle_button.toggle_button--showed.toggle_button--fixed:hover, .toggle_button.toggle_button--showed.toggle_button--fixed:focus {
-        color: #FFF; }
-    .toggle_button.toggle_button--showed rect:nth-child(1) {
-      transform: translate(0, 200%) rotate(45deg); }
-    .toggle_button.toggle_button--showed rect:nth-child(2) {
-      transform: rotate(-45deg); }
-    .toggle_button.toggle_button--showed rect:nth-child(3) {
-      transform: translate(0, -200%) rotate(-45deg); }
-    .toggle_button.toggle_button--showed:hover rect:nth-child(1), .toggle_button.toggle_button--showed:focus rect:nth-child(1) {
-      transform: translate(0, 180%) rotate(40deg); }
-    .toggle_button.toggle_button--showed:hover rect:nth-child(2), .toggle_button.toggle_button--showed:focus rect:nth-child(2) {
-      transform: rotate(-40deg); }
-    .toggle_button.toggle_button--showed:hover rect:nth-child(3), .toggle_button.toggle_button--showed:focus rect:nth-child(3) {
-      transform: translate(0, -180%) rotate(-40deg); }
-
-.bottom_button {
-  position: fixed;
-  bottom: 4rem;
-  right: 5vw; }
-  .bottom_button:active {
-    top: auto;
-    bottom: 3.9rem; }
+  width: 100%;
+  max-width: 555.333333333px;
+  max-height: 100vh;
+  overflow-y: auto;
+  border: 1px solid #F7F7F7;
+  border-radius: 4px;
+  background-color: #FFF; }
 
 .pill,
 .tag {

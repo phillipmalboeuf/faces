@@ -21,6 +21,14 @@
     <section class="main" role="main">{% block main %}{% endblock %}</section>
     <footer class="footer">{% block footer %}{% endblock %}</footer>
 
+    <div id="account" data-turbolinks-permanent></div>
+    <script data-turbolinks-eval="false">
+    window.components.push({
+      element: "#account",
+      component: "Account"
+    })
+    </script>
+
     {% block scripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.1.1/turbolinks.js" data-turbolinks-eval="false" data-turbolinks-suppress-warning></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js" data-turbolinks-eval="false"></script>
