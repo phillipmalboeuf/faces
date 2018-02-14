@@ -14,7 +14,7 @@ from werkzeug.contrib.cache import SimpleCache
 # from core.models.cms.piece import Piece
 
 
-app.caches['/errors'] = SimpleCache()
+# app.caches['/errors'] = SimpleCache()
 
 @app.errorhandler(404)
 def not_found(error):

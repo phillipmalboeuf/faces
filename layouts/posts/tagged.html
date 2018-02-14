@@ -1,0 +1,12 @@
+{% extends '_layout.html' %}
+
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <h1>{{response.tags}}</h1>
+
+  {% for post in response.models %}
+  <a href="/posts/{{post.route}}">{{post.title}}</a><br>
+  {% endfor %}
+</div>
+{% endblock %}

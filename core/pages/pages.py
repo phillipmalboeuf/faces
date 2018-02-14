@@ -49,7 +49,7 @@ def page(lang=None):
 	# 	return cached_template
 
 
-app.caches['/pages'] = SimpleCache()
+# app.caches['/pages'] = SimpleCache()
 for file in os.listdir(app.template_folder+'/pages'):
 
 	if file == 'index.html':

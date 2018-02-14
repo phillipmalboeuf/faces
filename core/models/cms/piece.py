@@ -56,8 +56,8 @@ with app.app_context():
 
 		@classmethod
 		def preprocess(cls, document, lang=None):
-			for cache in app.caches:
-				app.caches[cache].clear()
+			# for cache in app.caches:
+			# 	app.caches[cache].clear()
 
 			return super().preprocess(document, lang)
 

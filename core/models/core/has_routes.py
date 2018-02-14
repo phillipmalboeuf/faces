@@ -116,32 +116,45 @@ with app.app_context():
 
 
 		@classmethod
-		def search_view(cls):
-			limit = int(request.args.get('limit', 15))
-			query = request.args.get('query', '')
+		def tagged_view(cls, tags):
 
-			if query:
-				_results = app.search.search(index='saturdays', doc_type=cls.collection_name, q=cls._process_query(query)+'*', size=limit, analyze_wildcard=True)
-				results = []
-				for hit in _results['hits']['hits']:
-					result = cls.postprocess(hit['_source'])
-					result['_score'] = hit['_score']
-					results.append(result)
+			limit = int(request.args.get('limit', 0))
+			skip = int(request.args.get('skip', 0))
+			tags = tags.split(',')
 
-				return cls._format_response({
-						'query': query,
-						'results': results,
-						'results_length': len(results),
-						'max_score': _results['hits']['max_score']
-					})
+			return cls._format_response({
+				'tags': tags,
+				'models': cls.list({'tags': {'$all': tags}}, limit=limit, skip=skip)
+			})
 
-			else:
-				results = cls.list({}, limit=limit)
-				return cls._format_response({
-						'query': query,
-						'results': results,
-						'results_length': len(results)
-					})
+
+		# @classmethod
+		# def search_view(cls):
+		# 	limit = int(request.args.get('limit', 15))
+		# 	query = request.args.get('query', '')
+
+		# 	if query:
+		# 		_results = app.search.search(index='saturdays', doc_type=cls.collection_name, q=cls._process_query(query)+'*', size=limit, analyze_wildcard=True)
+		# 		results = []
+		# 		for hit in _results['hits']['hits']:
+		# 			result = cls.postprocess(hit['_source'])
+		# 			result['_score'] = hit['_score']
+		# 			results.append(result)
+
+		# 		return cls._format_response({
+		# 				'query': query,
+		# 				'results': results,
+		# 				'results_length': len(results),
+		# 				'max_score': _results['hits']['max_score']
+		# 			})
+
+		# 	else:
+		# 		results = cls.list({}, limit=limit)
+		# 		return cls._format_response({
+		# 				'query': query,
+		# 				'results': results,
+		# 				'results_length': len(results)
+		# 			})
 
 
 		@classmethod

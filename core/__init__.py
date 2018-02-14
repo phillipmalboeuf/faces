@@ -70,24 +70,18 @@ from core.helpers.filters import *
 # from core.models.cms.page import Page
 # from core.models.cms.piece import Piece
 # from core.models.cms.author import Author
-# from core.models.cms.list import List
-# from core.models.cms.list_post import ListPost
-# from core.models.cms.comment import ListPostComment
+from core.models.cms.post import Post
 # from core.models.cms.error import Error
 # from core.models.cms.survey import Survey
 # from core.models.cms.survey_answer import SurveyAnswer
-# from core.models.cms.comment import SurveyComment
 
 # Page.define_routes()
 # Piece.define_routes()
 # Author.define_routes()
-# List.define_routes()
-# ListPost.define_routes()
-# ListPostComment.define_routes()
+Post.define_routes()
 # Error.define_routes()
 # Survey.define_routes()
 # SurveyAnswer.define_routes()
-# SurveyComment.define_routes()
 
 from core.models.faces.face import Face
 

@@ -125,19 +125,6 @@ with app.app_context():
     # VIEWS
 
     @classmethod
-    def tagged_view(cls, tags):
-
-      limit = int(request.args.get('limit', 0))
-      skip = int(request.args.get('skip', 0))
-      tags = tags.split(',')
-
-      return cls._format_response({
-        'tags': tags,
-        'faces': cls.list({'tags': {'$all': tags}}, limit=limit, skip=skip)
-      })
-
-
-    @classmethod
     def contact_view(cls, _id):
       document = cls.get(_id)
       return cls._format_response(document)

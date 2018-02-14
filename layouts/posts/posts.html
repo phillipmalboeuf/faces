@@ -1,0 +1,9 @@
+{% extends '_layout.html' %}
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  {% for post in posts %}
+  <a href="/posts/{{post.route}}">{{post.title}}</a><br>
+  {% endfor %}
+</div>
+{% endblock %}

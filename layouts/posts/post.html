@@ -1,0 +1,9 @@
+{% extends '_layout.html' %}
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <h1>{{post.title}}</h1>
+  <h2>Tags</h2>
+  <p>{% for tag in post.tags %}<a href="/posts/tagged/{{tag}}" class="tag">{{tag}}</a> {% endfor %}</p>
+</div>
+{% endblock %}
