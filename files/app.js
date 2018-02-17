@@ -886,14 +886,13 @@ var Tags = function (_React$Component4) {
     value: function render() {
       var _this21 = this;
 
-      console.log(this.props.tags);
       return [React.createElement(
         "div",
         { className: "normal_bottom", key: "gender" },
         React.createElement(
           "label",
           null,
-          "Gender"
+          "Gender (Optional)"
         ),
         React.createElement(
           "div",
@@ -911,7 +910,7 @@ var Tags = function (_React$Component4) {
         React.createElement(
           "label",
           null,
-          "Ethnicity"
+          "Ethnicity (Optional)"
         ),
         React.createElement(
           "div",
@@ -929,7 +928,7 @@ var Tags = function (_React$Component4) {
         React.createElement(
           "label",
           null,
-          "Hair type"
+          "Hair type (Optional)"
         ),
         React.createElement(
           "div",
@@ -947,7 +946,7 @@ var Tags = function (_React$Component4) {
         React.createElement(
           "label",
           null,
-          "Body type"
+          "Body type (Optional)"
         ),
         React.createElement(
           "div",
@@ -965,7 +964,7 @@ var Tags = function (_React$Component4) {
         React.createElement(
           "label",
           null,
-          "Style"
+          "Style (Optional)"
         ),
         React.createElement(
           "div",

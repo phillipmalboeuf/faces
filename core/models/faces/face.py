@@ -61,13 +61,18 @@ with app.app_context():
         'requires_admin': True
       },
       {
+        'route': '/new',
+        'view_function': 'new_view',
+        'methods': ['GET']
+      },
+      {
         'route': '/tagged/<tags>',
         'view_function': 'tagged_view',
         'methods': ['GET']
       },
       {
-        'route': '/new',
-        'view_function': 'new_view',
+        'route': '/cities/<city>',
+        'view_function': 'city_view',
         'methods': ['GET']
       },
       {
@@ -89,14 +94,19 @@ with app.app_context():
         'response_key': 'face'
       },
       {
+        'view_function': 'new_view',
+        'template': 'faces/new_face.html',
+        'response_key': 'face'
+      },
+      {
         'view_function': 'tagged_view',
         'template': 'faces/tagged.html',
         'response_key': 'response'
       },
       {
-        'view_function': 'new_view',
-        'template': 'faces/new_face.html',
-        'response_key': 'face'
+        'view_function': 'city_view',
+        'template': 'faces/city.html',
+        'response_key': 'response'
       },
       {
         'view_function': 'contact_view',
@@ -138,6 +148,16 @@ with app.app_context():
     def contact_view(cls, _id):
       document = cls.get(_id)
       return cls._format_response(document)
+
+    @classmethod
+    def city_view(cls, city):
+      limit = int(request.args.get('limit', 0))
+      skip = int(request.args.get('skip', 0))
+
+      return cls._format_response({
+        'city': city,
+        'faces': cls.list({'city': city}, limit=limit, skip=skip)
+      })
 
 
     @classmethod
