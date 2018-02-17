@@ -36,7 +36,7 @@
         <p>{% for link in face.links %}<a href="{{link.url}}" target="_blank">{{link.label}}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
 
         <h2>Tags</h2>
-        <p>{% for tag in face.tags %}<a href="/faces/tagged/{{tag}}" class="tag">{{tag|tag('model')}}</a> {% endfor %}</p>
+        <p>{% for tag in face.tags %}<a href="/faces/tagged/{{tag}}" class="tag">{{tag|tag('model')}}</a>{% endfor %}</p>
       </div>
     </div>
   </div>

@@ -70,6 +70,10 @@ class Account extends Overlay {
   }
 
   click(e) {
+    if (e.target.hasAttribute("data-toggle-account")) {
+      e.preventDefault()
+      this.toggle()
+    }
     // if (this.state.session.id && e.target.localName == "img") {
     //   this.file.key = e.target.getAttribute("data-key")
     //   // this.file.piece = e.target.getAttribute("data-piece")
@@ -217,10 +221,23 @@ class Account extends Overlay {
           <Button className="button--transparent" label="Logout" onClick={this.logout} />
         </div>
         ||
-        <Form onSubmit={this.login} action="POST" className="col col--14of20 col--tablet_portrait--16of20 col--phone--18of20">
-          <Input name='email' type='email' label='Email address' placeholder='email.address@gmail.com' required />
-          <Input name='password' type='password' label='Password' placeholder='********' required />
-          <Button label='Log in' />
+        <Form className="col col--14of20 col--tablet_portrait--16of20 col--phone--18of20"
+          onSubmit={this.login}
+          cta="Log in" 
+          fields={[
+            {
+              type: "email",
+              name: "email",
+              label: "Email address",
+              placeholder: "your.email.address@gmail.com"
+            },
+            {
+              type: "password",
+              name: "password",
+              label: "Password",
+              placeholder: "********"
+            }
+          ]}>
         </Form>
         }
       </div>

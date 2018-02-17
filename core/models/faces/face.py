@@ -66,6 +66,11 @@ with app.app_context():
         'methods': ['GET']
       },
       {
+        'route': '/new',
+        'view_function': 'new_view',
+        'methods': ['GET']
+      },
+      {
         'route': '/<_id>/contact',
         'view_function': 'contact_view',
         'methods': ['GET']
@@ -87,6 +92,11 @@ with app.app_context():
         'view_function': 'tagged_view',
         'template': 'faces/tagged.html',
         'response_key': 'response'
+      },
+      {
+        'view_function': 'new_view',
+        'template': 'faces/new_face.html',
+        'response_key': 'face'
       },
       {
         'view_function': 'contact_view',
@@ -128,6 +138,11 @@ with app.app_context():
     def contact_view(cls, _id):
       document = cls.get(_id)
       return cls._format_response(document)
+
+
+    @classmethod
+    def new_view(cls):
+      return cls._format_response({})
 
 
 

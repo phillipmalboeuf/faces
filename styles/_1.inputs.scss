@@ -10,26 +10,21 @@ label,
   display: block;
 
   color: inherit;
-  font-size: $base_size;
+  font-size: $small_size;
 
-  margin-bottom: $vertical_rythm/4;
+  margin-bottom: $vertical_rythm/6;
 }
 
 // #CONTENTEDITABLE
 
 [contenteditable] {
   position: relative;
-  background: fade-out($black, 0.85);
-  // border: 1px solid $highlight;
-  // border-radius: $border_radius;
-  // padding: 0 $vertical_rythm/4;
+  border: 1px solid $highlight;
+  border-radius: $border_radius;
+  padding: $vertical_rythm/4;
 
   &:active {
     top: 1px;
-  }
-
-  .black_back & {
-    background: fade-out($green, 0.9);
   }
 }
 
@@ -61,11 +56,12 @@ textarea,
   color: $black;
   background: $white;
   padding: $vertical_rythm/4;
-  border: 1px solid transparent;
+  margin-bottom: $vertical_rythm/2;
+  border: 1px solid fade-out($grey--dark, 0.42);
   border-radius: $border_radius;
 
   &:active {
-    background: fade-out($white, 0.2);
+    background: fade-out($grey, 0.2);
   }
 
   &:disabled,
@@ -78,17 +74,19 @@ textarea,
   }
 
   &:focus {
-    // border: 1px solid $green;
+    border: 1px solid $highlight;
   }
 
   &.input--tight {
     padding: $vertical_rythm/4 $vertical_rythm/2;
   }
 
-  &.input--underline {
-    padding: $vertical_rythm/2 0;
-    border-bottom: 1px dashed;
+  &.input--transparent {
+    border: none;
+    margin-bottom: 0;
   }
+
+
 
   &.input--inline {
     display: inline-block;
@@ -108,12 +106,11 @@ textarea,
 
 
 textarea {
-  height: $vertical_rythm*6;
-  padding: $vertical_rythm/1.5 $vertical_rythm;
-  line-height: $vertical_rythm;
+  height: $vertical_rythm*4;
+  padding: $vertical_rythm/2;
 
   &.textarea--one_line {
-    padding: $vertical_rythm/2 $vertical_rythm;
+    padding: $vertical_rythm/4;
     height: auto;
   }
 }
@@ -125,6 +122,88 @@ select {
 
 input[type="search"] {
   box-sizing: border-box;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+  position: relative;
+
+  display: none;
+
+  & + label {
+    @extend .grid;
+    @extend .grid--nowrap;
+    @extend .grid--middle;
+
+    position: relative;
+    font-size: inherit;
+    color: fade-out($grey--dark, 0.42);
+
+    &:hover,
+    input:focus + & {
+      color: $black;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      display: inline-block;
+
+      margin: 0 $vertical_rythm/4 0 0;
+    }
+
+    &:before {
+      width: $base_size;
+      height: $base_size;
+
+      border: 2px solid;
+      border-radius: $border_radius;
+    }
+
+    &:after {
+      width: ($base_size) - 6px;
+      height: ($base_size) - 6px;
+      border-radius: $border_radius;
+      background-color: transparent;
+
+      position: absolute;
+      left: 3px;
+      top: 6px;
+
+      // transition: transform $fast;
+      // transform: scale(0);
+    }
+  }
+
+  &:checked {
+
+    & + label {
+      color: $black;
+
+      &:before {
+        // border-color: $black;
+      }
+
+      &:after {
+        background-color: $black;
+        // transform: scale(1);
+      }
+    }
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+input[type="radio"] {
+  & + label {
+    &:before,
+    &:after {
+      border-radius: 50%;
+    }
+  }
 }
 
 input[type="file"] {
@@ -139,6 +218,6 @@ input[type="file"] {
   -moz-outline-style: none;
 }
 
-::-webkit-input-placeholder, ::-webkit-input-placeholder { color: $grey--dark; }
-:-moz-placeholder, :-moz-placeholder { color: $grey--dark; }
+::-webkit-input-placeholder, ::-webkit-input-placeholder { color: fade-out($grey--dark, 0.42); }
+:-moz-placeholder, :-moz-placeholder { color: fade-out($grey--dark, 0.42); }
 

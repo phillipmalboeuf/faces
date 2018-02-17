@@ -19,7 +19,7 @@
 
     <header class="header">{% block header %}<a href="/">{% include 'icons/logo.html' %}</a>{% endblock %}</header>
     <section class="main" role="main">{% block main %}{% endblock %}</section>
-    <footer class="footer">{% block footer %}{% endblock %}</footer>
+    <footer class="footer">{% block footer %}<a href="/about">About</a> / <a href="/posts">Blog posts</a>{% endblock %}</footer>
 
     <div id="account" data-turbolinks-permanent></div>
     <script data-turbolinks-eval="false">
@@ -30,9 +30,14 @@
     </script>
 
     {% block scripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.1.1/turbolinks.js" data-turbolinks-eval="false" data-turbolinks-suppress-warning></script>
+    {% if development %}
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.development.js" data-turbolinks-eval="false"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.development.js" data-turbolinks-eval="false"></script>
+    {% else %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js" data-turbolinks-eval="false"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js" data-turbolinks-eval="false"></script>
+    {% endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.1.1/turbolinks.js" data-turbolinks-eval="false" data-turbolinks-suppress-warning></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js" data-turbolinks-eval="false"></script>
     
     <script src="/files/app.js?v={{timestamp}}" data-turbolinks-eval="false" async></script>

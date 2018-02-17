@@ -1,0 +1,112 @@
+ 
+{% extends '_layout.html' %}
+
+
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <div class="grid grid--guttered">
+    <div class="col col--3of12 col--tablet_portrait--6of12 col--phone--12of12">
+      <h1>New Face</h1>
+      <p>You have a good face. You have a great face. You have an amazing face. You have a jaw-dropping face.</p>
+      <p><a href="/login" data-toggle-account class="underline highlight">I already have a profile</a></p>
+    </div>
+    <div class="col col--5of12 col--tablet_portrait--6of12 col--phone--12of12">
+      {% if session %}
+      <p>Please logout before creating a new profile.</p>
+      {% else %}
+      <div id="face"></div>
+      <script>
+        window.components.push({
+          element: "#face",
+          component: "Form",
+          data: {
+            action: "/faces",
+            cta: "Join Good Faces",
+            fields: [
+              {
+                type: "info",
+                body: "Hi! Tell us a few things about yourself:"
+              },
+              {
+                type: "text",
+                name: "first_name",
+                label: "First name",
+                placeholder: "Good"
+              },
+              {
+                type: "text",
+                name: "last_name",
+                label: "Last name",
+                placeholder: "Face",
+                optional: true
+              },
+              {
+                type: "url",
+                name: "instagram_handle",
+                label: "Instagram Handle",
+                placeholder: "@goodfaces",
+                optional: true
+              },
+              {
+                type: "url",
+                name: "portfolio_url",
+                label: "Portfolio Link",
+                placeholder: "https://yourporfolio.com",
+                optional: true
+              },
+              {
+                type: "textarea",
+                name: "bio",
+                label: "Bio",
+                placeholder: "A few lines about yourself"
+              },
+              {
+                type: "info",
+                body: "Upload a few photos:"
+              },
+              {
+                type: "photos",
+                name: "photos"
+              },
+              {
+                type: "info",
+                body: "How would describe yourself, choose as many or as few of these:"
+              },
+              {
+                type: "tags",
+                name: "tags",
+                tags: {{categories[0].tags|tojson}}
+              },
+              {
+                type: "info",
+                body: "Great! Now for your login information:"
+              },
+              {
+                type: "text",
+                name: "handle",
+                label: "Profile handle",
+                placeholder: "goodfaceclub"
+              },
+              {
+                type: "email",
+                name: "email",
+                label: "Email address",
+                placeholder: "your.email.address@gmail.com"
+              },
+              {
+                type: "password",
+                name: "password",
+                label: "Password",
+                placeholder: "********",
+                new: true
+              }
+            ]
+          }
+        })
+      </script>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -25,6 +25,7 @@ def page(lang=None):
 		# 'pieces': Piece._values(lang),
 		# 'authors': Author.list(lang=lang),
 		'faces': Face.list(lang=lang),
+		'categories': app.config['CATEGORIES'],
 		'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
 		'current_path': request.path,
 		'root': request.host_url,

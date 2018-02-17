@@ -29,7 +29,7 @@ if __name__ == '__main__':
     # server.daemon = True
     # server.start()
 
-    # grunt = subprocess.Popen([f'grunt', f'--path={app.path}/'],
+    # grunt = subprocess.Popen([f'./node_modules/grunt-cli/bin/grunt', f'--path={app.path}/'],
     #   cwd=(sys._MEIPASS if hasattr(sys, '_MEIPASS') else app.path))
 
     # webview.create_window('Class', 'http://localhost:8080/start')

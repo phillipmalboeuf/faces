@@ -8,12 +8,19 @@
 
   .pill,
   .tag {
+    display: inline-block;
     color: $black--dark;
-    font-weight: $bold;
+    // font-weight: $bold;
 
     padding: $vertical_rythm/6 $vertical_rythm/3;
     background-color: $grey;
     border-radius: $border_radius;
+
+    margin: 0 $vertical_rythm/2 $vertical_rythm/2 0;
+
+    label {
+      margin-bottom: 0;
+    }
   }
 
   .pill {

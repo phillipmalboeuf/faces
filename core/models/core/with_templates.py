@@ -65,6 +65,7 @@ with app.app_context():
 							response = {
 								template['response_key']: response.copy(),
 								# 'pieces': Piece._values(request.url_rule.lang),
+								'categories': app.config['CATEGORIES'],
 								'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
 								'current_path': request.path,
 								'root': request.host_url,

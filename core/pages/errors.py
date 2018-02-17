@@ -28,6 +28,7 @@ def not_found(error):
 		# if cached_template is None or app.config['DEBUG']:
 		response = {
 			# 'pieces': Piece._values(),
+			'categories': app.config['CATEGORIES'],
 			'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
 			'current_path': request.path,
 			'root': request.host_url,

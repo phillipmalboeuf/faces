@@ -144,6 +144,10 @@ a {
   &.a--focus {
     color: $highlight;
     // text-decoration: underline;
+
+    &.highlight {
+      color: $black;
+    }
   }
 
   &:active {

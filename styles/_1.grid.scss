@@ -72,14 +72,11 @@
   &.grid--guttered {
     width: auto;
     margin-left: -$gutter;
+    // margin-bottom: -$gutter;
 
     > .col {
       padding-left: $gutter;
-      padding-bottom: $gutter*2;
-    }
-
-    &:last-child {
-      margin-bottom: -$gutter*2;
+      padding-bottom: $gutter;
     }
   }
 }

@@ -4,6 +4,8 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -438,6 +440,10 @@ var Account = function (_Overlay) {
   }, {
     key: "click",
     value: function click(e) {
+      if (e.target.hasAttribute("data-toggle-account")) {
+        e.preventDefault();
+        this.toggle();
+      }
       // if (this.state.session.id && e.target.localName == "img") {
       //   this.file.key = e.target.getAttribute("data-key")
       //   // this.file.piece = e.target.getAttribute("data-piece")
@@ -593,13 +599,20 @@ var Account = function (_Overlay) {
             "div",
             { className: "grid grid--middle grid--spaced_around" },
             React.createElement(Button, { className: "button--transparent", label: "Logout", onClick: this.logout })
-          ) || React.createElement(
-            Form,
-            { onSubmit: this.login, action: "POST", className: "col col--14of20 col--tablet_portrait--16of20 col--phone--18of20" },
-            React.createElement(Input, { name: "email", type: "email", label: "Email address", placeholder: "email.address@gmail.com", required: true }),
-            React.createElement(Input, { name: "password", type: "password", label: "Password", placeholder: "********", required: true }),
-            React.createElement(Button, { label: "Log in" })
-          )
+          ) || React.createElement(Form, { className: "col col--14of20 col--tablet_portrait--16of20 col--phone--18of20",
+            onSubmit: this.login,
+            cta: "Log in",
+            fields: [{
+              type: "email",
+              name: "email",
+              label: "Email address",
+              placeholder: "your.email.address@gmail.com"
+            }, {
+              type: "password",
+              name: "password",
+              label: "Password",
+              placeholder: "********"
+            }] })
         )
       );
     }
@@ -627,15 +640,28 @@ var Button = function Button(props) {
 var Form = function (_React$Component2) {
   _inherits(Form, _React$Component2);
 
-  function Form() {
+  function Form(props) {
     _classCallCheck(this, Form);
 
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+    var _this17 = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+    _this17.state = {
+      waiting: false,
+      success: false
+    };
+
+    _this17.onSubmit = _this17.onSubmit.bind(_this17);
+    _this17.onChange = _this17.onChange.bind(_this17);
+    return _this17;
   }
 
   _createClass(Form, [{
     key: "onSubmit",
     value: function onSubmit(e) {
+      this.setState({
+        waiting: true
+      });
+
       if (this.props.onSubmit) {
         e.preventDefault();
         this.props.onSubmit(e, this.state);
@@ -653,11 +679,58 @@ var Form = function (_React$Component2) {
 
       return React.createElement(
         "form",
-        { className: this.props.className, action: this.props.action, method: this.props.method,
-          onSubmit: this.onSubmit.bind(this) },
-        React.Children.map(this.props.children, function (child) {
-          return React.cloneElement(child, { onChange: _this18.onChange.bind(_this18) });
-        })
+        { className: this.props.className, action: this.props.action, method: this.props.method || "POST",
+          onSubmit: this.onSubmit },
+        this.props.children ? this.props.children : this.props.fields.map(function (field, index) {
+          if (field.type == "header") {
+            return React.createElement(
+              "h3",
+              { className: "padded padded--tight flat_bottom text_center", key: index },
+              field.body
+            );
+          } else if (field.type == "info") {
+            return React.createElement(
+              "p",
+              { className: "padded padded--tight flat_bottom text_center", key: index },
+              field.body
+            );
+          } else if (field.type == "link") {
+            return React.createElement(
+              "p",
+              { className: "padded padded--tight flat_bottom text_center", key: index },
+              React.createElement(
+                "a",
+                { href: field.url, target: field.target, className: "underline highlight" },
+                field.body ? field.body : field.url
+              )
+            );
+          } else if (field.type == "photos") {
+            return React.createElement(Photos, { key: index, name: field.name,
+              editable: true,
+              onChange: _this18.onChange,
+              min: field.min || 6,
+              photos: _this18.props.values && _this18.props.values[field.name] || field.value || [] });
+          } else if (field.type == "tags") {
+            return React.createElement(Tags, { key: index, name: field.name,
+              editable: true,
+              onChange: _this18.onChange,
+              tags: field.tags || [],
+              selected: _this18.props.values && _this18.props.values[field.name] || field.value || [] });
+          } else {
+            return React.createElement(Input, { key: index, name: field.name,
+              onChange: _this18.onChange,
+              type: field.type,
+              value: _this18.props.values && _this18.props.values[field.name] || field.value,
+              label: field.label,
+              options: field.options,
+              multiple: field.multiple,
+              optional: field.optional,
+              placeholder: field.placeholder,
+              autoFocus: field.autofocus,
+              "new": field.new });
+          }
+        }),
+        React.createElement(Button, { key: "button", label: this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta, disabled: this.state.waiting })
       );
     }
   }]);
@@ -666,27 +739,253 @@ var Form = function (_React$Component2) {
 }(React.Component);
 
 var Input = function Input(props) {
-  return React.createElement(
-    "p",
-    null,
-    props.label && React.createElement(
-      "label",
-      { htmlFor: props.name },
-      props.label
-    ),
-    React.createElement("input", { id: props.name,
-      className: props.className,
-      name: props.name,
-      type: props.type ? props.type : 'text',
+
+  if (props.type == "hidden") {
+    return React.createElement("input", { name: props.name, id: props.name,
+      type: props.type,
       defaultValue: props.value,
-      min: props.min,
-      max: props.max,
+      onChange: props.onChange });
+  } else if (props.type == "readonly") {
+    return [props.label && React.createElement(
+      "label",
+      { key: "label", htmlFor: props.name },
+      props.label
+    ), React.createElement("input", { key: "input", name: props.name, id: props.name,
+      type: "hidden",
+      defaultValue: props.value,
+      onChange: props.onChange }), React.createElement(
+      "p",
+      { key: "text", className: "input" },
+      props.text
+    )];
+  } else if (props.type == "textarea") {
+    return [props.label && React.createElement(
+      "label",
+      { key: "label", htmlFor: props.name },
+      props.label
+    ), React.createElement("textarea", { key: "input", name: props.name, id: "" + props.name,
+      defaultValue: props.value,
       placeholder: props.placeholder,
       required: props.required ? true : false,
-      autoFocus: props.autofocus ? true : false,
-      onChange: props.onChange })
-  );
+      onChange: props.onChange })];
+  } else if (props.type == "checkbox") {
+    return [React.createElement("input", { key: "input", name: props.name, id: props.name + "_" + props.value,
+      className: props.pill ? "checkbox--pill" : null,
+      type: props.type,
+      defaultValue: props.value,
+      defaultChecked: props.checked,
+      required: props.required ? true : false,
+      onChange: props.onChange }), props.label && React.createElement(
+      "label",
+      { key: "label", htmlFor: props.name + "_" + props.value },
+      props.label
+    )];
+  } else if (props.type == "select") {
+    return [props.label && React.createElement(
+      "label",
+      { key: "label", htmlFor: props.name },
+      props.label
+    ), React.createElement(
+      "select",
+      { key: "input", name: props.name, id: props.name, defaultValue: props.value ? props.value : props.multiple ? [] : null,
+        multiple: props.multiple ? true : false,
+        size: props.multiple ? props.options.length : null,
+        onChange: props.onChange },
+      props.optional && React.createElement(
+        "option",
+        { value: undefined },
+        props.placeholder
+      ),
+      props.options.map(function (option) {
+        if (option.value != undefined) {
+          return React.createElement(
+            "option",
+            { key: option.value, value: option.value },
+            option.label
+          );
+        } else {
+          return React.createElement(
+            "option",
+            { key: option, value: option },
+            option
+          );
+        }
+      })
+    )];
+  } else {
+    return [props.label && React.createElement(
+      "label",
+      { key: "label", htmlFor: props.name },
+      props.label,
+      props.optional ? " (Optional)" : ""
+    ), React.createElement("input", { key: "input", name: props.name, id: props.name, className: "" + (props.inline ? " input--inline" : null),
+      type: props.type ? props.type : 'text',
+      defaultValue: props.type == "date" && props.value ? props.value.split("T")[0] : props.value,
+      placeholder: props.placeholder,
+      required: props.optional ? false : true,
+      disabled: props.disabled ? true : false,
+      autoFocus: props.autoFocus ? true : false,
+      autoComplete: props.type == "password" && props.new ? "new-password" : props.type == "search" ? "off" : null,
+      step: props.type == "number" ? "any" : null,
+      onChange: props.onChange })];
+  }
 };
+
+var Photos = function (_React$Component3) {
+  _inherits(Photos, _React$Component3);
+
+  function Photos(props) {
+    _classCallCheck(this, Photos);
+
+    var _this19 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
+
+    _this19.state = {
+      photos: props.photos.length >= props.min ? props.photos : [].concat(_toConsumableArray(props.photos), _toConsumableArray(Array(props.min - props.photos.length).fill().map(function (_, i) {
+        return "/faces/empty.png";
+      })))
+    };
+    return _this19;
+  }
+
+  _createClass(Photos, [{
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "div",
+        { className: "grid grid--guttered full_images" },
+        this.state.photos.map(function (photo, index) {
+          return React.createElement(
+            "div",
+            { key: index, className: "col col--4of12" },
+            React.createElement("img", { className: "rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
+          );
+        })
+      );
+    }
+  }]);
+
+  return Photos;
+}(React.Component);
+
+var Tags = function (_React$Component4) {
+  _inherits(Tags, _React$Component4);
+
+  function Tags(props) {
+    _classCallCheck(this, Tags);
+
+    var _this20 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
+
+    _this20.state = {
+      selected: props.selected
+    };
+    return _this20;
+  }
+
+  _createClass(Tags, [{
+    key: "render",
+    value: function render() {
+      var _this21 = this;
+
+      console.log(this.props.tags);
+      return [React.createElement(
+        "div",
+        { className: "normal_bottom", key: "gender" },
+        React.createElement(
+          "label",
+          null,
+          "Gender"
+        ),
+        React.createElement(
+          "div",
+          { className: "tags" },
+          this.props.tags.filter(function (tag) {
+            return tag.type === "gender";
+          }).map(function (tag, index) {
+            return React.createElement(
+              "span",
+              { className: "tag" },
+              React.createElement(Input, { type: "checkbox", name: _this21.props.name + ":" + tag.key, label: tag.title })
+            );
+          })
+        ),
+        React.createElement(
+          "label",
+          null,
+          "Ethnicity"
+        ),
+        React.createElement(
+          "div",
+          { className: "tags" },
+          this.props.tags.filter(function (tag) {
+            return tag.type === "ethnicity";
+          }).map(function (tag, index) {
+            return React.createElement(
+              "span",
+              { className: "tag" },
+              React.createElement(Input, { type: "checkbox", name: _this21.props.name + ":" + tag.key, label: tag.title })
+            );
+          })
+        ),
+        React.createElement(
+          "label",
+          null,
+          "Hair type"
+        ),
+        React.createElement(
+          "div",
+          { className: "tags" },
+          this.props.tags.filter(function (tag) {
+            return tag.type === "hair";
+          }).map(function (tag, index) {
+            return React.createElement(
+              "span",
+              { className: "tag" },
+              React.createElement(Input, { type: "checkbox", name: _this21.props.name + ":" + tag.key, label: tag.title })
+            );
+          })
+        ),
+        React.createElement(
+          "label",
+          null,
+          "Body type"
+        ),
+        React.createElement(
+          "div",
+          { className: "tags" },
+          this.props.tags.filter(function (tag) {
+            return tag.type === "body";
+          }).map(function (tag, index) {
+            return React.createElement(
+              "span",
+              { className: "tag" },
+              React.createElement(Input, { type: "checkbox", name: _this21.props.name + ":" + tag.key, label: tag.title })
+            );
+          })
+        ),
+        React.createElement(
+          "label",
+          null,
+          "Style"
+        ),
+        React.createElement(
+          "div",
+          { className: "tags" },
+          this.props.tags.filter(function (tag) {
+            return tag.type === "style";
+          }).map(function (tag, index) {
+            return React.createElement(
+              "span",
+              { className: "tag" },
+              React.createElement(Input, { type: "checkbox", name: _this21.props.name + ":" + tag.key, label: tag.title })
+            );
+          })
+        )
+      )];
+    }
+  }]);
+
+  return Tags;
+}(React.Component);
 
 window.Core = {
   init: function init() {
@@ -694,14 +993,12 @@ window.Core = {
     this.render();
   },
   render: function render() {
-    var data = {};
     var element = null;
     for (var i = window.components.length - 1; i >= 0; i--) {
-      data = window.components[i]["data"];
-      element = document.querySelectorAll(window.components[i]["element"])[0];
-      element.setAttribute("data-component", window.components[i]["component"]);
+      element = document.querySelectorAll(window.components[i].element)[0];
+      element.setAttribute("data-component", window.components[i].component);
 
-      ReactDOM.render(React.createElement(window[window.components[i]["component"]], data), element);
+      ReactDOM.render(React.createElement(window[window.components[i].component], window.components[i].data), element);
     }
   },
   destroy: function destroy() {
