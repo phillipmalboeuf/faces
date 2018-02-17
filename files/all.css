@@ -851,7 +851,8 @@ input[type="radio"] + label, .overlay {
   .grid.grid--guttered, input[type="checkbox"] + label.grid--guttered,
   input[type="radio"] + label.grid--guttered, .grid--guttered.overlay {
     width: auto;
-    margin-left: -2rem; }
+    margin-left: -2rem;
+    margin-bottom: -2rem; }
     .grid.grid--guttered > .col, input[type="checkbox"] + label.grid--guttered > .col,
     input[type="radio"] + label.grid--guttered > .col, .grid--guttered.overlay > .col {
       padding-left: 2rem;

@@ -72,7 +72,7 @@
   &.grid--guttered {
     width: auto;
     margin-left: -$gutter;
-    // margin-bottom: -$gutter;
+    margin-bottom: -$gutter;
 
     > .col {
       padding-left: $gutter;
