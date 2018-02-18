@@ -153,6 +153,11 @@ with app.app_context():
 
 
 
+		@classmethod
+		def search(cls, query):
+			index = app.search.init_index(cls.collection_name)
+			return index.search(query)
+
 
 
 		# HELPERS

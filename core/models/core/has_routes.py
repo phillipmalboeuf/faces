@@ -128,33 +128,25 @@ with app.app_context():
 			})
 
 
-		# @classmethod
-		# def search_view(cls):
-		# 	limit = int(request.args.get('limit', 15))
-		# 	query = request.args.get('query', '')
+		@classmethod
+		def search_view(cls):
 
-		# 	if query:
-		# 		_results = app.search.search(index='saturdays', doc_type=cls.collection_name, q=cls._process_query(query)+'*', size=limit, analyze_wildcard=True)
-		# 		results = []
-		# 		for hit in _results['hits']['hits']:
-		# 			result = cls.postprocess(hit['_source'])
-		# 			result['_score'] = hit['_score']
-		# 			results.append(result)
+			query = request.args.get('q')
 
-		# 		return cls._format_response({
-		# 				'query': query,
-		# 				'results': results,
-		# 				'results_length': len(results),
-		# 				'max_score': _results['hits']['max_score']
-		# 			})
+			if query is not None:
+				search = cls.search(query)
+				results = {
+					'query': query,
+					'hits': search['hits'],
+					'number_of_hits': search['nbHits'],
+					'collection': cls.collection_name
+				}
 
-		# 	else:
-		# 		results = cls.list({}, limit=limit)
-		# 		return cls._format_response({
-		# 				'query': query,
-		# 				'results': results,
-		# 				'results_length': len(results)
-		# 			})
+			else:
+				results = {}
+
+	
+			return cls._format_response(cls._process_search_results(results))
 
 
 		@classmethod
@@ -203,6 +195,9 @@ with app.app_context():
 			return to_json(response)
 
 
+		@classmethod
+		def _process_search_results(cls, results):
+			return results
 
 		@classmethod
 		def _process_stats(cls, stats, documents):

@@ -24,7 +24,9 @@
   "scripts": {
     "start": "source ./environment/bin/activate && python server.py",
     "watch": "grunt",
-    "build": "source ./environment/bin/activate && pyinstaller server.py --distpath=./ --onefile --add-data=Gruntfile.js:. --add-data=package.json:. --add-data=node_modules:node_modules --noconfirm"
+    "build": "source ./environment/bin/activate && pyinstaller server.py --distpath=./ --onefile --add-data=Gruntfile.js:. --add-data=package.json:. --add-data=node_modules:node_modules --noconfirm",
+    "worker": "source ./environment/bin/activate && celery worker --app=core.celery -B",
+    "queue": "rabbitmq-server"
   },
   "author": "Phillip Malboeuf <phillip.malboeuf@gmail.com>",
   "dependencies": {}

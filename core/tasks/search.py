@@ -2,17 +2,19 @@ from core import app
 from core import celery
 from flask import request, abort, json
 
-from core.helpers.json import json_formater
+from core.models.faces.face import Face
 
 
-@celery.task(name='search_index')
-def search_index(type, id, body):
+@celery.task(name='batch_faces')
+def batch_faces():
 
-	app.search.index(index='dauphin', doc_type=type, body=json.dumps(body, sort_keys=False, default=json_formater), id=str(id))
+  ctx = app.test_request_context()
+  ctx.push()
+
+  app.search.batch([{
+    'action': 'updateObject',
+    'indexName': 'faces',
+    'body': {**face, 'objectID': face['_id']}
+  } for face in Face.list()])
 
 
-
-@celery.task(name='search_delete')
-def search_delete(type, id):
-	
-	app.search.delete(index='dauphin', doc_type=type, id=str(id))

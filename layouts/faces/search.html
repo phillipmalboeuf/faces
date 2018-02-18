@@ -1,0 +1,13 @@
+ 
+{% extends 'pages/index.html' %}
+
+
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <h1>{{results.number_of_hits}} hits for "{{results.query}}"</h1>
+</div>
+
+{% set faces = results.hits %}
+{% include 'faces/_faces.html' %}
+{% endblock %}

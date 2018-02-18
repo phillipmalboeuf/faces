@@ -17,3 +17,26 @@ S3_ACCESS_KEY = os.getenv('S3_ACCESS_KEY', '')
 S3_SECRET_KEY = os.getenv('S3_SECRET_KEY', '')
 S3_BUCKET = os.getenv('S3_BUCKET', 'montrealuploads')
 S3_FOLDER = os.getenv('S3_FOLDER', 'faces')
+
+# CELERY
+CELERY_TIMEZONE = TIMEZONE
+CELERYBEAT_SCHEDULE = {
+  'batch_faces': {
+    'task': 'batch_faces',
+    'schedule': crontab(minute='*/15')
+  }
+}
+CELERY_ACCEPT_CONTENT = ['super-json']
+CELERY_TASK_SERIALIZER = 'super-json'
+CELERY_RESULT_SERIALIZER = 'super-json'
+CELERY_EVENT_QUEUE_PREFIX = 'faces'
+
+# RABBITMQ
+RABBITMQ_URL = os.getenv('RABBITMQ_URL', '')
+
+# ALGOLIA
+ALGOLIA_ID = os.getenv('ALGOLIA_ID', '')
+ALGOLIA_KEY = os.getenv('ALGOLIA_KEY', '')
+
+
+

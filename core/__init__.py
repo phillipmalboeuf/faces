@@ -1,6 +1,8 @@
 
 from flask import Flask
 from pymongo import MongoClient
+from celery import Celery
+from algoliasearch import algoliasearch
 
 import os
 import pathlib
@@ -38,10 +40,16 @@ app.timestamp = datetime.now(timezone(app.config['TIMEZONE'])).isoformat()
 
 app.mongo = MongoClient(app.config['MONGO_URI'], connect=False)
 app.db = app.mongo[app.config['MONGO_DB']]
+app.search = algoliasearch.Client(app.config['ALGOLIA_ID'], app.config['ALGOLIA_KEY'])
 app.caches = {}
 
 register('super-json', dumps, loads, content_type='application/x-super-json', content_encoding='utf-8') 
 
+celery = Celery(app.import_name, broker=app.config['RABBITMQ_URL'])
+celery.config_from_object(app.config)
+
+
+from core.tasks.search import batch_faces
 
 from core.pages.pages import *
 from core.pages.errors import *

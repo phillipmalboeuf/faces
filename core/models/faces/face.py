@@ -79,6 +79,11 @@ with app.app_context():
         'route': '/<_id>/contact',
         'view_function': 'contact_view',
         'methods': ['GET']
+      },
+      {
+        'route': '/_search',
+        'view_function': 'search_view',
+        'methods': ['GET']
       }
     ]
 
@@ -112,6 +117,11 @@ with app.app_context():
         'view_function': 'contact_view',
         'template': 'faces/contact.html',
         'response_key': 'face'
+      },
+      {
+        'view_function': 'search_view',
+        'template': 'faces/search.html',
+        'response_key': 'results'
       }
     ]
 
