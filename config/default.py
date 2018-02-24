@@ -5,7 +5,7 @@ from celery.schedules import crontab
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'DEVELOPMENT').upper()
 DEBUG = ENVIRONMENT == 'DEVELOPMENT'
 TIMEZONE = 'US/Eastern'
-MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+MAX_CONTENT_LENGTH = 20 * 1024 * 1024
 
 LANGS = os.getenv('LANGS', 'fr,es,kr,ch,ja')
 LANGS = LANGS.split(',')
