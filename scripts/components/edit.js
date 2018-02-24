@@ -6,7 +6,7 @@ class Edit extends Overlay {
   constructor(props) {
     super(props)
     this.state = {
-      showed: false
+      showed: true
     }
   }
 

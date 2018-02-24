@@ -59,10 +59,10 @@ from core.helpers.access_control_origin import *
 from core.helpers.filters import *
 
 
-# from core.models.utilities.upload import Upload
+from core.models.utilities.upload import Upload
 # from core.models.utilities.search import Search
 
-# Upload.define_routes()
+Upload.define_routes()
 # Search.define_routes()
 
 

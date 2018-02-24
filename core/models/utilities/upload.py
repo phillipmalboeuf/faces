@@ -21,8 +21,7 @@ with app.app_context():
 			{
 				'route': '',
 				'view_function': 'upload_view',
-				'methods': ['POST'],
-				'requires_admin': True
+				'methods': ['POST']
 			}
 		]
 
@@ -41,17 +40,6 @@ with app.app_context():
 			)
 
 			upload = client.upload_fileobj(uploaded_file, app.config['S3_BUCKET'], app.config['S3_FOLDER'] + '/' + _id + '/' + filename)
-			print(upload)
-
-			# connection = boto.connect_s3(app.config['S3_ACCESS_KEY'], app.config['S3_SECRET_KEY'], is_secure=True)
-			# print(connection)
-			# print(app.config['S3_BUCKET'])
-			# bucket = connection.get_bucket(app.config['S3_BUCKET'], validate=False)
-			# print(bucket)
-
-			# key = bucket.new_key(app.config['S3_FOLDER'] + '/' + _id + '/' + filename)
-			# key.set_contents_from_file(uploaded_file, headers={'Content-Type': mimetypes.guess_type(filename)[0]})
-
 
 			return cls._format_response({
 				'url': '/' + app.config['S3_FOLDER'] + '/' + _id + '/' + filename,

@@ -499,7 +499,7 @@ var Edit = function (_Overlay2) {
     _this15.togglers = "data-toggle-edit";
 
     _this15.state = {
-      showed: false
+      showed: true
     };
     return _this15;
   }
@@ -814,12 +814,70 @@ var Photos = function (_React$Component3) {
         return "/faces/empty.png";
       })))
     };
+
+    _this19.file = document.createElement("input");
+    _this19.file.type = "file";
+
+    _this19.click = _this19.click.bind(_this19);
+    _this19.upload = _this19.upload.bind(_this19);
+    _this19.finishLoad = _this19.finishLoad.bind(_this19);
     return _this19;
   }
 
   _createClass(Photos, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.file.addEventListener("change", this.upload);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.file.removeEventListener("change", this.upload);
+    }
+  }, {
+    key: "click",
+    value: function click(e, index) {
+      this.file.target = e.currentTarget;
+      this.file.index = index;
+      this.file.click();
+    }
+  }, {
+    key: "upload",
+    value: function upload(e) {
+      var _this20 = this;
+
+      var file = e.currentTarget.files[0];
+      if (file && file.type.match('image.*')) {
+        Turbolinks.controller.adapter.progressBar.setValue(0);
+        Turbolinks.controller.adapter.progressBar.show();
+
+        Upload.upload(file).then(function (response) {
+          _this20.file.target.setAttribute("src", "https://montrealuploads.imgix.net" + response.url);
+          _this20.state.photos[_this20.file.index] = response.url;
+
+          _this20.props.onChange({ currentTarget: {
+              name: _this20.props.name,
+              type: "photos",
+              value: _this20.state.photos
+            } });
+
+          _this20.setState({
+            photos: _this20.state.photos
+          });
+        });
+      }
+    }
+  }, {
+    key: "finishLoad",
+    value: function finishLoad(e) {
+      Turbolinks.controller.adapter.progressBar.setValue(100);
+      Turbolinks.controller.adapter.progressBar.hide();
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this21 = this;
+
       return [this.props.label && React.createElement(
         "label",
         { key: "label", htmlFor: this.props.name },
@@ -832,7 +890,9 @@ var Photos = function (_React$Component3) {
           return React.createElement(
             "div",
             { key: index, className: "col col--3of12" },
-            React.createElement("img", { className: "rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
+            React.createElement("img", { onClick: function onClick(e) {
+                return _this21.click(e, index);
+              }, onLoad: _this21.finishLoad, className: "img--clickable rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
           );
         })
       )];
@@ -848,22 +908,22 @@ var Tags = function (_React$Component4) {
   function Tags(props) {
     _classCallCheck(this, Tags);
 
-    var _this20 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
+    var _this22 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
 
-    _this20.state = {
+    _this22.state = {
       selected: props.selected ? props.selected.reduce(function (tags, tag) {
         tags[tag] = true;return tags;
       }, {}) : {}
     };
 
-    _this20.onChange = _this20.onChange.bind(_this20);
-    return _this20;
+    _this22.onChange = _this22.onChange.bind(_this22);
+    return _this22;
   }
 
   _createClass(Tags, [{
     key: "onChange",
     value: function onChange(e) {
-      var _this21 = this;
+      var _this23 = this;
 
       this.state.selected[e.currentTarget.name.split(":")[1]] = e.currentTarget.checked;
 
@@ -871,7 +931,7 @@ var Tags = function (_React$Component4) {
           name: this.props.name,
           type: "tags",
           value: Object.keys(this.state.selected).filter(function (key) {
-            return _this21.state.selected[key];
+            return _this23.state.selected[key];
           }).map(function (key) {
             return key;
           })
@@ -884,22 +944,22 @@ var Tags = function (_React$Component4) {
   }, {
     key: "render",
     value: function render() {
-      var _this22 = this;
+      var _this24 = this;
 
       var renderTags = function renderTags(type) {
         return React.createElement(
           "div",
           { className: "tags" },
-          _this22.props.tags.filter(function (tag) {
+          _this24.props.tags.filter(function (tag) {
             return tag.type === type;
           }).map(function (tag, index) {
             return React.createElement(
               "span",
               { key: index, className: "tag" },
-              React.createElement(Input, { onChange: _this22.onChange, type: "checkbox",
-                name: _this22.props.name + ":" + tag.key,
+              React.createElement(Input, { onChange: _this24.onChange, type: "checkbox",
+                name: _this24.props.name + ":" + tag.key,
                 label: tag.title,
-                checked: _this22.state.selected[tag.key] ? true : false })
+                checked: _this24.state.selected[tag.key] ? true : false })
             );
           })
         );
