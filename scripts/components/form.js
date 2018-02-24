@@ -42,6 +42,8 @@ class Form extends React.Component {
           } else {
             if (model.attributes.route) {
               Turbolinks.visit(`${lang_route}${model.endpoint}/${model.attributes.route}`) 
+            } else if (model.attributes.handle) {
+              Turbolinks.visit(`${lang_route}${model.endpoint}/${model.attributes.handle}`) 
             } else if (this.props.model != "session") {
               Turbolinks.visit(`${lang_route}${model.endpoint}/${model.attributes._id}`) 
             }
@@ -97,7 +99,8 @@ class Form extends React.Component {
             return <Photos key={index} name={field.name}
               editable
               onChange={this.onChange}
-              min={field.min || 6}
+              label={field.label}
+              min={field.min || 4}
               photos={this.props.values && this.props.values[field.name] || field.value || []} />
           } else if (field.type == "tags") {
             return <Tags key={index} name={field.name}

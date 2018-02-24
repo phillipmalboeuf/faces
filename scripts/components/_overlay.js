@@ -3,7 +3,6 @@
 
 class Overlay extends React.Component {
 
-  noscroll = true
   noescape = false
   togglers = undefined
 
@@ -36,13 +35,11 @@ class Overlay extends React.Component {
       }
     }
     
-    if (this.noscroll) { document.documentElement.classList.toggle("noscroll") }
     this.setState({showed: !this.state.showed})
   }
 
   hide(e) {
     if (this.state.showed) {
-      if (this.noscroll) { document.documentElement.classList.remove("noscroll") }
       this.setState({showed: false})
     }
   }

@@ -283,7 +283,6 @@ var Overlay = function (_React$Component) {
 
     var _this10 = _possibleConstructorReturn(this, (Overlay.__proto__ || Object.getPrototypeOf(Overlay)).call(this, props));
 
-    _this10.noscroll = true;
     _this10.noescape = false;
     _this10.togglers = undefined;
 
@@ -323,18 +322,12 @@ var Overlay = function (_React$Component) {
         }
       }
 
-      if (this.noscroll) {
-        document.documentElement.classList.toggle("noscroll");
-      }
       this.setState({ showed: !this.state.showed });
     }
   }, {
     key: "hide",
     value: function hide(e) {
       if (this.state.showed) {
-        if (this.noscroll) {
-          document.documentElement.classList.remove("noscroll");
-        }
         this.setState({ showed: false });
       }
     }
@@ -437,19 +430,19 @@ var Account = function (_Overlay) {
         React.createElement(
           "div",
           { className: "padded padded--tight overlay__container" },
-          this.state.session.id && React.createElement(
+          this.state.session.id && this.state.user ? React.createElement(
             "div",
             { className: "text_center" },
-            this.state.user && React.createElement(
-              "div",
-              { className: "normal_bottom" },
-              React.createElement(
-                "h2",
-                null,
-                "Hi ",
-                this.state.user.attributes.first_name,
-                "!"
-              ),
+            React.createElement(
+              "h2",
+              null,
+              "Hi ",
+              this.state.user.attributes.first_name,
+              "!"
+            ),
+            React.createElement(
+              "p",
+              null,
               React.createElement(
                 "a",
                 { className: "button", onClick: this.hide, href: "/faces/" + this.state.user.attributes.handle },
@@ -457,7 +450,7 @@ var Account = function (_Overlay) {
               )
             ),
             React.createElement(Button, { className: "button--transparent", label: "Logout", onClick: this.logout })
-          ) || React.createElement(Form, { className: "col col--14of20 col--tablet_portrait--16of20 col--phone--18of20",
+          ) : React.createElement(Form, {
             onSubmit: this.login,
             cta: "Log in",
             fields: [{
@@ -495,37 +488,87 @@ var Button = function Button(props) {
   );
 };
 
+var Edit = function (_Overlay2) {
+  _inherits(Edit, _Overlay2);
+
+  function Edit(props) {
+    _classCallCheck(this, Edit);
+
+    var _this15 = _possibleConstructorReturn(this, (Edit.__proto__ || Object.getPrototypeOf(Edit)).call(this, props));
+
+    _this15.togglers = "data-toggle-edit";
+
+    _this15.state = {
+      showed: false
+    };
+    return _this15;
+  }
+
+  _createClass(Edit, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      _get(Edit.prototype.__proto__ || Object.getPrototypeOf(Edit.prototype), "componentDidMount", this).call(this);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      _get(Edit.prototype.__proto__ || Object.getPrototypeOf(Edit.prototype), "componentWillUnmount", this).call(this);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "div",
+        { className: "overlay" + (this.state.showed ? " overlay--show" : "") },
+        React.createElement(Button, { className: "button--transparent overlay__back", onClick: this.hide }),
+        React.createElement(
+          "div",
+          { className: "padded padded--tight overlay__container" },
+          React.createElement(Form, {
+            model: this.props.model,
+            modelId: this.props.modelId,
+            values: this.props.values,
+            fields: this.props.fields,
+            cta: "Edit" })
+        )
+      );
+    }
+  }]);
+
+  return Edit;
+}(Overlay);
+
 var Form = function (_React$Component2) {
   _inherits(Form, _React$Component2);
 
   function Form(props) {
     _classCallCheck(this, Form);
 
-    var _this15 = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+    var _this16 = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
-    _this15.state = {
+    _this16.state = {
       waiting: false,
       success: false,
       errors: undefined
     };
 
     if (props.model) {
-      _this15.state.model = new window[props.model]();
+      _this16.state.model = new window[props.model]();
       if (props.modelId) {
-        _this15.state.model.id = props.modelId;
+        _this16.state.model.id = props.modelId;
       }
     }
 
-    _this15.onSubmit = _this15.onSubmit.bind(_this15);
-    _this15.onChange = _this15.onChange.bind(_this15);
-    _this15.hideErrors = _this15.hideErrors.bind(_this15);
-    return _this15;
+    _this16.onSubmit = _this16.onSubmit.bind(_this16);
+    _this16.onChange = _this16.onChange.bind(_this16);
+    _this16.hideErrors = _this16.hideErrors.bind(_this16);
+    return _this16;
   }
 
   _createClass(Form, [{
     key: "onSubmit",
     value: function onSubmit(e) {
-      var _this16 = this;
+      var _this17 = this;
 
       this.setState({
         waiting: true
@@ -535,28 +578,30 @@ var Form = function (_React$Component2) {
         e.preventDefault();
         this.state.model.save(this.state).then(function (model) {
           if (!model.errors) {
-            _this16.setState({
+            _this17.setState({
               model: model,
               success: true
             });
 
-            if (_this16.props.redirect) {
-              Turbolinks.visit(_this16.props.redirect);
+            if (_this17.props.redirect) {
+              Turbolinks.visit(_this17.props.redirect);
             } else {
               if (model.attributes.route) {
                 Turbolinks.visit("" + lang_route + model.endpoint + "/" + model.attributes.route);
-              } else if (_this16.props.model != "session") {
+              } else if (model.attributes.handle) {
+                Turbolinks.visit("" + lang_route + model.endpoint + "/" + model.attributes.handle);
+              } else if (_this17.props.model != "session") {
                 Turbolinks.visit("" + lang_route + model.endpoint + "/" + model.attributes._id);
               }
             }
           } else {
-            _this16.setState({
+            _this17.setState({
               errors: model.errors,
               waiting: false
             });
           }
         }).catch(function (error) {
-          _this16.setState({
+          _this17.setState({
             errors: "There's been a server error, please contact hi@goodfaces.club",
             waiting: false
           });
@@ -583,7 +628,7 @@ var Form = function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      var _this17 = this;
+      var _this18 = this;
 
       return [React.createElement(
         "form",
@@ -615,20 +660,21 @@ var Form = function (_React$Component2) {
           } else if (field.type == "photos") {
             return React.createElement(Photos, { key: index, name: field.name,
               editable: true,
-              onChange: _this17.onChange,
-              min: field.min || 6,
-              photos: _this17.props.values && _this17.props.values[field.name] || field.value || [] });
+              onChange: _this18.onChange,
+              label: field.label,
+              min: field.min || 4,
+              photos: _this18.props.values && _this18.props.values[field.name] || field.value || [] });
           } else if (field.type == "tags") {
             return React.createElement(Tags, { key: index, name: field.name,
               editable: true,
-              onChange: _this17.onChange,
+              onChange: _this18.onChange,
               tags: field.tags || [],
-              selected: _this17.props.values && _this17.props.values[field.name] || field.value || [] });
+              selected: _this18.props.values && _this18.props.values[field.name] || field.value || [] });
           } else {
             return React.createElement(Input, { key: index, name: field.name,
-              onChange: _this17.onChange,
+              onChange: _this18.onChange,
               type: field.type,
-              value: _this17.props.values && _this17.props.values[field.name] || field.value,
+              value: _this18.props.values && _this18.props.values[field.name] || field.value,
               label: field.label,
               options: field.options,
               multiple: field.multiple,
@@ -668,8 +714,7 @@ var Input = function Input(props) {
   if (props.type == "hidden") {
     return React.createElement("input", { name: props.name, id: props.name,
       type: props.type,
-      defaultValue: props.value,
-      onChange: props.onChange });
+      defaultValue: props.value });
   } else if (props.type == "readonly") {
     return [props.label && React.createElement(
       "label",
@@ -762,30 +807,35 @@ var Photos = function (_React$Component3) {
   function Photos(props) {
     _classCallCheck(this, Photos);
 
-    var _this18 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
+    var _this19 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
 
-    _this18.state = {
+    _this19.state = {
       photos: props.photos.length >= props.min ? props.photos : [].concat(_toConsumableArray(props.photos), _toConsumableArray(Array(props.min - props.photos.length).fill().map(function (_, i) {
         return "/faces/empty.png";
       })))
     };
-    return _this18;
+    return _this19;
   }
 
   _createClass(Photos, [{
     key: "render",
     value: function render() {
-      return React.createElement(
+      return [this.props.label && React.createElement(
+        "label",
+        { key: "label", htmlFor: this.props.name },
+        this.props.label,
+        this.props.optional ? " (Optional)" : ""
+      ), React.createElement(
         "div",
-        { className: "grid grid--guttered full_images" },
+        { key: "photos", className: "grid grid--guttered medium_bottom full_images" },
         this.state.photos.map(function (photo, index) {
           return React.createElement(
             "div",
-            { key: index, className: "col col--4of12" },
+            { key: index, className: "col col--3of12" },
             React.createElement("img", { className: "rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
           );
         })
-      );
+      )];
     }
   }]);
 
@@ -798,113 +848,97 @@ var Tags = function (_React$Component4) {
   function Tags(props) {
     _classCallCheck(this, Tags);
 
-    var _this19 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
+    var _this20 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
 
-    _this19.state = {
-      selected: props.selected
+    _this20.state = {
+      selected: props.selected ? props.selected.reduce(function (tags, tag) {
+        tags[tag] = true;return tags;
+      }, {}) : {}
     };
-    return _this19;
+
+    _this20.onChange = _this20.onChange.bind(_this20);
+    return _this20;
   }
 
   _createClass(Tags, [{
+    key: "onChange",
+    value: function onChange(e) {
+      var _this21 = this;
+
+      this.state.selected[e.currentTarget.name.split(":")[1]] = e.currentTarget.checked;
+
+      this.props.onChange({ currentTarget: {
+          name: this.props.name,
+          type: "tags",
+          value: Object.keys(this.state.selected).filter(function (key) {
+            return _this21.state.selected[key];
+          }).map(function (key) {
+            return key;
+          })
+        } });
+
+      this.setState({
+        selected: this.state.selected
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this20 = this;
+      var _this22 = this;
 
-      return [React.createElement(
+      var renderTags = function renderTags(type) {
+        return React.createElement(
+          "div",
+          { className: "tags" },
+          _this22.props.tags.filter(function (tag) {
+            return tag.type === type;
+          }).map(function (tag, index) {
+            return React.createElement(
+              "span",
+              { key: index, className: "tag" },
+              React.createElement(Input, { onChange: _this22.onChange, type: "checkbox",
+                name: _this22.props.name + ":" + tag.key,
+                label: tag.title,
+                checked: _this22.state.selected[tag.key] ? true : false })
+            );
+          })
+        );
+      };
+
+      return React.createElement(
         "div",
-        { className: "normal_bottom", key: "gender" },
+        { className: "normal_bottom" },
         React.createElement(
           "label",
           null,
           "Gender (Optional)"
         ),
-        React.createElement(
-          "div",
-          { className: "tags" },
-          this.props.tags.filter(function (tag) {
-            return tag.type === "gender";
-          }).map(function (tag, index) {
-            return React.createElement(
-              "span",
-              { key: index, className: "tag" },
-              React.createElement(Input, { type: "checkbox", name: _this20.props.name + ":" + tag.key, label: tag.title })
-            );
-          })
-        ),
+        renderTags("gender"),
         React.createElement(
           "label",
           null,
           "Ethnicity (Optional)"
         ),
-        React.createElement(
-          "div",
-          { className: "tags" },
-          this.props.tags.filter(function (tag) {
-            return tag.type === "ethnicity";
-          }).map(function (tag, index) {
-            return React.createElement(
-              "span",
-              { key: index, className: "tag" },
-              React.createElement(Input, { type: "checkbox", name: _this20.props.name + ":" + tag.key, label: tag.title })
-            );
-          })
-        ),
+        renderTags("ethnicity"),
         React.createElement(
           "label",
           null,
           "Hair type (Optional)"
         ),
-        React.createElement(
-          "div",
-          { className: "tags" },
-          this.props.tags.filter(function (tag) {
-            return tag.type === "hair";
-          }).map(function (tag, index) {
-            return React.createElement(
-              "span",
-              { key: index, className: "tag" },
-              React.createElement(Input, { type: "checkbox", name: _this20.props.name + ":" + tag.key, label: tag.title })
-            );
-          })
-        ),
+        renderTags("hair"),
         React.createElement(
           "label",
           null,
           "Body type (Optional)"
         ),
-        React.createElement(
-          "div",
-          { className: "tags" },
-          this.props.tags.filter(function (tag) {
-            return tag.type === "body";
-          }).map(function (tag, index) {
-            return React.createElement(
-              "span",
-              { key: index, className: "tag" },
-              React.createElement(Input, { type: "checkbox", name: _this20.props.name + ":" + tag.key, label: tag.title })
-            );
-          })
-        ),
+        renderTags("body"),
         React.createElement(
           "label",
           null,
           "Style (Optional)"
         ),
-        React.createElement(
-          "div",
-          { className: "tags" },
-          this.props.tags.filter(function (tag) {
-            return tag.type === "style";
-          }).map(function (tag, index) {
-            return React.createElement(
-              "span",
-              { key: index, className: "tag" },
-              React.createElement(Input, { type: "checkbox", name: _this20.props.name + ":" + tag.key, label: tag.title })
-            );
-          })
-        )
-      )];
+        renderTags("style")
+      );
     }
   }]);
 

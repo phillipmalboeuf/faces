@@ -140,6 +140,14 @@ with app.app_context():
 
 
     @classmethod
+    def create(cls, document):
+
+      document['categories'] = ['model']
+
+      return super().create(document)
+
+
+    @classmethod
     def list(cls, document_filter={}, projection={}, limit=0, skip=0, sort=None, lang=None):
 
       return super().list({**document_filter, 'is_approved': True}, projection, limit, skip, sort, lang)

@@ -16,6 +16,10 @@ button {
   border: none;
   border-radius: $border_radius;
 
+  &.button--grey {
+    background: $grey--dark;
+  }
+
   &:hover,
   &:focus {
     color: $white;
@@ -25,6 +29,11 @@ button {
 
   &:active {
     top: 1px;
+  }
+
+  &.button--small {
+    font-size: $small_size;
+    padding: $vertical_rythm/4 $vertical_rythm/2;
   }
 
   &.button--transparent {

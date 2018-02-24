@@ -74,6 +74,14 @@
     margin-left: -$gutter;
     margin-bottom: -$gutter;
 
+    &.medium_bottom {
+      margin-bottom: 0;
+    }
+
+    &.big_bottom {
+      margin-bottom: $gutter;
+    }
+
     > .col {
       padding-left: $gutter;
       padding-bottom: $gutter;
@@ -82,6 +90,14 @@
 }
   
   .col {
+
+    &.col--middle {
+      align-self: center;
+    }
+
+    &.col--bottom {
+      align-self: flex-end;
+    }
 
     @for $i from 1 through $number_of_columns { 
       &.col--#{$i}of#{$number_of_columns} { width: (100% / $number_of_columns * $i); }

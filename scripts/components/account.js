@@ -66,16 +66,13 @@ class Account extends Overlay {
     return <div className={`overlay${this.state.showed ? " overlay--show" : ""}`}>
       <Button className="button--transparent overlay__back" onClick={this.hide} />
       <div className="padded padded--tight overlay__container">
-        {this.state.session.id &&
-        <div className="text_center">
-          {this.state.user && <div className="normal_bottom">
-            <h2>Hi {this.state.user.attributes.first_name}!</h2>
-            <a className="button" onClick={this.hide} href={`/faces/${this.state.user.attributes.handle}`}>Head to your profile</a>
-          </div>}
+        {this.state.session.id && this.state.user 
+        ? <div className="text_center">
+          <h2>Hi {this.state.user.attributes.first_name}!</h2>
+          <p><a className="button" onClick={this.hide} href={`/faces/${this.state.user.attributes.handle}`}>Head to your profile</a></p>
           <Button className="button--transparent" label="Logout" onClick={this.logout} />
         </div>
-        ||
-        <Form className="col col--14of20 col--tablet_portrait--16of20 col--phone--18of20"
+        : <Form
           onSubmit={this.login}
           cta="Log in"
           fields={[
@@ -91,8 +88,7 @@ class Account extends Overlay {
               label: "Password",
               placeholder: "********"
             }
-          ]}>
-        </Form>
+          ]} />
         }
       </div>
     </div>

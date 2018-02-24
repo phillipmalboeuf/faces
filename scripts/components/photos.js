@@ -12,12 +12,15 @@ class Photos extends React.Component {
 
 
   render() {
-    return <div className="grid grid--guttered full_images">
-      {this.state.photos.map((photo, index)=> (
-      <div key={index} className="col col--4of12">
-        <img className="rounded shadowed" src={`https://montrealuploads.imgix.net${photo}?auto=format,compress`} />
+    return [
+      this.props.label && <label key="label" htmlFor={this.props.name}>{this.props.label}{this.props.optional ? " (Optional)" : "" }</label>,
+      <div key="photos" className="grid grid--guttered medium_bottom full_images">
+        {this.state.photos.map((photo, index)=> (
+        <div key={index} className="col col--3of12">
+          <img className="rounded shadowed" src={`https://montrealuploads.imgix.net${photo}?auto=format,compress`} />
+        </div>
+        ))}
       </div>
-      ))}
-    </div>
+    ]
   }
 }

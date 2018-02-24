@@ -1,4 +1,4 @@
-
+ 
 
 
 const Input = props => {
@@ -6,8 +6,7 @@ const Input = props => {
   if (props.type == "hidden") {
     return <input name={props.name} id={props.name} 
       type={props.type}
-      defaultValue={props.value}
-      onChange={props.onChange} />
+      defaultValue={props.value} />
   } else if (props.type == "readonly") {
     return [
       props.label && <label key="label" htmlFor={props.name}>{props.label}</label>,
