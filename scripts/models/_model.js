@@ -21,7 +21,7 @@ class Model {
         headers: this.headers(),
         credentials: 'include',
         method: 'GET'
-      }).then( (response) => {
+      }).then((response)=> {
         if (response.ok) {
           return response.json().then((json) => {
             this.id = json._id
@@ -35,9 +35,6 @@ class Model {
             throw new Error(`${json.message}: ${json.description}`)
           })
         }
-      }).then( (json) => {
-        this.attributes = json
-        return this
       })
   }
 
@@ -56,7 +53,7 @@ class Model {
         method: method,
         credentials: 'include',
         body: JSON.stringify(data)
-      }).then( (response) => {
+      }).then((response)=> {
         if (response.ok) {
           return response.json().then((json) => {
             this.id = json._id

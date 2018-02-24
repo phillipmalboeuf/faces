@@ -21,7 +21,7 @@
           element: "#face",
           component: "Form",
           data: {
-            action: "/faces",
+            model: "Face",
             cta: "Join Good Faces",
             fields: [
               {
@@ -42,10 +42,10 @@
                 optional: true
               },
               {
-                type: "url",
+                type: "text",
                 name: "instagram_handle",
                 label: "Instagram Handle",
-                placeholder: "@goodfaces",
+                placeholder: "goodfaces",
                 optional: true
               },
               {

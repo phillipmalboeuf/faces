@@ -1,7 +1,7 @@
 
 class Author extends Model {
 
-  endpoint = "founders"
+  endpoint = "authors"
 
   constructor() {
     super()

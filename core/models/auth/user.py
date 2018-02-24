@@ -97,8 +97,8 @@ with app.app_context():
 			# document['referral_subscription_count'] = 0
 			# document['referral_subscription_order_count'] = 0
 			
-
-			document['store_credit'] = 0
+			# document['store_credit'] = 0
+			
 			document['_id'] = ObjectId()
 			document['user_id'] = document['_id']
 
@@ -165,8 +165,6 @@ with app.app_context():
 				document['password'] = hashlib.sha256(document['password'].encode('utf-8') + document['password_salt'].encode('utf-8')).hexdigest()
 			except KeyError:
 				del document['password_salt']
-				
-				pass
 
 			return super().preprocess(document, lang)
 

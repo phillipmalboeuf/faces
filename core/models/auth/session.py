@@ -7,6 +7,7 @@ from core.models.core.has_routes import HasRoutes
 
 from core.models.auth.token import Token
 from core.models.auth.user import User
+from core.models.faces.face import Face
 
 from core.helpers.validation_rules import validation_rules
 from core.helpers.raise_error import raise_error
@@ -20,6 +21,7 @@ import uuid
 with app.app_context():
 	class Session(HasRoutes, Model):
 
+		user_model = Face
 		collection_name = 'sessions'
 
 		schema = {
@@ -107,7 +109,7 @@ with app.app_context():
 
 			try:
 				if 'password' in document and document['password'] is not None:
-					user = app.db[User.collection_name].find_one({
+					user = app.db[cls.user_model.collection_name].find_one({
 						'email': document['email']
 					})
 
@@ -127,10 +129,7 @@ with app.app_context():
 					del document['password']
 
 				else:
-					document['user_id'] = User.create({'email': document['email']})['_id']
-					request.user_id = document['user_id']
-					del document['email']
-
+					raise_error('auth', 'password_missing', 403)
 
 				
 			except KeyError:

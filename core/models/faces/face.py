@@ -1,9 +1,7 @@
 from core import app
 from flask import request, abort
 
-from core.models.core.model import Model
-from core.models.core.has_routes import HasRoutes
-from core.models.core.with_templates import WithTemplates
+from core.models.auth.user import User
 
 from core.helpers.validation_rules import validation_rules
 
@@ -13,12 +11,14 @@ import string
 
 
 with app.app_context():
-  class Face(WithTemplates, HasRoutes, Model):
+  class Face(User):
 
     collection_name = 'faces'
     alternate_index = 'handle'
 
     schema = {
+      'email': validation_rules['email'],
+      'password': validation_rules['password'],
       'first_name': validation_rules['text'],
       'last_name': validation_rules['text'],
       'handle': validation_rules['text'],
@@ -132,7 +132,7 @@ with app.app_context():
       #   app.caches[cache].clear()
 
       try:
-        document['route'] = re.sub('[^%s]' % (string.ascii_letters + string.digits), '', urllib.parse.quote_plus(document['route'].lower()))
+        document['handle'] = re.sub('[^%s]' % (string.ascii_letters + string.digits), '', urllib.parse.quote_plus(document['handle'].lower()))
       except KeyError:
         pass
 
@@ -140,7 +140,16 @@ with app.app_context():
 
 
     @classmethod
+    def list(cls, document_filter={}, projection={}, limit=0, skip=0, sort=None, lang=None):
+
+      return super().list({**document_filter, 'is_approved': True}, projection, limit, skip, sort, lang)
+
+
+    @classmethod
     def postprocess(cls, document, lang=None):
+
+      if 'photos' not in document or len(document['photos']) == 0:
+        document['photos'] = ['/faces/empty.png']
 
       try:
         document['profile_photo'] = document['photos'][document['profile_photo']]
@@ -158,6 +167,7 @@ with app.app_context():
     def contact_view(cls, _id):
       document = cls.get(_id)
       return cls._format_response(document)
+
 
     @classmethod
     def city_view(cls, city):

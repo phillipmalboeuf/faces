@@ -1,6 +1,8 @@
 from core import app
-from flask import request, abort
+from flask import request, abort, json
 from flask import Markup
+
+from core.helpers.json import json_formater
 
 from dateutil import parser
 from markdown import markdown
@@ -25,6 +27,10 @@ def url_filter(url):
 		return 'http://'+url
 	else:
 		return url
+
+@app.template_filter('money')
+def money_filter(money, currency='CAD'):
+	return '{:,.2f}'.format(money)+' '+currency.upper()
 
 @app.template_filter('markdown')
 def markdown_filter(content):
@@ -111,6 +117,10 @@ def editable_image(editable, format, key, data):
 	
 # 	return Markup(markup)
 	
+
+@app.template_filter('json')
+def json_filter(document):
+	return Markup(json.dumps(document, sort_keys=True, default=json_formater))
 
 
 

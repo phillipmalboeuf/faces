@@ -23,10 +23,13 @@
 
     <div id="account" data-turbolinks-permanent></div>
     <script data-turbolinks-eval="false">
-    window.components.push({
-      element: "#account",
-      component: "Account"
-    })
+      window.components.push({
+        element: "#account",
+        component: "Account",
+        data: {
+          {% if request.current_session %}session: {{request.current_session|json}}{% endif %}
+        }
+      })
     </script>
 
     {% block scripts %}
@@ -39,6 +42,12 @@
     {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.1.1/turbolinks.js" data-turbolinks-eval="false" data-turbolinks-suppress-warning></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js" data-turbolinks-eval="false"></script>
+
+    <script>
+      window.current_path = "{{current_path}}";
+      window.lang = "{{lang}}";
+      window.lang_route = "{{lang_route}}";
+    </script>
     
     <script src="/files/app.js?v={{timestamp}}" data-turbolinks-eval="false" async></script>
     

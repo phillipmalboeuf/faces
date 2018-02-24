@@ -67,11 +67,11 @@ from core.helpers.filters import *
 
 
 # from core.models.auth.token import Token
-# from core.models.auth.session import Session
+from core.models.auth.session import Session
 # from core.models.auth.user import User
 
 # Token.define_routes()
-# Session.define_routes()
+Session.define_routes()
 # User.define_routes()
 
 
@@ -90,6 +90,7 @@ Post.define_routes()
 # Error.define_routes()
 # Survey.define_routes()
 # SurveyAnswer.define_routes()
+
 
 from core.models.faces.face import Face
 
