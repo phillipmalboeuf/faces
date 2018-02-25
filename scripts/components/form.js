@@ -18,6 +18,12 @@ class Form extends React.Component {
       }
     }
 
+    this.props.fields.forEach((field) => {
+      if (field.value) {
+        this.state[field.name] = field.value
+      }
+    })
+
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
     this.hideErrors = this.hideErrors.bind(this)

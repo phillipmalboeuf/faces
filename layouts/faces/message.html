@@ -1,0 +1,22 @@
+ 
+{% extends '_layout.html' %}
+
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <div class="max_width">
+    <h1>Thank you!</h1>
+    <p>We'll review your contact request before sending it towards {{message.face_name}}. We'll let you know if and when they received your message.</p>
+    <p>
+      <strong>Brand:</strong> {{message.brand}}<br>
+      <strong>Brand URL:</strong> {{message.brand_url}}<br><br>
+      <strong>Your name:</strong> {{message.name}}<br>
+      <strong>And email address:</strong> {{message.email}}<br><br>
+      <strong>Shoot description:</strong><br>{{message.description}}<br>
+      <strong>Offer:</strong> {{message.offer}}<br>
+      <strong>Dates:</strong> {{message.dates}}
+    </p>
+    <p><a href="/" class="underline highlight">Head back to the homepage</a></p>
+  </div>
+</div>
+{% endblock %}

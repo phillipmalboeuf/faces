@@ -28,12 +28,17 @@
           element: "#face",
           component: "Form",
           data: {
-            action: "/faces/{{face.route}}/contact",
+            model: "Message",
             cta: "Send Message",
             fields: [
               {
                 type: "info",
                 body: "Contact {{face.first_name}} for a shoot:"
+              },
+              {
+                type: "hidden",
+                name: "face_id",
+                value: "{{face._id}}"
               },
               {
                 type: "text",

@@ -12,7 +12,7 @@ with app.app_context():
 
 
 
-		def _validate_type_object_id(self, field, value):
+		def _validate_type_object_id(self, field, value=None):
 			try:
 				return ObjectId(value)
 			except:

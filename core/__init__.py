@@ -93,7 +93,9 @@ Post.define_routes()
 
 
 from core.models.faces.face import Face
+from core.models.faces.message import Message
 
 Face.define_routes()
+Message.define_routes()
 
 

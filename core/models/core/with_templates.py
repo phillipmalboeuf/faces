@@ -18,12 +18,12 @@ with app.app_context():
 		templates = [
 			{
 				'view_function': 'list_view',
-				'template': 'layout.html',
+				'template': '_layout.html',
 				'response_key': 'documents'
 			},
 			{
 				'view_function': 'get_view',
-				'template': 'layout.html',
+				'template': '_layout.html',
 				'response_key': 'document'
 			}
 		]

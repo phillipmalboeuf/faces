@@ -50,4 +50,13 @@ class Overlay extends React.Component {
       this.toggle()
     }
   }
+
+  render() {
+    return <div className={`overlay${this.state.showed ? " overlay--show": ""}`}>
+      <a className="overlay__back" onClick={this.hide.bind(this)} />
+      <div className="overlay__container">
+        {this.props.children}
+      </div>
+    </div>
+  }
 }
