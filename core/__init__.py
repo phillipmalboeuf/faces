@@ -60,10 +60,10 @@ from core.helpers.filters import *
 
 
 from core.models.utilities.upload import Upload
-# from core.models.utilities.search import Search
+from core.models.utilities.newsletter import NewsletterEmail
 
 Upload.define_routes()
-# Search.define_routes()
+NewsletterEmail.define_routes()
 
 
 # from core.models.auth.token import Token

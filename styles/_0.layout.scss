@@ -35,6 +35,7 @@ header {
 
   @media #{$tablet_portrait} {
     top: $vertical_rythm;
+    padding: $vertical_rythm $vertical_rythm;
   }
 }
 
@@ -62,6 +63,10 @@ footer {
 
 .padded {
   padding: $vertical_rythm*2;
+
+  @media #{$tablet_portrait} {
+    padding: $vertical_rythm*2 $vertical_rythm;
+  }
 
   &.padded--tight {
     padding: $vertical_rythm/2 $vertical_rythm;

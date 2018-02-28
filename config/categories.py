@@ -15,28 +15,18 @@ CATEGORIES = [
         'type': 'gender'
       },
       {
-        'title': 'Transwoman',
-        'key': 'transwoman',
-        'type': 'gender'
-      },
-      {
-        'title': 'Transman',
-        'key': 'transman',
-        'type': 'gender'
-      },
-      {
-        'title': 'Feminine-presenting',
-        'key': 'feminine-presenting',
-        'type': 'gender'
-      },
-      {
-        'title': 'Masculine-presenting',
-        'key': 'masculine-presenting',
-        'type': 'gender'
-      },
-      {
         'title': 'Androgynus',
         'key': 'androgynus',
+        'type': 'gender'
+      },
+      {
+        'title': 'Transgender',
+        'key': 'transgender',
+        'type': 'gender'
+      },
+      {
+        'title': 'Gender Fluid',
+        'key': 'gender-fluid',
         'type': 'gender'
       },
       {
@@ -45,8 +35,8 @@ CATEGORIES = [
         'type': 'ethnicity'
       },
       {
-        'title': 'Arabic',
-        'key': 'arabic',
+        'title': 'Arab',
+        'key': 'arab',
         'type': 'ethnicity'
       },
       {
@@ -72,6 +62,11 @@ CATEGORIES = [
       {
         'title': 'Pacific Islander',
         'key': 'islander',
+        'type': 'ethnicity'
+      },
+      {
+        'title': 'Mixed',
+        'key': 'mixed',
         'type': 'ethnicity'
       },
       {
@@ -140,73 +135,83 @@ CATEGORIES = [
         'type': 'body'
       },
       { 
+        'title': 'Bohemian',
+        'key': 'bohemian',
+        'type': 'style'
+      }, 
+      { 
         'title': 'Chic',
-        'key': 'Chic',
+        'key': 'chic',
         'type': 'style'
       }, 
       { 
         'title': 'Classic',
-        'key': 'Classic',
+        'key': 'classic',
         'type': 'style'
       },
       { 
         'title': 'Dapper',
-        'key': 'Dapper',
+        'key': 'dapper',
         'type': 'style'
       },
       { 
         'title': 'Edgy',
-        'key': 'Edgy',
+        'key': 'edgy',
         'type': 'style'
       }, 
       { 
         'title': 'Elegant',
-        'key': 'Elegant',
+        'key': 'elegant',
         'type': 'style'
       },
       { 
         'title': 'Grunge',
-        'key': 'Grunge',
+        'key': 'grunge',
+        'type': 'style'
+      },
+      { 
+        'title': 'High-End',
+        'key': 'high-end',
         'type': 'style'
       },
       { 
         'title': 'Minimal',
-        'key': 'Minimal',
+        'key': 'minimal',
         'type': 'style'
       },
       { 
         'title': 'Preppy',
-        'key': 'Preppy',
+        'key': 'preppy',
         'type': 'style'
       },
       { 
         'title': 'Punk',
-        'key': 'Punk',
+        'key': 'punk',
         'type': 'style'
       },
       { 
         'title': 'Retro',
-        'key': 'Retro',
+        'key': 'retro',
         'type': 'style'
       },
       { 
         'title': 'Romantic',
-        'key': 'Romantic',
+        'key': 'romantic',
         'type': 'style'
       },
       { 
         'title': 'Sporty',
-        'key': 'Sporty',
+        'key': 'sporty',
         'type': 'style'
       },
       { 
         'title': 'Street',
-        'key': 'Street',
+        'key': 'street',
         'type': 'style'
       },
       { 
         'title': 'Vintage',
-        'key': 'Vintage',
+        'key': 'vintage',
         'type': 'style'
       }
     ]

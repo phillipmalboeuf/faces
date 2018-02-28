@@ -20,6 +20,9 @@ S3_SECRET_KEY = os.getenv('S3_SECRET_KEY', '')
 S3_BUCKET = os.getenv('S3_BUCKET', 'montrealuploads')
 S3_FOLDER = os.getenv('S3_FOLDER', 'faces')
 
+# AIRTABLE
+AIRTABLE_KEY = os.getenv('AIRTABLE_KEY', '')
+
 # CELERY
 CELERY_TIMEZONE = TIMEZONE
 CELERYBEAT_SCHEDULE = {

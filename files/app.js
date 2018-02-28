@@ -229,50 +229,65 @@ var Message = function (_Model3) {
   return Message;
 }(Model);
 
-var Piece = function (_Model4) {
-  _inherits(Piece, _Model4);
+var NewsletterEmail = function (_Model4) {
+  _inherits(NewsletterEmail, _Model4);
+
+  function NewsletterEmail() {
+    _classCallCheck(this, NewsletterEmail);
+
+    var _this7 = _possibleConstructorReturn(this, (NewsletterEmail.__proto__ || Object.getPrototypeOf(NewsletterEmail)).call(this));
+
+    _this7.endpoint = "_newsletter_email";
+    return _this7;
+  }
+
+  return NewsletterEmail;
+}(Model);
+
+var Piece = function (_Model5) {
+  _inherits(Piece, _Model5);
 
   function Piece() {
     _classCallCheck(this, Piece);
 
-    var _this7 = _possibleConstructorReturn(this, (Piece.__proto__ || Object.getPrototypeOf(Piece)).call(this));
+    var _this8 = _possibleConstructorReturn(this, (Piece.__proto__ || Object.getPrototypeOf(Piece)).call(this));
 
-    _this7.endpoint = "pieces";
-    return _this7;
+    _this8.endpoint = "pieces";
+    return _this8;
   }
 
   return Piece;
 }(Model);
 
-var Session = function (_Model5) {
-  _inherits(Session, _Model5);
+var Session = function (_Model6) {
+  _inherits(Session, _Model6);
 
   function Session() {
     _classCallCheck(this, Session);
 
-    var _this8 = _possibleConstructorReturn(this, (Session.__proto__ || Object.getPrototypeOf(Session)).call(this));
+    var _this9 = _possibleConstructorReturn(this, (Session.__proto__ || Object.getPrototypeOf(Session)).call(this));
 
-    _this8.endpoint = "sessions";
-    return _this8;
+    _this9.endpoint = "sessions";
+    return _this9;
   }
 
   _createClass(Session, [{
     key: "save",
     value: function save(data) {
-      var _this9 = this;
+      var _this10 = this;
 
       return _get(Session.prototype.__proto__ || Object.getPrototypeOf(Session.prototype), "save", this).call(this, data).then(function () {
-        Cookies.set("Session-Id", _this9.attributes._id);
-        Cookies.set("Session-Secret", _this9.attributes.secret);
-        Cookies.set("User-Id", _this9.attributes.user_id);
+        Cookies.set("Session-Id", _this10.attributes._id);
+        Cookies.set("Session-Secret", _this10.attributes.secret);
+        Cookies.set("User-Id", _this10.attributes.user_id);
 
-        return _this9;
+        return _this10;
       });
     }
   }, {
     key: "destroy",
     value: function destroy() {
-      var _this10 = this;
+      var _this11 = this;
 
       return _get(Session.prototype.__proto__ || Object.getPrototypeOf(Session.prototype), "destroy", this).call(this).then(function () {
         Cookies.delete("Session-Id");
@@ -282,7 +297,7 @@ var Session = function (_Model5) {
 
         Turbolinks.visit(window.location.pathname);
 
-        return _this10;
+        return _this11;
       });
     }
   }]);
@@ -296,19 +311,19 @@ var Overlay = function (_React$Component) {
   function Overlay(props) {
     _classCallCheck(this, Overlay);
 
-    var _this11 = _possibleConstructorReturn(this, (Overlay.__proto__ || Object.getPrototypeOf(Overlay)).call(this, props));
+    var _this12 = _possibleConstructorReturn(this, (Overlay.__proto__ || Object.getPrototypeOf(Overlay)).call(this, props));
 
-    _this11.noescape = false;
-    _this11.togglers = undefined;
+    _this12.noescape = false;
+    _this12.togglers = undefined;
 
-    _this11.state = {
+    _this12.state = {
       showed: false
     };
 
-    _this11.toggle = _this11.toggle.bind(_this11);
-    _this11.hide = _this11.hide.bind(_this11);
-    _this11.click = _this11.click.bind(_this11);
-    return _this11;
+    _this12.toggle = _this12.toggle.bind(_this12);
+    _this12.hide = _this12.hide.bind(_this12);
+    _this12.click = _this12.click.bind(_this12);
+    return _this12;
   }
 
   _createClass(Overlay, [{
@@ -379,27 +394,27 @@ var Account = function (_Overlay) {
   function Account(props) {
     _classCallCheck(this, Account);
 
-    var _this12 = _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).call(this, props));
+    var _this13 = _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).call(this, props));
 
-    _this12.noescape = true;
-    _this12.togglers = "data-toggle-account";
+    _this13.noescape = true;
+    _this13.togglers = "data-toggle-account";
 
 
-    _this12.state = {
+    _this13.state = {
       session: new Session(),
       showed: false
     };
 
     if (props.session) {
-      _this12.state.session.id = props.session._id;
-      _this12.state.session.attributes = props.session;
+      _this13.state.session.id = props.session._id;
+      _this13.state.session.attributes = props.session;
 
-      _this12.fetchUser();
+      _this13.fetchUser();
     }
 
-    _this12.login = _this12.login.bind(_this12);
-    _this12.logout = _this12.logout.bind(_this12);
-    return _this12;
+    _this13.login = _this13.login.bind(_this13);
+    _this13.logout = _this13.logout.bind(_this13);
+    return _this13;
   }
 
   _createClass(Account, [{
@@ -417,12 +432,12 @@ var Account = function (_Overlay) {
   }, {
     key: "fetchUser",
     value: function fetchUser() {
-      var _this13 = this;
+      var _this14 = this;
 
       var user = new Face();
       user.id = this.state.session.attributes.user_id;
       user.fetch().then(function (user) {
-        _this13.setState({ user: user });
+        _this14.setState({ user: user });
       });
 
       window.user = user;
@@ -430,21 +445,21 @@ var Account = function (_Overlay) {
   }, {
     key: "login",
     value: function login(e, state) {
-      var _this14 = this;
+      var _this15 = this;
 
       this.state.session.save(state).then(function (session) {
-        _this14.setState({ session: session });
-        _this14.fetchUser();
+        _this15.setState({ session: session });
+        _this15.fetchUser();
         Turbolinks.visit(window.location.pathname);
       });
     }
   }, {
     key: "logout",
     value: function logout(e) {
-      var _this15 = this;
+      var _this16 = this;
 
       this.state.session.destroy().then(function (session) {
-        _this15.setState({ session: new Session(), user: null });
+        _this16.setState({ session: new Session(), user: null });
         Turbolinks.visit(window.location.pathname);
       });
     }
@@ -523,14 +538,14 @@ var Edit = function (_Overlay2) {
   function Edit(props) {
     _classCallCheck(this, Edit);
 
-    var _this16 = _possibleConstructorReturn(this, (Edit.__proto__ || Object.getPrototypeOf(Edit)).call(this, props));
+    var _this17 = _possibleConstructorReturn(this, (Edit.__proto__ || Object.getPrototypeOf(Edit)).call(this, props));
 
-    _this16.togglers = "data-toggle-edit";
+    _this17.togglers = "data-toggle-edit";
 
-    _this16.state = {
+    _this17.state = {
       showed: true
     };
-    return _this16;
+    return _this17;
   }
 
   _createClass(Edit, [{
@@ -573,37 +588,37 @@ var Form = function (_React$Component2) {
   function Form(props) {
     _classCallCheck(this, Form);
 
-    var _this17 = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+    var _this18 = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
-    _this17.state = {
+    _this18.state = {
       waiting: false,
       success: false,
       errors: undefined
     };
 
     if (props.model) {
-      _this17.state.model = new window[props.model]();
+      _this18.state.model = new window[props.model]();
       if (props.modelId) {
-        _this17.state.model.id = props.modelId;
+        _this18.state.model.id = props.modelId;
       }
     }
 
-    _this17.props.fields.forEach(function (field) {
+    _this18.props.fields.forEach(function (field) {
       if (field.value) {
-        _this17.state[field.name] = field.value;
+        _this18.state[field.name] = field.value;
       }
     });
 
-    _this17.onSubmit = _this17.onSubmit.bind(_this17);
-    _this17.onChange = _this17.onChange.bind(_this17);
-    _this17.hideErrors = _this17.hideErrors.bind(_this17);
-    return _this17;
+    _this18.onSubmit = _this18.onSubmit.bind(_this18);
+    _this18.onChange = _this18.onChange.bind(_this18);
+    _this18.hideErrors = _this18.hideErrors.bind(_this18);
+    return _this18;
   }
 
   _createClass(Form, [{
     key: "onSubmit",
     value: function onSubmit(e) {
-      var _this18 = this;
+      var _this19 = this;
 
       this.setState({
         waiting: true
@@ -613,30 +628,30 @@ var Form = function (_React$Component2) {
         e.preventDefault();
         this.state.model.save(this.state).then(function (model) {
           if (!model.errors) {
-            _this18.setState({
+            _this19.setState({
               model: model,
               success: true
             });
 
-            if (_this18.props.redirect) {
-              Turbolinks.visit(_this18.props.redirect);
+            if (_this19.props.redirect) {
+              Turbolinks.visit(_this19.props.redirect);
             } else {
               if (model.attributes.route) {
                 Turbolinks.visit("" + lang_route + model.endpoint + "/" + model.attributes.route);
               } else if (model.attributes.handle) {
                 Turbolinks.visit("" + lang_route + model.endpoint + "/" + model.attributes.handle);
-              } else if (_this18.props.model != "session") {
+              } else if (_this19.props.model != "session") {
                 Turbolinks.visit("" + lang_route + model.endpoint + "/" + model.attributes._id);
               }
             }
           } else {
-            _this18.setState({
+            _this19.setState({
               errors: model.errors,
               waiting: false
             });
           }
         }).catch(function (error) {
-          _this18.setState({
+          _this19.setState({
             errors: "There's been a server error, please contact hi@goodfaces.club",
             waiting: false
           });
@@ -663,7 +678,7 @@ var Form = function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      var _this19 = this;
+      var _this20 = this;
 
       return [React.createElement(
         "form",
@@ -695,21 +710,21 @@ var Form = function (_React$Component2) {
           } else if (field.type == "photos") {
             return React.createElement(Photos, { key: index, name: field.name,
               editable: true,
-              onChange: _this19.onChange,
+              onChange: _this20.onChange,
               label: field.label,
               min: field.min || 4,
-              photos: _this19.props.values && _this19.props.values[field.name] || field.value || [] });
+              photos: _this20.props.values && _this20.props.values[field.name] || field.value || [] });
           } else if (field.type == "tags") {
             return React.createElement(Tags, { key: index, name: field.name,
               editable: true,
-              onChange: _this19.onChange,
+              onChange: _this20.onChange,
               tags: field.tags || [],
-              selected: _this19.props.values && _this19.props.values[field.name] || field.value || [] });
+              selected: _this20.props.values && _this20.props.values[field.name] || field.value || [] });
           } else {
             return React.createElement(Input, { key: index, name: field.name,
-              onChange: _this19.onChange,
+              onChange: _this20.onChange,
               type: field.type,
-              value: _this19.props.values && _this19.props.values[field.name] || field.value,
+              value: _this20.props.values && _this20.props.values[field.name] || field.value,
               label: field.label,
               options: field.options,
               multiple: field.multiple,
@@ -842,21 +857,21 @@ var Photos = function (_React$Component3) {
   function Photos(props) {
     _classCallCheck(this, Photos);
 
-    var _this20 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
+    var _this21 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
 
-    _this20.state = {
+    _this21.state = {
       photos: props.photos.length >= props.min ? props.photos : [].concat(_toConsumableArray(props.photos), _toConsumableArray(Array(props.min - props.photos.length).fill().map(function (_, i) {
         return "/faces/empty.png";
       })))
     };
 
-    _this20.file = document.createElement("input");
-    _this20.file.type = "file";
+    _this21.file = document.createElement("input");
+    _this21.file.type = "file";
 
-    _this20.click = _this20.click.bind(_this20);
-    _this20.upload = _this20.upload.bind(_this20);
-    _this20.finishLoad = _this20.finishLoad.bind(_this20);
-    return _this20;
+    _this21.click = _this21.click.bind(_this21);
+    _this21.upload = _this21.upload.bind(_this21);
+    _this21.finishLoad = _this21.finishLoad.bind(_this21);
+    return _this21;
   }
 
   _createClass(Photos, [{
@@ -879,7 +894,7 @@ var Photos = function (_React$Component3) {
   }, {
     key: "upload",
     value: function upload(e) {
-      var _this21 = this;
+      var _this22 = this;
 
       var file = e.currentTarget.files[0];
       if (file && file.type.match('image.*')) {
@@ -887,17 +902,17 @@ var Photos = function (_React$Component3) {
         Turbolinks.controller.adapter.progressBar.show();
 
         Upload.upload(file).then(function (response) {
-          _this21.file.target.setAttribute("src", "https://montrealuploads.imgix.net" + response.url);
-          _this21.state.photos[_this21.file.index] = response.url;
+          _this22.file.target.setAttribute("src", "https://montrealuploads.imgix.net" + response.url);
+          _this22.state.photos[_this22.file.index] = response.url;
 
-          _this21.props.onChange({ currentTarget: {
-              name: _this21.props.name,
+          _this22.props.onChange({ currentTarget: {
+              name: _this22.props.name,
               type: "photos",
-              value: _this21.state.photos
+              value: _this22.state.photos
             } });
 
-          _this21.setState({
-            photos: _this21.state.photos
+          _this22.setState({
+            photos: _this22.state.photos
           });
         });
       }
@@ -911,7 +926,7 @@ var Photos = function (_React$Component3) {
   }, {
     key: "render",
     value: function render() {
-      var _this22 = this;
+      var _this23 = this;
 
       return [this.props.label && React.createElement(
         "label",
@@ -926,8 +941,8 @@ var Photos = function (_React$Component3) {
             "div",
             { key: index, className: "col col--3of12" },
             React.createElement("img", { onClick: function onClick(e) {
-                return _this22.click(e, index);
-              }, onLoad: _this22.finishLoad, className: "img--clickable rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
+                return _this23.click(e, index);
+              }, onLoad: _this23.finishLoad, className: "img--clickable rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
           );
         })
       )];
@@ -943,22 +958,22 @@ var Tags = function (_React$Component4) {
   function Tags(props) {
     _classCallCheck(this, Tags);
 
-    var _this23 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
+    var _this24 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
 
-    _this23.state = {
+    _this24.state = {
       selected: props.selected ? props.selected.reduce(function (tags, tag) {
         tags[tag] = true;return tags;
       }, {}) : {}
     };
 
-    _this23.onChange = _this23.onChange.bind(_this23);
-    return _this23;
+    _this24.onChange = _this24.onChange.bind(_this24);
+    return _this24;
   }
 
   _createClass(Tags, [{
     key: "onChange",
     value: function onChange(e) {
-      var _this24 = this;
+      var _this25 = this;
 
       this.state.selected[e.currentTarget.name.split(":")[1]] = e.currentTarget.checked;
 
@@ -966,7 +981,7 @@ var Tags = function (_React$Component4) {
           name: this.props.name,
           type: "tags",
           value: Object.keys(this.state.selected).filter(function (key) {
-            return _this24.state.selected[key];
+            return _this25.state.selected[key];
           }).map(function (key) {
             return key;
           })
@@ -979,22 +994,22 @@ var Tags = function (_React$Component4) {
   }, {
     key: "render",
     value: function render() {
-      var _this25 = this;
+      var _this26 = this;
 
       var renderTags = function renderTags(type) {
         return React.createElement(
           "div",
           { className: "tags" },
-          _this25.props.tags.filter(function (tag) {
+          _this26.props.tags.filter(function (tag) {
             return tag.type === type;
           }).map(function (tag, index) {
             return React.createElement(
               "span",
               { key: index, className: "tag" },
-              React.createElement(Input, { onChange: _this25.onChange, type: "checkbox",
-                name: _this25.props.name + ":" + tag.key,
+              React.createElement(Input, { onChange: _this26.onChange, type: "checkbox",
+                name: _this26.props.name + ":" + tag.key,
                 label: tag.title,
-                checked: _this25.state.selected[tag.key] ? true : false })
+                checked: _this26.state.selected[tag.key] ? true : false })
             );
           })
         );

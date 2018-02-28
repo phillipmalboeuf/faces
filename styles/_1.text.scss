@@ -89,6 +89,10 @@ body {
       font-size: $medium_size;
       line-height: $vertical_rythm;
     }
+
+    &.h1--logo {
+      font-size: 16vw;
+    }
   }
 
   h2 {

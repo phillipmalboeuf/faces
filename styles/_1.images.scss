@@ -13,10 +13,17 @@ img {
     cursor: pointer;
     position: relative;
 
-    border: 1px solid $black;
+    // border: 1px solid $black;
 
     &:active {
       top: 1px;
+    }
+
+    transition: transform $fast;
+
+    a:hover &,
+    a:focus & {
+      transform: translateY(-5px);
     }
   }
 

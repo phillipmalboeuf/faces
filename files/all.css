@@ -420,7 +420,8 @@ header {
     pointer-events: auto; }
   @media all and (max-device-width: 900px), all and (max-width: 900px) {
     header {
-      top: 2rem; } }
+      top: 2rem;
+      padding: 2rem 2rem; } }
 
 .main {
   min-height: 90vh; }
@@ -433,6 +434,9 @@ footer {
 
 .padded {
   padding: 4rem; }
+  @media all and (max-device-width: 900px), all and (max-width: 900px) {
+    .padded {
+      padding: 4rem 2rem; } }
   .padded.padded--tight {
     padding: 1rem 2rem; }
   .padded.padded--big_top {
@@ -554,6 +558,9 @@ h1,
   .h1.h1--medium {
     font-size: 2rem;
     line-height: 2rem; }
+  h1.h1--logo,
+  .h1.h1--logo {
+    font-size: 16vw; }
 
 h2 {
   font-size: 18px;
@@ -1508,9 +1515,12 @@ img {
   img.img--clickable {
     cursor: pointer;
     position: relative;
-    border: 1px solid #383838; }
+    transition: transform 0.333s; }
     img.img--clickable:active {
       top: 1px; }
+    a:hover img.img--clickable,
+    a:focus img.img--clickable {
+      transform: translateY(-5px); }
   img.img--small {
     width: 12rem; }
 

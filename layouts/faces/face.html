@@ -19,7 +19,7 @@
 <div class="padded padded--big_top white_back">
   <div class="grid grid--center grid--guttered">
     <div class="col col--10of12">
-      <div class="medium_bottom"><img class="img--small" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" alt="{{face.first_name}}'s Photo"></div>
+      <div class="medium_bottom"><img class="img--small rounded" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" alt="{{face.first_name}}'s Photo"></div>
       <h1 class="max_width">{{face.first_name}} {{face.last_name}} is <span class="highlight">available</span> for freelance {% for category in face.categories %}<a href="/faces" class="underline">{{category|category_action}}</a>{% if not loop.last %} / {% endif %}{% endfor %}.</h1>
     </div>
     <div class="col col--12of12"></div>
@@ -27,7 +27,7 @@
       <div class="grid grid--guttered full_images">
         {% for photo in face.photos %}
         <div class="col col--3of12">
-          <a href="https://montrealuploads.imgix.net{{photo}}" target="_blank"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress"></a>
+          <a href="https://montrealuploads.imgix.net{{photo}}" target="_blank"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress&fit=crop&w=900&h=900&crop=faces"></a>
         </div>
         {% endfor %}
       </div>
