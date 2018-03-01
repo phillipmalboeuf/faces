@@ -145,8 +145,8 @@ CATEGORIES = [
         'type': 'things'
       },
       {
-        'title': 'Tatoos',
-        'key': 'tatoos',
+        'title': 'Piercings',
+        'key': 'piercings',
         'type': 'things'
       },
       { 
