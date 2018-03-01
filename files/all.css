@@ -1562,7 +1562,7 @@ button.overlay__close {
   position: relative;
   width: 100%;
   max-width: 555.333333333px;
-  max-height: 100vh;
+  max-height: 90vh;
   overflow-y: auto;
   border: 1px solid #F7F7F7;
   border-radius: 4px;
