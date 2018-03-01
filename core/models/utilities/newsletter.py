@@ -22,10 +22,12 @@ with app.app_context():
 		@classmethod
 		def signup_view(cls):
 			data = cls._get_json_from_request()
+			if 'instagram_handle' not in data:
+				data['instagram_handle'] = None
 
 			response = requests.post('https://api.airtable.com/v0/apps4zma9HfDnpDrJ/Emails',
 				headers={'Authorization': 'Bearer {}'.format(app.config['AIRTABLE_KEY']), 'Content-type': 'application/json'},
-				data=json.dumps({'fields': {'Email': data['email'], 'Instagram handle': data['instagram_handle']}}))
+				data=json.dumps({'fields': {'Email': data['email'], 'Instagram handle': data['instagram_handle'], 'Notify': {'email': 'phil@boeuf.coffee'}}}))
 
 			return cls._format_response(response.json())
 
