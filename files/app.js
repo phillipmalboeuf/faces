@@ -543,7 +543,7 @@ var Edit = function (_Overlay2) {
     _this17.togglers = "data-toggle-edit";
 
     _this17.state = {
-      showed: true
+      showed: false
     };
     return _this17;
   }
@@ -573,7 +573,7 @@ var Edit = function (_Overlay2) {
             modelId: this.props.modelId,
             values: this.props.values,
             fields: this.props.fields,
-            cta: "Edit" })
+            cta: "Save" })
         )
       );
     }
@@ -760,17 +760,17 @@ var Form = function (_React$Component2) {
 }(React.Component);
 
 var Input = function Input(props) {
-
+  var random = Math.random();
   if (props.type == "hidden") {
-    return React.createElement("input", { name: props.name, id: props.name,
+    return React.createElement("input", { name: props.name, id: props.name + "_" + random,
       type: props.type,
       defaultValue: props.value });
   } else if (props.type == "readonly") {
     return [props.label && React.createElement(
       "label",
-      { key: "label", htmlFor: props.name },
+      { key: "label", htmlFor: props.name + "_" + random },
       props.label
-    ), React.createElement("input", { key: "input", name: props.name, id: props.name,
+    ), React.createElement("input", { key: "input", name: props.name, id: props.name + "_" + random,
       type: "hidden",
       defaultValue: props.value,
       onChange: props.onChange }), React.createElement(
@@ -781,35 +781,35 @@ var Input = function Input(props) {
   } else if (props.type == "textarea") {
     return [props.label && React.createElement(
       "label",
-      { key: "label", htmlFor: props.name },
+      { key: "label", htmlFor: props.name + "_" + random },
       props.label
-    ), React.createElement("textarea", { key: "input", name: props.name, id: "" + props.name,
+    ), React.createElement("textarea", { key: "input", name: props.name, id: props.name + "_" + random,
       defaultValue: props.value,
       placeholder: props.placeholder,
       required: props.required ? true : false,
       onChange: props.onChange })];
   } else if (props.type == "checkbox") {
-    return [React.createElement("input", { key: "input", name: props.name, id: props.name + "_" + props.value,
-      className: props.pill ? "checkbox--pill" : null,
+    return [React.createElement("input", { key: "input", name: props.name, id: props.name + "_" + random + "_" + props.value,
+      className: props.pill ? "checkbox--pill" : undefined,
       type: props.type,
       defaultValue: props.value,
       defaultChecked: props.checked,
       required: props.required ? true : false,
       onChange: props.onChange }), props.label && React.createElement(
       "label",
-      { key: "label", htmlFor: props.name + "_" + props.value },
+      { key: "label", htmlFor: props.name + "_" + random + "_" + props.value },
       props.label
     )];
   } else if (props.type == "select") {
     return [props.label && React.createElement(
       "label",
-      { key: "label", htmlFor: props.name },
+      { key: "label", htmlFor: props.name + "_" + random },
       props.label
     ), React.createElement(
       "select",
-      { key: "input", name: props.name, id: props.name, defaultValue: props.value ? props.value : props.multiple ? [] : null,
+      { key: "input", name: props.name, id: props.name + "_" + random, defaultValue: props.value ? props.value : props.multiple ? [] : null,
         multiple: props.multiple ? true : false,
-        size: props.multiple ? props.options.length : null,
+        size: props.multiple ? props.options.length : undefined,
         onChange: props.onChange },
       props.optional && React.createElement(
         "option",
@@ -835,18 +835,18 @@ var Input = function Input(props) {
   } else {
     return [props.label && React.createElement(
       "label",
-      { key: "label", htmlFor: props.name },
+      { key: "label", htmlFor: props.name + "_" + random },
       props.label,
       props.optional ? " (Optional)" : ""
-    ), React.createElement("input", { key: "input", name: props.name, id: props.name, className: "" + (props.inline ? " input--inline" : null),
+    ), React.createElement("input", { key: "input", name: props.name, id: props.name + "_" + random, className: props.inline ? "input--inline" : undefined,
       type: props.type ? props.type : 'text',
       defaultValue: props.type == "date" && props.value ? props.value.split("T")[0] : props.value,
       placeholder: props.placeholder,
       required: props.optional ? false : true,
       disabled: props.disabled ? true : false,
       autoFocus: props.autoFocus ? true : false,
-      autoComplete: props.type == "password" && props.new ? "new-password" : props.type == "search" ? "off" : null,
-      step: props.type == "number" ? "any" : null,
+      autoComplete: props.type == "password" && props.new ? "new-password" : props.type == "search" ? "off" : undefined,
+      step: props.type == "number" ? "any" : undefined,
       onChange: props.onChange })];
   }
 };

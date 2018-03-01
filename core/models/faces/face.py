@@ -23,6 +23,7 @@ with app.app_context():
       'last_name': validation_rules['text'],
       'handle': validation_rules['text'],
       'photos': validation_rules['image_list'],
+      'city': validation_rules['text'],
       'bio': validation_rules['text'],
       'tags': validation_rules['text_list'],
       'portfolio_url': validation_rules['text'],
@@ -133,6 +134,16 @@ with app.app_context():
 
       try:
         document['handle'] = re.sub('[^%s]' % (string.ascii_letters + string.digits), '', urllib.parse.quote_plus(document['handle'].lower()))
+      except KeyError:
+        pass
+
+      try:
+        if document['city'] in ['Montreal', 'montreal', 'mtl', 'MTL']:
+          document['city'] = 'Montréal'
+        elif document['city'] in ['nyc', 'NYC', 'new york', 'New York', 'new york city']:
+          document['city'] = 'New York City'
+        elif document['city'] in ['toronto', 'to']:
+          document['city'] = 'Toronto'
       except KeyError:
         pass
 

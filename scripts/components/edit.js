@@ -6,7 +6,7 @@ class Edit extends Overlay {
   constructor(props) {
     super(props)
     this.state = {
-      showed: true
+      showed: false
     }
   }
 
@@ -28,7 +28,7 @@ class Edit extends Overlay {
           modelId={this.props.modelId}
           values={this.props.values}
           fields={this.props.fields}
-          cta="Edit" />
+          cta="Save" />
       </div>
     </div>
   }
