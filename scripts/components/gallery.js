@@ -22,6 +22,12 @@ class Gallery extends Overlay {
 
   componentWillUnmount() {
     super.componentWillUnmount()
+    this.flkty.destroy()
+  }
+
+  toggle(e) {
+    this.flkty.select(e.target.getAttribute(this.togglers), false, true)
+    super.toggle(e)
   }
 
 

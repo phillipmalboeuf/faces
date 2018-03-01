@@ -365,8 +365,7 @@ var Overlay = function (_React$Component) {
     key: "click",
     value: function click(e) {
       if (this.togglers && e.target.hasAttribute(this.togglers)) {
-        e.preventDefault();
-        this.toggle();
+        this.toggle(e);
       }
     }
   }, {
@@ -787,6 +786,13 @@ var Gallery = function (_Overlay3) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "componentWillUnmount", this).call(this);
+      this.flkty.destroy();
+    }
+  }, {
+    key: "toggle",
+    value: function toggle(e) {
+      this.flkty.select(e.target.getAttribute(this.togglers), false, true);
+      _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "toggle", this).call(this, e);
     }
   }, {
     key: "render",

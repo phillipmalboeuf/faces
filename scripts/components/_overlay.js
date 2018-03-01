@@ -46,8 +46,7 @@ class Overlay extends React.Component {
 
   click(e) {
     if (this.togglers && e.target.hasAttribute(this.togglers)) {
-      e.preventDefault()
-      this.toggle()
+      this.toggle(e)
     }
   }
 
