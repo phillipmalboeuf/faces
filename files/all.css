@@ -435,6 +435,15 @@ footer {
     margin-right: auto;
     margin-left: auto; }
 
+.absolute_container {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+  .absolute.absolute--top_right {
+    top: 0.5rem;
+    right: 0.5rem; }
+
 .padded {
   padding: 4rem; }
   @media all and (max-device-width: 900px), all and (max-width: 900px) {
@@ -702,6 +711,9 @@ sub {
 .green_back {
   background-color: #14AF6E; }
 
+.grey_back {
+  background-color: #F7F7F7; }
+
 .red_back {
   background-color: #E14B3C; }
 
@@ -874,6 +886,21 @@ input[type="radio"] + label, .overlay, .slide {
     input[type="radio"] + label.grid--guttered > .col, .grid--guttered.overlay > .col, .grid--guttered.slide > .col {
       padding-left: 2rem;
       padding-bottom: 2rem; }
+  .grid.grid--tight_guttered, input[type="checkbox"] + label.grid--tight_guttered,
+  input[type="radio"] + label.grid--tight_guttered, .grid--tight_guttered.overlay, .grid--tight_guttered.slide {
+    width: auto;
+    margin-left: -1rem;
+    margin-bottom: -1rem; }
+    .grid.grid--tight_guttered.medium_bottom, input[type="checkbox"] + label.grid--tight_guttered.medium_bottom,
+    input[type="radio"] + label.grid--tight_guttered.medium_bottom, .grid--tight_guttered.medium_bottom.overlay, .grid--tight_guttered.medium_bottom.slide {
+      margin-bottom: 0; }
+    .grid.grid--tight_guttered.big_bottom, input[type="checkbox"] + label.grid--tight_guttered.big_bottom,
+    input[type="radio"] + label.grid--tight_guttered.big_bottom, .grid--tight_guttered.big_bottom.overlay, .grid--tight_guttered.big_bottom.slide {
+      margin-bottom: 2rem; }
+    .grid.grid--tight_guttered > .col, input[type="checkbox"] + label.grid--tight_guttered > .col,
+    input[type="radio"] + label.grid--tight_guttered > .col, .grid--tight_guttered.overlay > .col, .grid--tight_guttered.slide > .col {
+      padding-left: 1rem;
+      padding-bottom: 1rem; }
 
 .col.col--middle {
   align-self: center; }
@@ -1229,6 +1256,16 @@ button {
   button.button--small {
     font-size: 0.7777777778rem;
     padding: 0.5rem 1rem; }
+  .button.button--dashed,
+  button.button--dashed {
+    color: #AAAAAA;
+    background: transparent;
+    border: 2px dashed #F7F7F7; }
+    .button.button--dashed:hover, .button.button--dashed:focus,
+    button.button--dashed:hover,
+    button.button--dashed:focus {
+      color: #14AF6E;
+      border-color: #14AF6E; }
   .button.button--transparent,
   button.button--transparent {
     color: inherit;
@@ -1245,6 +1282,13 @@ button {
     padding-right: 0;
     padding-left: 0;
     width: 100%; }
+  .button.button--faded,
+  button.button--faded {
+    opacity: 0.33; }
+    .button.button--faded:hover, .button.button--faded:focus,
+    button.button--faded:hover,
+    button.button--faded:focus {
+      opacity: 1; }
   .button[disabled],
   button[disabled] {
     pointer-events: none;

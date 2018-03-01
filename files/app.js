@@ -925,9 +925,7 @@ var Photos = function (_React$Component3) {
     var _this23 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
 
     _this23.state = {
-      photos: props.photos.length >= props.min ? props.photos : [].concat(_toConsumableArray(props.photos), _toConsumableArray(Array(props.min - props.photos.length).fill().map(function (_, i) {
-        return "/faces/empty.png";
-      })))
+      photos: props.photos
     };
 
     _this23.file = document.createElement("input");
@@ -935,7 +933,7 @@ var Photos = function (_React$Component3) {
 
     _this23.click = _this23.click.bind(_this23);
     _this23.upload = _this23.upload.bind(_this23);
-    _this23.finishLoad = _this23.finishLoad.bind(_this23);
+    _this23.remove = _this23.remove.bind(_this23);
     return _this23;
   }
 
@@ -950,10 +948,16 @@ var Photos = function (_React$Component3) {
       this.file.removeEventListener("change", this.upload);
     }
   }, {
+    key: "remove",
+    value: function remove(e, index) {
+      e.stopPropagation();
+      this.setPhotos(this.state.photos.filter(function (photo, i) {
+        return i != index;
+      }));
+    }
+  }, {
     key: "click",
     value: function click(e, index) {
-      this.file.target = e.currentTarget;
-      this.file.index = index;
       this.file.click();
     }
   }, {
@@ -967,26 +971,25 @@ var Photos = function (_React$Component3) {
         Turbolinks.controller.adapter.progressBar.show();
 
         Upload.upload(file).then(function (response) {
-          _this24.file.target.setAttribute("src", "https://montrealuploads.imgix.net" + response.url);
-          _this24.state.photos[_this24.file.index] = response.url;
+          Turbolinks.controller.adapter.progressBar.setValue(100);
+          Turbolinks.controller.adapter.progressBar.hide();
 
-          _this24.props.onChange({ currentTarget: {
-              name: _this24.props.name,
-              type: "photos",
-              value: _this24.state.photos
-            } });
-
-          _this24.setState({
-            photos: _this24.state.photos
-          });
+          _this24.setPhotos([].concat(_toConsumableArray(_this24.state.photos), [response.url]));
         });
       }
     }
   }, {
-    key: "finishLoad",
-    value: function finishLoad(e) {
-      Turbolinks.controller.adapter.progressBar.setValue(100);
-      Turbolinks.controller.adapter.progressBar.hide();
+    key: "setPhotos",
+    value: function setPhotos(photos) {
+      this.props.onChange({ currentTarget: {
+          name: this.props.name,
+          type: "photos",
+          value: photos
+        } });
+
+      this.setState({
+        photos: photos
+      });
     }
   }, {
     key: "render",
@@ -1000,16 +1003,30 @@ var Photos = function (_React$Component3) {
         this.props.optional ? " (Optional)" : ""
       ), React.createElement(
         "div",
-        { key: "photos", className: "grid grid--guttered medium_bottom full_images" },
+        { key: "photos", ref: function ref(element) {
+            return _this25.container = element;
+          }, className: "grid grid--tight_guttered grid--stretch medium_bottom full_images" },
         this.state.photos.map(function (photo, index) {
           return React.createElement(
             "div",
-            { key: index, className: "col col--3of12" },
-            React.createElement("img", { onClick: function onClick(e) {
-                return _this25.click(e, index);
-              }, onLoad: _this25.finishLoad, className: "img--clickable rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
+            { key: index, className: "col col--4of12 absolute_container" },
+            React.createElement(
+              "div",
+              { className: "absolute absolute--top_right" },
+              React.createElement(Button, { className: "button--small button--grey button--faded", onClick: function onClick(e) {
+                  return _this25.remove(e, index);
+                }, label: "Remove" })
+            ),
+            React.createElement("img", { className: "rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress&w=200", "data-photo": photo })
           );
-        })
+        }),
+        React.createElement(
+          "div",
+          { className: "col col--4of12 grid grid--stretch", "data-no-drag": true },
+          React.createElement(Button, { className: "button--dashed", onClick: function onClick(e) {
+              return _this25.click(e);
+            }, label: "Upload Photo" })
+        )
       )];
     }
   }]);

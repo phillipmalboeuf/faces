@@ -87,6 +87,25 @@
       padding-bottom: $gutter;
     }
   }
+
+  &.grid--tight_guttered {
+    width: auto;
+    margin-left: -$gutter/2;
+    margin-bottom: -$gutter/2;
+
+    &.medium_bottom {
+      margin-bottom: 0;
+    }
+
+    &.big_bottom {
+      margin-bottom: $gutter;
+    }
+
+    > .col {
+      padding-left: $gutter/2;
+      padding-bottom: $gutter/2;
+    }
+  }
 }
   
   .col {

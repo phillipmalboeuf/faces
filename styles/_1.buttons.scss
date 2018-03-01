@@ -36,6 +36,18 @@ button {
     padding: $vertical_rythm/4 $vertical_rythm/2;
   }
 
+  &.button--dashed {
+    color: $grey--dark;
+    background: transparent;
+    border: 2px dashed $grey;
+
+    &:hover,
+    &:focus {
+      color: $highlight;
+      border-color: $highlight;
+    }
+  }
+
   &.button--transparent {
     color: inherit;
     background: transparent;
@@ -53,6 +65,15 @@ button {
     padding-right: 0;
     padding-left: 0;
     width: 100%;
+  }
+
+  &.button--faded {
+    opacity: 0.33;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
   }
 
   &[disabled] {

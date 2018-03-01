@@ -6,7 +6,7 @@ class Photos extends React.Component {
     super(props)
 
     this.state = {
-      photos: props.photos.length >= props.min ? props.photos : [...props.photos, ...Array(props.min - props.photos.length).fill().map((_, i) => "/faces/empty.png")]
+      photos: props.photos
     }
 
     this.file = document.createElement("input")
@@ -14,7 +14,7 @@ class Photos extends React.Component {
 
     this.click = this.click.bind(this)
     this.upload = this.upload.bind(this)
-    this.finishLoad = this.finishLoad.bind(this)
+    this.remove = this.remove.bind(this)
   }
 
   componentDidMount() {
@@ -25,9 +25,12 @@ class Photos extends React.Component {
     this.file.removeEventListener("change", this.upload)
   }
 
+  remove(e, index) {
+    e.stopPropagation()
+    this.setPhotos(this.state.photos.filter((photo, i)=> i != index))
+  }
+
   click(e, index) {
-    this.file.target = e.currentTarget
-    this.file.index = index
     this.file.click()
   }
 
@@ -38,36 +41,40 @@ class Photos extends React.Component {
       Turbolinks.controller.adapter.progressBar.show()
 
       Upload.upload(file).then((response)=> {
-        this.file.target.setAttribute("src", `https://montrealuploads.imgix.net${response.url}`)
-        this.state.photos[this.file.index] = response.url
-
-        this.props.onChange({currentTarget: {
-          name: this.props.name,
-          type: "photos",
-          value: this.state.photos
-        }})
-
-        this.setState({
-          photos: this.state.photos
-        })
+        Turbolinks.controller.adapter.progressBar.setValue(100)
+        Turbolinks.controller.adapter.progressBar.hide()
+        
+        this.setPhotos([...this.state.photos, response.url])
       })
     }
   }
 
-  finishLoad(e) {
-    Turbolinks.controller.adapter.progressBar.setValue(100)
-    Turbolinks.controller.adapter.progressBar.hide()
+  setPhotos(photos) {
+    this.props.onChange({currentTarget: {
+      name: this.props.name,
+      type: "photos",
+      value: photos
+    }})
+
+    this.setState({
+      photos: photos
+    })
   }
 
   render() {
     return [
       this.props.label && <label key="label" htmlFor={this.props.name}>{this.props.label}{this.props.optional ? " (Optional)" : "" }</label>,
-      <div key="photos" className="grid grid--guttered medium_bottom full_images">
+      <div key="photos" ref={(element) => this.container = element} className="grid grid--tight_guttered grid--stretch medium_bottom full_images">
         {this.state.photos.map((photo, index)=> (
-        <div key={index} className="col col--3of12">
-          <img onClick={(e)=> this.click(e, index)} onLoad={this.finishLoad} className="img--clickable rounded shadowed" src={`https://montrealuploads.imgix.net${photo}?auto=format,compress`} />
+        <div key={index} className="col col--4of12 absolute_container">
+          <div className="absolute absolute--top_right"><Button className="button--small button--grey button--faded" onClick={(e)=> this.remove(e, index)} label="Remove" /></div>
+          <img className="rounded shadowed" src={`https://montrealuploads.imgix.net${photo}?auto=format,compress&w=200`} data-photo={photo} />
         </div>
         ))}
+
+        <div className="col col--4of12 grid grid--stretch" data-no-drag>
+          <Button className="button--dashed" onClick={(e)=> this.click(e)} label="Upload Photo" />
+        </div>
       </div>
     ]
   }
