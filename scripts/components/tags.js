@@ -49,11 +49,8 @@ class Tags extends React.Component {
       <label>Ethnicity (Optional)</label>
       {renderTags("ethnicity")}
 
-      <label>Hair type (Optional)</label>
-      {renderTags("hair")}
-
-      <label>Body type (Optional)</label>
-      {renderTags("body")}
+      <label>Particularities (Optional)</label>
+      {renderTags("things")}
 
       <label>Style (Optional)</label>
       {renderTags("style")}

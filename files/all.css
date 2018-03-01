@@ -426,6 +426,9 @@ header {
 .main {
   min-height: 90vh; }
 
+footer {
+  padding: 2rem 4rem; }
+
 .max_width {
   max-width: 833px; }
   .max_width.max_width--center {

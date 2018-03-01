@@ -1033,15 +1033,9 @@ var Tags = function (_React$Component4) {
         React.createElement(
           "label",
           null,
-          "Hair type (Optional)"
+          "Particularities (Optional)"
         ),
-        renderTags("hair"),
-        React.createElement(
-          "label",
-          null,
-          "Body type (Optional)"
-        ),
-        renderTags("body"),
+        renderTags("things"),
         React.createElement(
           "label",
           null,

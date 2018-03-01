@@ -70,69 +70,84 @@ CATEGORIES = [
         'type': 'ethnicity'
       },
       {
-        'title': 'Blonde',
-        'key': 'blonde',
-        'type': 'hair'
-      },
-      {
-        'title': 'Brunette',
-        'key': 'brunette',
-        'type': 'hair'
+        'title': 'Bleached',
+        'key': 'bleached',
+        'type': 'things'
       },
       {
         'title': 'Ginger',
         'key': 'ginger',
-        'type': 'hair'
+        'type': 'things'
       },
       {
         'title': 'Salt-and-pepper',
         'key': 'salt-and-pepper',
-        'type': 'hair'
-      },
-      {
-        'title': 'Straight',
-        'key': 'straight',
-        'type': 'hair'
-      },
-      {
-        'title': 'Wavy',
-        'key': 'wavy',
-        'type': 'hair'
+        'type': 'things'
       },
       {
         'title': 'Curly',
         'key': 'curly',
-        'type': 'hair'
+        'type': 'things'
       },
       {
         'title': 'Bald',
         'key': 'bald',
-        'type': 'hair'
-      },
-      {
-        'title': 'Thin',
-        'key': 'thin',
-        'type': 'body'
-      },
-      {
-        'title': 'Thick',
-        'key': 'thick',
-        'type': 'body'
+        'type': 'things'
       },
       {
         'title': 'Athletic',
         'key': 'athletic',
-        'type': 'body'
+        'type': 'things'
       },
       {
-        'title': 'Tall',
-        'key': 'tall',
-        'type': 'body'
+        'title': 'Curvy',
+        'key': 'curvy',
+        'type': 'things'
       },
       {
-        'title': 'Short',
-        'key': 'short',
-        'type': 'body'
+        'title': 'Plus-Size',
+        'key': 'plus-size',
+        'type': 'things'
+      },
+      {
+        'title': 'Thin',
+        'key': 'thin',
+        'type': 'things'
+      },
+      {
+        'title': 'Beard',
+        'key': 'beard',
+        'type': 'things'
+      },
+      {
+        'title': 'Mustache',
+        'key': 'mustache',
+        'type': 'things'
+      },
+      {
+        'title': 'Veil',
+        'key': 'veil',
+        'type': 'things'
+      },
+      {
+        'title': 'Turban',
+        'key': 'turban',
+        'type': 'things'
+      },
+      {
+        'title': 'Tatoos',
+        'key': 'tatoos',
+        'type': 'things'
+      },
+      {
+        'title': 'Glasses',
+        'key': 'glasses',
+        'type': 'things'
+      },
+      {
+        'title': 'Tatoos',
+        'key': 'tatoos',
+        'type': 'things'
       },
       { 
         'title': 'Bohemian',
