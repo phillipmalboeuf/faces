@@ -1472,25 +1472,24 @@ input[type="radio"] {
       margin: 0 0.5rem 0 0; }
     input[type="checkbox"] + label:before,
     input[type="radio"] + label:before {
-      width: 18px;
-      height: 18px;
+      width: 1.5em;
+      height: 1.5em;
       border: 2px solid;
       border-radius: 4px; }
     input[type="checkbox"] + label:after,
     input[type="radio"] + label:after {
-      width: 12px;
-      height: 12px;
-      border-radius: 4px;
-      background-color: transparent;
+      content: "";
       position: absolute;
-      left: 3px;
-      top: 6px; }
+      left: 0;
+      font-weight: bold;
+      width: 1.5em;
+      text-align: center; }
   input[type="checkbox"]:checked + label,
   input[type="radio"]:checked + label {
-    color: #383838; }
+    color: #14AF6E; }
     input[type="checkbox"]:checked + label:after,
     input[type="radio"]:checked + label:after {
-      background-color: #383838; }
+      content: "✔︎"; }
   input[type="checkbox"]:active,
   input[type="radio"]:active {
     top: 1px; }

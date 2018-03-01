@@ -154,22 +154,27 @@ input[type="radio"] {
     }
 
     &:before {
-      width: $base_size;
-      height: $base_size;
+      width: $checkbox_size;
+      height: $checkbox_size;
 
       border: 2px solid;
       border-radius: $border_radius;
     }
 
     &:after {
-      width: ($base_size) - 6px;
-      height: ($base_size) - 6px;
-      border-radius: $border_radius;
-      background-color: transparent;
+      content: "";
+      // width: $checkbox_size * 0.8;
+      // height: $checkbox_size * 0.8;
+      // border-radius: $border_radius;
+      // background-color: transparent;
 
       position: absolute;
-      left: 3px;
-      top: 6px;
+      left: 0;
+      font-weight: bold;
+      width: $checkbox_size;
+      text-align: center;
+      // left: 3px;
+      // top: $checkbox_size * 0.2;
 
       // transition: transform $fast;
       // transform: scale(0);
@@ -179,14 +184,15 @@ input[type="radio"] {
   &:checked {
 
     & + label {
-      color: $black;
+      color: $highlight;
 
       &:before {
         // border-color: $black;
       }
 
       &:after {
-        background-color: $black;
+        content: "✔︎";
+        // background-color: $black;
         // transform: scale(1);
       }
     }
