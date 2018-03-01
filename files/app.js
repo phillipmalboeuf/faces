@@ -768,6 +768,8 @@ var Gallery = function (_Overlay3) {
     _this21.state = {
       showed: false
     };
+    _this21.left = _this21.left.bind(_this21);
+    _this21.right = _this21.right.bind(_this21);
     return _this21;
   }
 
@@ -779,20 +781,35 @@ var Gallery = function (_Overlay3) {
         wrapAround: true,
         prevNextButtons: false,
         pageDots: false,
-        adaptiveHeight: false
+        adaptiveHeight: false,
+        accessibility: false
       });
+      key("left", this.left);
+      key("right", this.right);
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "componentWillUnmount", this).call(this);
       this.flkty.destroy();
+      key.unbind("left", this.left);
+      key.unbind("right", this.right);
     }
   }, {
     key: "toggle",
     value: function toggle(e) {
       this.flkty.select(e.target.getAttribute(this.togglers), false, true);
       _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "toggle", this).call(this, e);
+    }
+  }, {
+    key: "left",
+    value: function left(e) {
+      this.flkty.previous();
+    }
+  }, {
+    key: "right",
+    value: function right(e) {
+      this.flkty.next();
     }
   }, {
     key: "render",
