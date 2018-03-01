@@ -14,7 +14,7 @@
   <h1 class="h1--logo">Good Faces</h1>
   <div class="grid grid--guttered full_images">
     {% for face in faces %}
-    <div class="col col--3of12">
+    <div class="col col--3of12 col--tablet_portrait--6of12">
       <a href="/faces/{{face.handle}}"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces"></a>
     </div>
     {% endfor %}

@@ -396,7 +396,6 @@ var Account = function (_Overlay) {
 
     var _this13 = _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).call(this, props));
 
-    _this13.noescape = true;
     _this13.togglers = "data-toggle-account";
 
 
@@ -421,13 +420,11 @@ var Account = function (_Overlay) {
     key: "componentDidMount",
     value: function componentDidMount() {
       _get(Account.prototype.__proto__ || Object.getPrototypeOf(Account.prototype), "componentDidMount", this).call(this);
-      key("escape", this.toggle);
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       _get(Account.prototype.__proto__ || Object.getPrototypeOf(Account.prototype), "componentWillUnmount", this).call(this);
-      key.unbind("escape", this.toggle);
     }
   }, {
     key: "fetchUser",
@@ -759,6 +756,68 @@ var Form = function (_React$Component2) {
   return Form;
 }(React.Component);
 
+var Gallery = function (_Overlay3) {
+  _inherits(Gallery, _Overlay3);
+
+  function Gallery(props) {
+    _classCallCheck(this, Gallery);
+
+    var _this21 = _possibleConstructorReturn(this, (Gallery.__proto__ || Object.getPrototypeOf(Gallery)).call(this, props));
+
+    _this21.togglers = "data-toggle-gallery";
+
+    _this21.state = {
+      showed: false
+    };
+    return _this21;
+  }
+
+  _createClass(Gallery, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "componentDidMount", this).call(this);
+      this.flkty = new Flickity(this.slider, {
+        wrapAround: true,
+        prevNextButtons: false,
+        pageDots: false,
+        adaptiveHeight: false
+      });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "componentWillUnmount", this).call(this);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this22 = this;
+
+      return React.createElement(
+        "div",
+        { className: "overlay" + (this.state.showed ? " overlay--show" : "") },
+        React.createElement(Button, { className: "button--transparent overlay__back" }),
+        React.createElement(
+          "div",
+          { ref: function ref(element) {
+              return _this22.slider = element;
+            }, className: "slider" },
+          this.props.photos.map(function (photo, index) {
+            return React.createElement(
+              "div",
+              { key: index, className: "slide" },
+              React.createElement("img", { src: photo })
+            );
+          })
+        ),
+        React.createElement(Button, { className: "button--transparent overlay__close", label: "Close", onClick: this.hide })
+      );
+    }
+  }]);
+
+  return Gallery;
+}(Overlay);
+
 var Input = function Input(props) {
   var random = Math.random();
   if (props.type == "hidden") {
@@ -857,21 +916,21 @@ var Photos = function (_React$Component3) {
   function Photos(props) {
     _classCallCheck(this, Photos);
 
-    var _this21 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
+    var _this23 = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
 
-    _this21.state = {
+    _this23.state = {
       photos: props.photos.length >= props.min ? props.photos : [].concat(_toConsumableArray(props.photos), _toConsumableArray(Array(props.min - props.photos.length).fill().map(function (_, i) {
         return "/faces/empty.png";
       })))
     };
 
-    _this21.file = document.createElement("input");
-    _this21.file.type = "file";
+    _this23.file = document.createElement("input");
+    _this23.file.type = "file";
 
-    _this21.click = _this21.click.bind(_this21);
-    _this21.upload = _this21.upload.bind(_this21);
-    _this21.finishLoad = _this21.finishLoad.bind(_this21);
-    return _this21;
+    _this23.click = _this23.click.bind(_this23);
+    _this23.upload = _this23.upload.bind(_this23);
+    _this23.finishLoad = _this23.finishLoad.bind(_this23);
+    return _this23;
   }
 
   _createClass(Photos, [{
@@ -894,7 +953,7 @@ var Photos = function (_React$Component3) {
   }, {
     key: "upload",
     value: function upload(e) {
-      var _this22 = this;
+      var _this24 = this;
 
       var file = e.currentTarget.files[0];
       if (file && file.type.match('image.*')) {
@@ -902,17 +961,17 @@ var Photos = function (_React$Component3) {
         Turbolinks.controller.adapter.progressBar.show();
 
         Upload.upload(file).then(function (response) {
-          _this22.file.target.setAttribute("src", "https://montrealuploads.imgix.net" + response.url);
-          _this22.state.photos[_this22.file.index] = response.url;
+          _this24.file.target.setAttribute("src", "https://montrealuploads.imgix.net" + response.url);
+          _this24.state.photos[_this24.file.index] = response.url;
 
-          _this22.props.onChange({ currentTarget: {
-              name: _this22.props.name,
+          _this24.props.onChange({ currentTarget: {
+              name: _this24.props.name,
               type: "photos",
-              value: _this22.state.photos
+              value: _this24.state.photos
             } });
 
-          _this22.setState({
-            photos: _this22.state.photos
+          _this24.setState({
+            photos: _this24.state.photos
           });
         });
       }
@@ -926,7 +985,7 @@ var Photos = function (_React$Component3) {
   }, {
     key: "render",
     value: function render() {
-      var _this23 = this;
+      var _this25 = this;
 
       return [this.props.label && React.createElement(
         "label",
@@ -941,8 +1000,8 @@ var Photos = function (_React$Component3) {
             "div",
             { key: index, className: "col col--3of12" },
             React.createElement("img", { onClick: function onClick(e) {
-                return _this23.click(e, index);
-              }, onLoad: _this23.finishLoad, className: "img--clickable rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
+                return _this25.click(e, index);
+              }, onLoad: _this25.finishLoad, className: "img--clickable rounded shadowed", src: "https://montrealuploads.imgix.net" + photo + "?auto=format,compress" })
           );
         })
       )];
@@ -958,22 +1017,22 @@ var Tags = function (_React$Component4) {
   function Tags(props) {
     _classCallCheck(this, Tags);
 
-    var _this24 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
+    var _this26 = _possibleConstructorReturn(this, (Tags.__proto__ || Object.getPrototypeOf(Tags)).call(this, props));
 
-    _this24.state = {
+    _this26.state = {
       selected: props.selected ? props.selected.reduce(function (tags, tag) {
         tags[tag] = true;return tags;
       }, {}) : {}
     };
 
-    _this24.onChange = _this24.onChange.bind(_this24);
-    return _this24;
+    _this26.onChange = _this26.onChange.bind(_this26);
+    return _this26;
   }
 
   _createClass(Tags, [{
     key: "onChange",
     value: function onChange(e) {
-      var _this25 = this;
+      var _this27 = this;
 
       this.state.selected[e.currentTarget.name.split(":")[1]] = e.currentTarget.checked;
 
@@ -981,7 +1040,7 @@ var Tags = function (_React$Component4) {
           name: this.props.name,
           type: "tags",
           value: Object.keys(this.state.selected).filter(function (key) {
-            return _this25.state.selected[key];
+            return _this27.state.selected[key];
           }).map(function (key) {
             return key;
           })
@@ -994,22 +1053,22 @@ var Tags = function (_React$Component4) {
   }, {
     key: "render",
     value: function render() {
-      var _this26 = this;
+      var _this28 = this;
 
       var renderTags = function renderTags(type) {
         return React.createElement(
           "div",
           { className: "tags" },
-          _this26.props.tags.filter(function (tag) {
+          _this28.props.tags.filter(function (tag) {
             return tag.type === type;
           }).map(function (tag, index) {
             return React.createElement(
               "span",
               { key: index, className: "tag" },
-              React.createElement(Input, { onChange: _this26.onChange, type: "checkbox",
-                name: _this26.props.name + ":" + tag.key,
+              React.createElement(Input, { onChange: _this28.onChange, type: "checkbox",
+                name: _this28.props.name + ":" + tag.key,
                 label: tag.title,
-                checked: _this26.state.selected[tag.key] ? true : false })
+                checked: _this28.state.selected[tag.key] ? true : false })
             );
           })
         );

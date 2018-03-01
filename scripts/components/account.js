@@ -1,7 +1,6 @@
 
 class Account extends Overlay {
 
-  noescape = true
   togglers = "data-toggle-account"
 
   constructor(props) {
@@ -25,12 +24,10 @@ class Account extends Overlay {
 
   componentDidMount() {
     super.componentDidMount()
-    key("escape", this.toggle)
   }
 
   componentWillUnmount() {
     super.componentWillUnmount()
-    key.unbind("escape", this.toggle)
   }
 
   fetchUser() {

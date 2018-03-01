@@ -3,9 +3,9 @@
 
 {% block header %}
 <div class="grid grid--middle grid--guttered">
-  <div class="col col--1of12">{{super()}}</div>
-  <div class="col col--6of12"><a class="pill" href="https://goodfac.es/{{face.handle}}">goodfac.es/{{face.handle}}</a></div>
-  <div class="col col--5of12 text_right">
+  <div class="col col--1of12 col--phone--5of12">{{super()}}</div>
+  <div class="col col--6of12 hide_on_phone"><a class="pill" href="https://goodfac.es/{{face.handle}}">goodfac.es/{{face.handle}}</a></div>
+  <div class="col col--5of12 col--phone--7of12 text_right">
     {% if request.current_session and request.current_session.user_id == face._id %}
     <button data-toggle-edit class="button button--small button--grey">Edit your profile</button>
     {% else %}
@@ -26,11 +26,21 @@
     <div class="col col--12of12">
       <div class="grid grid--guttered full_images">
         {% for photo in face.photos %}
-        <div class="col col--3of12">
-          <a href="https://montrealuploads.imgix.net{{photo}}" target="_blank"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress&fit=crop&w=900&h=900&crop=faces"></a>
+        <div class="col col--3of12 col--tablet_portrait--6of12">
+          <a href="https://montrealuploads.imgix.net{{photo}}" target="_blank"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress&fit=crop&w=900&h=900&crop=faces" data-toggle-gallery="{{loop.index0}}"></a>
         </div>
         {% endfor %}
       </div>
+      <div id="gallery"></div>
+      <script>
+        window.components.push({
+          element: "#gallery",
+          component: "Gallery",
+          data: {
+            photos: [{% for photo in face.photos %}"https://montrealuploads.imgix.net{{photo}}?auto=format,compress&w=1333"{% if not loop.last %},{% endif %}{% endfor %}]
+          }
+        })
+      </script>
     </div>
     <div class="col col--12of12"></div>
     <div class="col col--10of12">

@@ -40,6 +40,13 @@
     background: fade-out($white, 0.1);
   }
 
+  button.overlay__close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: $vertical_rythm/2 $vertical_rythm;
+  }
+
   .overlay__container {
     position: relative;
 
