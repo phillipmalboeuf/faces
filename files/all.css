@@ -426,11 +426,11 @@ header {
 .main {
   min-height: 90vh; }
 
-footer {
-  padding: 2rem 4rem; }
-
 .max_width {
   max-width: 833px; }
+  .max_width.max_width--center {
+    margin-right: auto;
+    margin-left: auto; }
 
 .padded {
   padding: 4rem; }
@@ -560,7 +560,7 @@ h1,
     line-height: 2rem; }
   h1.h1--logo,
   .h1.h1--logo {
-    font-size: 16vw; }
+    font-size: 14vw; }
 
 h2 {
   font-size: 18px;

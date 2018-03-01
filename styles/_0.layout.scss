@@ -52,13 +52,18 @@ header {
 // #FOOTER
 
 footer {
-  padding: $vertical_rythm $vertical_rythm*2;
+  // padding: $vertical_rythm $vertical_rythm*2;
 }
 
 // #MIXINS
 
 .max_width {
   max-width: $max_width/2;
+
+  &.max_width--center {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 .padded {
