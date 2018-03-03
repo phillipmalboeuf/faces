@@ -11,7 +11,7 @@
 
 {% block main %}
 <div class="padded padded--big_top white_back">
-  <div class="medium_bottom text_center">
+  <div class="medium_bottom max_width max_width--center text_center">
     <h1>A people-powered platform connecting Good Brands with Good Faces. ✌</h1>
     {# <h1 class="h1--logo">Good Faces</h1> #}
     <p>Coming in: <span id="timer">-- days -- hours -- minutes -- seconds</span></p>
@@ -45,7 +45,10 @@
     })
   </script>
 
-  <div class="grid">
+  <div class="grid big_bottom">
+    <div class="col col--12of12 padded">
+      <h2 class="text_center">Join the Club</h2>
+    </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded">
       <h3>It's a Party 🎉</h3>
       <p>Good Faces is a party, and you’re invited! We celebrate diversity and we want to help brands use Faces that look like the people who use their product IRL.</p>
@@ -62,11 +65,23 @@
     </div>
   </div>
 
-  <div class="padded text_center">
-    <h2>Request to be a Good Face</h2>
+  <div class="padded grey_back max_width max_width--big max_width--center big_bottom">
+    <h2 class="text_center">How can I join the club?</h2>
+    <div class="grid grid--guttered">
+      <div class="col col--6of12">
+        <p><strong>Create a profile and request to join the club.</strong> Profiles on Good Faces are curated. We want to make sure the Good Brands we work with can find the right models for their shoots. [That being said, at Good Faces, we encourage diversity!]</p>
+      </div>
+      <div class="col col--6of12">
+        To help make sure your profile gets approved:<ul><li>The more photos the better! Provide at least 2 headshots and 2 full-body shots.</li><li>No tags are obligatory on your profile, but make sure the tags you choose are accurate and represent you best.</li></ul>
+      </div>
+    </div>
   </div>
 
-  <div class="grid grid--center" id="newsletter"></div>
+  <div class="padded text_center">
+    <h2>Apply to become to be a Good Face</h2>
+  </div>
+
+  <div class="grid grid--center big_bottom" id="newsletter"></div>
   <script>
     window.components.push({
       element: "#newsletter",

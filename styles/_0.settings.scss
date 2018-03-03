@@ -4,7 +4,7 @@
 $white: #FFF;
 $black: #383838;
 $black--dark: #111111;
-$grey: #F7F7F7;
+$grey: #F4F4F4;
 $grey--dark: #AAAAAA;
 $yellow: #CC9900;
 $blue: #1B52DD;
@@ -24,18 +24,18 @@ $bold: bold;
 
 // #LAYOUT
 
-$base: 18;
+$base: 16;
 $base_size: ($base) * 1px;
 $massive_size: (133/$base) * 1rem;
-$big_size: (66/$base) * 1rem;
-$medium_size: (36/$base) * 1rem;
+$big_size: (46/$base) * 1rem;
+$medium_size: (24/$base) * 1rem;
 $slight_size: (20/$base) * 1rem;
 $small_size: (14/$base) * 1rem;
 
 $vertical_rythm: 2rem;
 $max_width: 1666px;
-$letter_spacing: 0;
-$border_radius: 0;
+$letter_spacing: 0.01em;
+$border_radius: 3px;
 $checkbox_size: 1.5em;
 
 $number_of_columns: 12;

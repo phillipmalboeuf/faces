@@ -52,6 +52,7 @@ body {
   font-family: $headings_font;
   font-weight: $bold;
   line-height: $vertical_rythm;
+  letter-spacing: $letter_spacing;
 
   color: inherit;
   margin: 0 0 0.5em;
@@ -168,6 +169,14 @@ a {
   }
 }
 
+
+// #LISTS
+
+ol,
+ul {
+  margin: 0 0 $vertical_rythm;
+  padding-left: $vertical_rythm;
+}
 
 // #HR
 

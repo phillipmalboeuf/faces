@@ -11,6 +11,8 @@ label,
 
   color: inherit;
   font-size: $small_size;
+  font-weight: $bold;
+  letter-spacing: $letter_spacing;
 
   margin-bottom: $vertical_rythm/6;
 }
@@ -57,12 +59,12 @@ textarea,
   background: $white;
   padding: $vertical_rythm/2;
   margin-bottom: $vertical_rythm/2;
-  border: 1px solid $black;
+  border: 1px solid $grey--dark;
   border-radius: $border_radius;
   // max-width: $max_width/3;
 
   &:active {
-    background: fade-out($grey, 0.2);
+    top: 1px
   }
 
   &:disabled,
@@ -75,7 +77,8 @@ textarea,
   }
 
   &:focus {
-    border: 1px solid $highlight;
+    // border: 1px solid $highlight;
+    background: fade-out($grey, 0.2);
   }
 
   &.input--tight {
