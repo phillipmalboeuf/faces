@@ -82,6 +82,11 @@ body {
     font-size: $big_size;
     line-height: $vertical_rythm*2;
 
+    @media #{$tablet_portrait} {
+      font-size: $big_size*0.8;
+      line-height: $vertical_rythm*1.33;
+    }
+
     &.h1--massive {
       font-size: $massive_size;
     }
@@ -99,6 +104,11 @@ body {
   h2 {
     font-size: $big_size;
     line-height: $vertical_rythm*2;
+
+    @media #{$tablet_portrait} {
+      font-size: $big_size*0.8;
+      line-height: $vertical_rythm*1.33;
+    }
   }
 
   h3 {

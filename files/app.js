@@ -830,7 +830,7 @@ var Gallery = function (_Overlay3) {
             return React.createElement(
               "div",
               { key: index, className: "slide" },
-              React.createElement("img", { src: photo })
+              React.createElement("img", { src: _this22.state.showed && photo })
             );
           })
         ),
