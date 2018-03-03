@@ -27,18 +27,11 @@
   </script>
 
   <div class="grid grid--tight_guttered big_bottom full_images">
+    {% for photo in ['/faces/home_1.png', '/faces/home_4.png', '/faces/home_3.png', '/faces/home_5.png'] %}
     <div class="col col--3of12 col--tablet_portrait--6of12">
-      <img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_1.png?auto=format,compress&fit=crop&w=600&h=600&crop=faces" data-toggle-gallery="0">
+      <a href="https://montrealuploads.imgix.net{{photo}}?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" data-toggle-gallery="{{loop.index0}}"></a>
     </div>
-    <div class="col col--3of12 col--tablet_portrait--6of12">
-      <img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_4.png?auto=format,compress&fit=crop&w=600&h=600&crop=faces" data-toggle-gallery="1">
-    </div>
-    <div class="col col--3of12 col--tablet_portrait--6of12">
-      <img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_3.png?auto=format,compress&fit=crop&w=600&h=600&crop=faces" data-toggle-gallery="1">
-    </div>
-    <div class="col col--3of12 col--tablet_portrait--6of12">
-      <img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_5.png?auto=format,compress&fit=crop&w=600&h=600&crop=faces" data-toggle-gallery="1">
-    </div>
+    {% endfor %}
   </div>
 
   <div id="gallery"></div>
@@ -47,7 +40,7 @@
       element: "#gallery",
       component: "Gallery",
       data: {
-        photos: ["https://montrealuploads.imgix.net/faces/home_1.png?auto=format,compress&w=1333", "https://montrealuploads.imgix.net/faces/home_4.png?auto=format,compress&w=1333", "https://montrealuploads.imgix.net/faces/home_3.png?auto=format,compress&w=1333", "https://montrealuploads.imgix.net/faces/home_5.png?auto=format,compress&w=1333"]
+        photos: [{% for photo in ['/faces/home_1.png', '/faces/home_4.png', '/faces/home_3.png', '/faces/home_5.png'] %}"https://montrealuploads.imgix.net{{photo}}?auto=format,compress&w=1333"{% if not loop.last %},{% endif %}{% endfor %}]
       }
     })
   </script>
