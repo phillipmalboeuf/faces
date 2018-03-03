@@ -43,7 +43,7 @@ with app.app_context():
 				except KeyError:
 					pass
 
-			if not request.current_session_is_admin and ('user_id' not in document or not hasattr(request, 'current_session') or request.current_session['user_id'] != document['user_id']):
+			if not hasattr(request, 'current_session') or (not request.current_session_is_admin and ('user_id' not in document or request.current_session['user_id'] != document['user_id'])):
 				document = cls._remove_private_fields(document)
 
 			return document
