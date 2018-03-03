@@ -90,6 +90,10 @@ footer {
     padding: $vertical_rythm*2 $vertical_rythm;
   }
 
+  @media #{$phone} {
+    padding: $vertical_rythm*1.5 $vertical_rythm/2;
+  }
+
   &.padded--tight {
     padding: $vertical_rythm/2 $vertical_rythm;
   }

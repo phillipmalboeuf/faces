@@ -459,6 +459,9 @@ footer {
   @media all and (max-device-width: 900px), all and (max-width: 900px) {
     .padded {
       padding: 4rem 2rem; } }
+  @media all and (max-device-width: 600px), all and (max-width: 600px) {
+    .padded {
+      padding: 3rem 1rem; } }
   .padded.padded--tight {
     padding: 1rem 2rem; }
   .padded.padded--big_top {
