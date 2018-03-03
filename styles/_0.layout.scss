@@ -52,6 +52,10 @@ header {
 
 footer {
   padding: $vertical_rythm $vertical_rythm*2;
+
+  @media #{$tablet_portrait} {
+    padding: $vertical_rythm;
+  }
 }
 
 // #MIXINS

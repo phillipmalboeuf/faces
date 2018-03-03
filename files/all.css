@@ -433,6 +433,9 @@ header {
 
 footer {
   padding: 2rem 4rem; }
+  @media all and (max-device-width: 900px), all and (max-width: 900px) {
+    footer {
+      padding: 2rem; } }
 
 .max_width {
   max-width: 833px; }
