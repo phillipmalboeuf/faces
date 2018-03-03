@@ -11,19 +11,20 @@
 
 {% block main %}
 <div class="padded padded--big_top white_back">
-  <div class="text_center medium_bottom">
+  <div class="text_center">
     <h1 class="h1--logo">Good Faces</h1>
-    <p>Coming in: <span id="timer"></span></p>
-    <script>
-      window.components.push({
-        element: "#timer",
-        component: "Timer",
-        data: {
-          until: new Date("2018-03-17T12:00:00")
-        }
-      })
-    </script>
+    <p>Coming in: <span id="timer">-- days -- hours -- minutes -- seconds</span></p>
   </div>
+
+  <script>
+    window.components.push({
+      element: "#timer",
+      component: "Timer",
+      data: {
+        until: new Date("2018-03-17T12:00:00")
+      }
+    })
+  </script>
 
   {# <div class="grid grid--guttered full_images">
     {% for face in faces %}
@@ -66,7 +67,7 @@
   </script>
 </div>
 
-<div>{% include 'vectors/background.svg' %}</div>
+{# <div>{% include 'vectors/background.svg' %}</div> #}
 
 {# {% include 'faces/_faces.html' %} #}
 {% endblock %}

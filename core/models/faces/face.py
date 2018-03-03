@@ -25,6 +25,7 @@ with app.app_context():
       'photos': validation_rules['image_list'],
       'city': validation_rules['text'],
       'bio': validation_rules['text'],
+      'accepted_offers': validation_rules['text'],
       'tags': validation_rules['text_list'],
       'portfolio_url': validation_rules['text'],
       'instagram_handle': validation_rules['text'],

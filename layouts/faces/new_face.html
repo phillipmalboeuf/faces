@@ -78,12 +78,22 @@
               },
               {
                 type: "info",
-                body: "How would you describe yourself? Choose as many or as few as you’d like! All of these tags are optional, but will help brands find your face! "
+                body: "How would you describe yourself? Choose as many or as few as you’d like! All of these tags are optional, but will help brands find your face!"
               },
               {
                 type: "tags",
                 name: "tags",
                 tags: {{categories[0].tags|tojson}}
+              },
+              {
+                type: "info",
+                body: "What kind of offers would you accept for a typical photoshoot?"
+              },
+              {
+                type: "textarea",
+                name: "accepted_offers",
+                label: "Accepted Offers",
+                placeholder: "Money, clothing, photos, food..."
               },
               {
                 type: "info",

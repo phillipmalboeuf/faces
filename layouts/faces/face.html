@@ -56,6 +56,9 @@
 
         <h2>Tags</h2>
         <p>{% for tag in face.tags %}<a href="/faces/tagged/{{tag}}" class="tag">{{tag|tag('model')}}</a>{% endfor %}</p>
+
+        <h2>Accepted Offers</h2>
+        <p>{{face.accepted_offers}}</p>
       </div>
     </div>
   </div>
@@ -120,6 +123,12 @@
           type: "tags",
           name: "tags",
           tags: {{categories[0].tags|tojson}}
+        },
+        {
+          type: "textarea",
+          name: "accepted_offers",
+          label: "Accepted Offers",
+          placeholder: "Money, clothing, photos, food..."
         }
       ]
     }
