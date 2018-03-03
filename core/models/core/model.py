@@ -17,6 +17,8 @@ with app.app_context():
 		collection_filter = {}
 		collection_sort = []
 
+		private_fields = []
+
 		alternate_index = 'route'
 
 
@@ -41,6 +43,9 @@ with app.app_context():
 				except KeyError:
 					pass
 
+			if not request.current_session_is_admin and ('user_id' not in document or request.current_session['user_id'] != document['user_id']):
+				document = cls._remove_private_fields(document)
+
 			return document
 
 
@@ -63,23 +68,23 @@ with app.app_context():
 
 
 		@classmethod
-		def get(cls, _id, projection={}, lang=None):
+		def get(cls, _id, projection={}, lang=None, postprocess=True):
 			if ObjectId.is_valid(_id):
-				return cls.get_where({'_id': ObjectId(_id)}, projection, lang)
+				return cls.get_where({'_id': ObjectId(_id)}, projection, lang, postprocess)
 
 			else:
-				return cls.get_where({cls.alternate_index: _id}, projection, lang)
+				return cls.get_where({cls.alternate_index: _id}, projection, lang, postprocess)
 
 
 
 		@classmethod
-		def get_where(cls, document_filter, projection={}, lang=None):
+		def get_where(cls, document_filter, projection={}, lang=None, postprocess=True):
 
 			document = app.db[cls.collection_name].find_one(cls._merge_filters(document_filter), cls._merge_projections(projection))
 			if document is None:
 				abort(404)
 
-			return cls.postprocess(document, lang)
+			return cls.postprocess(document, lang) if postprocess else document
 
 
 
@@ -183,4 +188,12 @@ with app.app_context():
 
 			return merged_projections
 
+
+		@classmethod
+		def _remove_private_fields(cls, document):
+			for key in list(document.keys()):
+				if key in cls.private_fields:
+					del document[key]
+			
+			return document
 

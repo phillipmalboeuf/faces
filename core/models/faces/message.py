@@ -27,6 +27,8 @@ with app.app_context():
       'metadata': validation_rules['metadata']
     }
 
+    private_fields = ['face_email']
+
     endpoint = '/messages'
     routes = [
       {
@@ -71,7 +73,7 @@ with app.app_context():
     @classmethod
     def create(cls, document):
 
-      face = Face.get(document['face_id'])
+      face = Face.get(document['face_id'], postprocess=False)
       document['face_name'] = face['first_name']
       document['face_email'] = face['email']
 

@@ -33,6 +33,8 @@ with app.app_context():
       'metadata': validation_rules['metadata']
     }
 
+    private_fields = ['password', 'password_salt', 'email', 'instagram_handle']
+
     endpoint = '/faces'
     routes = [
       {

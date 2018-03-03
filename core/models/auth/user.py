@@ -39,6 +39,7 @@ with app.app_context():
 			'metadata': validation_rules['metadata']
 		}
 
+		private_fields = ['password', 'password_salt', 'email']
 
 		endpoint = '/users'
 		routes = [
@@ -172,13 +173,6 @@ with app.app_context():
 
 		@classmethod
 		def postprocess(cls, document, lang=None):
-
-			try:
-				del document['password']
-				del document['password_salt']
-			except KeyError:
-				pass
-
 
 			return super().postprocess(document, lang)
 
