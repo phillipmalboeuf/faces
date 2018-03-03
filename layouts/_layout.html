@@ -55,6 +55,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js" data-turbolinks-eval="false"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.11/flickity.pkgd.min.js" data-turbolinks-eval="false"></script>
 
+    {% if not development %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40301409-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-40301409-7');
+    </script>
+    {% endif %}
+
 
     <script>
       window.current_path = "{{current_path}}";
