@@ -96,8 +96,8 @@ body {
   }
 
   h2 {
-    font-size: $base_size;
-    margin-bottom: 0.5em;
+    font-size: $big_size;
+    line-height: $vertical_rythm*2;
   }
 
   h3 {
@@ -105,14 +105,11 @@ body {
   }
 
   h4 {
-    font-size: $medium_size;
+    font-size: $base_size;
+    margin-bottom: 0.5em;
   }
   
-  h5 {
-    font-size: $base_size;
-  }
-
-  h6 {
+  h5, h6 {
     font-size: $small_size;
   }
 

@@ -55,10 +55,11 @@ textarea,
 
   color: $black;
   background: $white;
-  padding: $vertical_rythm/4;
+  padding: $vertical_rythm/2;
   margin-bottom: $vertical_rythm/2;
-  border: 1px solid fade-out($grey--dark, 0.42);
+  border: 1px solid $black;
   border-radius: $border_radius;
+  // max-width: $max_width/3;
 
   &:active {
     background: fade-out($grey, 0.2);
@@ -224,6 +225,6 @@ input[type="file"] {
   -moz-outline-style: none;
 }
 
-::-webkit-input-placeholder, ::-webkit-input-placeholder { color: fade-out($grey--dark, 0.42); }
-:-moz-placeholder, :-moz-placeholder { color: fade-out($grey--dark, 0.42); }
+::-webkit-input-placeholder, ::-webkit-input-placeholder { color: fade-out($grey--dark, 0.5); }
+:-moz-placeholder, :-moz-placeholder { color: fade-out($grey--dark, 0.5); }
 

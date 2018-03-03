@@ -27,6 +27,16 @@ button {
     text-decoration: none;
   }
 
+  &.button--dark {
+    color: $white;
+    background: $black;
+
+    &:hover,
+    &:focus {
+      background: $highlight;
+    }
+  }
+
   &:active {
     top: 1px;
   }

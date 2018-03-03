@@ -92,9 +92,7 @@ class Form extends React.Component {
     return [
       <form key="form" className={this.props.className} onSubmit={this.onSubmit} action={this.props.action} method={this.props.method || "POST"} 
         onSubmit={this.onSubmit}>
-        {this.props.children
-        ? this.props.children
-        : this.props.fields.map((field, index)=> {
+        {this.props.fields.map((field, index)=> {
           if (field.type == "header") {
             return <h3 className="padded padded--tight flat_bottom text_center" key={index}>{field.body}</h3>
           } else if (field.type == "info") {
@@ -129,7 +127,7 @@ class Form extends React.Component {
           }
         })}
 
-        <Button key="button" label={this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta} disabled={this.state.waiting} />
+        <Button className="button--dark" key="button" label={this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta} disabled={this.state.waiting} />
       </form>,
       this.state.errors && <Overlay key="errors" show>
         <div className="text_center">

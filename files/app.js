@@ -680,7 +680,7 @@ var Form = function (_React$Component2) {
         "form",
         _defineProperty({ key: "form", className: this.props.className, onSubmit: this.onSubmit, action: this.props.action, method: this.props.method || "POST"
         }, "onSubmit", this.onSubmit),
-        this.props.children ? this.props.children : this.props.fields.map(function (field, index) {
+        this.props.fields.map(function (field, index) {
           if (field.type == "header") {
             return React.createElement(
               "h3",
@@ -730,7 +730,7 @@ var Form = function (_React$Component2) {
               "new": field.new });
           }
         }),
-        React.createElement(Button, { key: "button", label: this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta, disabled: this.state.waiting })
+        React.createElement(Button, { className: "button--dark", key: "button", label: this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta, disabled: this.state.waiting })
       ), this.state.errors && React.createElement(
         Overlay,
         { key: "errors", show: true },

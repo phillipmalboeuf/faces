@@ -45,19 +45,19 @@
     <div class="col col--12of12"></div>
     <div class="col col--10of12">
       <div class="max_width">
-        <h2>City</h2>
+        <h4>City</h4>
         <p><a href="/faces/cities/{{face.city}}" class="underline">{{face.city}}</a></p>
 
-        <h2>Bio</h2>
+        <h4>Bio</h4>
         <p>{{face.bio}}</p>
 
-        <h2>Appeared in</h2>
+        <h4>Appeared in</h4>
         <p>{% for link in face.links %}<a href="{{link.url}}" target="_blank">{{link.label}}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
 
-        <h2>Tags</h2>
+        <h4>Tags</h4>
         <p>{% for tag in face.tags %}<a href="/faces/tagged/{{tag}}" class="tag">{{tag|tag('model')}}</a>{% endfor %}</p>
 
-        <h2>Accepted Offers</h2>
+        <h4>Accepted Offers</h4>
         <p>{{face.accepted_offers}}</p>
       </div>
     </div>

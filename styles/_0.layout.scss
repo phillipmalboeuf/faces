@@ -64,6 +64,10 @@ footer {
     margin-right: auto;
     margin-left: auto;
   }
+
+  &.max_width--big {
+    max-width: $max_width/1.5;
+  }
 }
 
 .absolute_container { position: relative; }
