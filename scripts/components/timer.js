@@ -37,9 +37,9 @@ class Timer extends React.Component {
 
     let seconds = Math.floor(delta % 60)
 
-    return <span>
-      {days} <small>days</small> {hours} <small>hours</small> {minutes} <small>minutes</small> {seconds} <small>seconds</small>
-    </span>
+    return <React.Fragment>
+      {days} days {hours} hours {minutes} minutes {seconds} seconds
+    </React.Fragment>
   }
 }
 

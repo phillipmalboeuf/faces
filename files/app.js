@@ -1194,39 +1194,16 @@ var Timer = function (_React$Component5) {
       var seconds = Math.floor(delta % 60);
 
       return React.createElement(
-        "span",
+        React.Fragment,
         null,
         days,
-        " ",
-        React.createElement(
-          "small",
-          null,
-          "days"
-        ),
-        " ",
+        " days ",
         hours,
-        " ",
-        React.createElement(
-          "small",
-          null,
-          "hours"
-        ),
-        " ",
+        " hours ",
         minutes,
-        " ",
-        React.createElement(
-          "small",
-          null,
-          "minutes"
-        ),
-        " ",
+        " minutes ",
         seconds,
-        " ",
-        React.createElement(
-          "small",
-          null,
-          "seconds"
-        )
+        " seconds"
       );
     }
   }]);
