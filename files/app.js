@@ -782,7 +782,9 @@ var Gallery = function (_Overlay3) {
         prevNextButtons: false,
         pageDots: false,
         adaptiveHeight: false,
-        accessibility: false
+        accessibility: false,
+        selectedAttraction: 0.01,
+        friction: 0.15
       });
       key("left", this.left);
       key("right", this.right);
