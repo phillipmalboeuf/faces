@@ -34,8 +34,7 @@ header {
   }
 
   @media #{$tablet_portrait} {
-    top: $vertical_rythm;
-    padding: $vertical_rythm $vertical_rythm;
+    padding: $vertical_rythm;
   }
 }
 

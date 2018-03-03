@@ -420,8 +420,7 @@ header {
     pointer-events: auto; }
   @media all and (max-device-width: 900px), all and (max-width: 900px) {
     header {
-      top: 2rem;
-      padding: 2rem 2rem; } }
+      padding: 2rem; } }
 
 .main {
   min-height: 90vh; }
