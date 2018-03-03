@@ -1,6 +1,13 @@
 @font-face {
-  font-family: 'Ginto Normal';
-  src: url('/files/fonts/GintoNormal-Medium.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
+    font-family: 'HK Grotesk Pro';
+    src: url('/files/fonts/HKGroteskPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HK Grotesk Pro';
+    src: url('/files/fonts/HKGroteskPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
 }
