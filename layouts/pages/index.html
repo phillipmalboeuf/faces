@@ -11,7 +11,20 @@
 
 {% block main %}
 <div class="padded padded--big_top white_back">
-  <div class="text_center medium_bottom"><h1 class="h1--logo">Good Faces</h1></div>
+  <div class="text_center medium_bottom">
+    <h1 class="h1--logo">Good Faces</h1>
+    <p>Coming in: <span id="timer"></span></p>
+    <script>
+      window.components.push({
+        element: "#timer",
+        component: "Timer",
+        data: {
+          until: new Date("2018-03-17T12:00:00")
+        }
+      })
+    </script>
+  </div>
+
   {# <div class="grid grid--guttered full_images">
     {% for face in faces %}
     <div class="col col--3of12">

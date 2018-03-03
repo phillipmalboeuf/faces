@@ -1148,6 +1148,92 @@ var Tags = function (_React$Component4) {
   return Tags;
 }(React.Component);
 
+var Timer = function (_React$Component5) {
+  _inherits(Timer, _React$Component5);
+
+  function Timer(props) {
+    _classCallCheck(this, Timer);
+
+    var _this29 = _possibleConstructorReturn(this, (Timer.__proto__ || Object.getPrototypeOf(Timer)).call(this, props));
+
+    _this29.now = new Date();
+    _this29.then = _this29.props.until;
+
+    _this29.state = {
+      until: _this29.then - _this29.now
+    };
+    return _this29;
+  }
+
+  _createClass(Timer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this30 = this;
+
+      setInterval(function () {
+        _this30.now = new Date();
+
+        _this30.setState({
+          until: _this30.then - _this30.now
+        });
+      }, 1000);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var delta = this.state.until / 1000;
+      var days = Math.floor(delta / 86400);
+      delta -= days * 86400;
+
+      var hours = Math.floor(delta / 3600) % 24;
+      delta -= hours * 3600;
+
+      var minutes = Math.floor(delta / 60) % 60;
+      delta -= minutes * 60;
+
+      var seconds = Math.floor(delta % 60);
+
+      return React.createElement(
+        "span",
+        null,
+        days,
+        " ",
+        React.createElement(
+          "small",
+          null,
+          "days"
+        ),
+        " ",
+        hours,
+        " ",
+        React.createElement(
+          "small",
+          null,
+          "hours"
+        ),
+        " ",
+        minutes,
+        " ",
+        React.createElement(
+          "small",
+          null,
+          "minutes"
+        ),
+        " ",
+        seconds,
+        " ",
+        React.createElement(
+          "small",
+          null,
+          "seconds"
+        )
+      );
+    }
+  }]);
+
+  return Timer;
+}(React.Component);
+
 window.Core = {
   init: function init() {
     console.log('c:c:');

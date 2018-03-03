@@ -43,13 +43,14 @@ app.db = app.mongo[app.config['MONGO_DB']]
 app.search = algoliasearch.Client(app.config['ALGOLIA_ID'], app.config['ALGOLIA_KEY'])
 app.caches = {}
 
-register('super-json', dumps, loads, content_type='application/x-super-json', content_encoding='utf-8') 
+if app.config['ENVIRONMENT'] != 'DEVELOPMENT':
+  register('super-json', dumps, loads, content_type='application/x-super-json', content_encoding='utf-8') 
 
-celery = Celery(app.import_name, broker=app.config['RABBITMQ_URL'])
-celery.config_from_object(app.config)
+  celery = Celery(app.import_name, broker=app.config['RABBITMQ_URL'])
+  celery.config_from_object(app.config)
 
+  from core.tasks.search import batch_faces
 
-from core.tasks.search import batch_faces
 
 from core.pages.pages import *
 from core.pages.errors import *
