@@ -32,6 +32,10 @@ window.Core = {
 
 window.Core.init()
 document.addEventListener("turbolinks:load", ()=> {
+  if (window.ga) {
+    window.ga('send', 'pageview', location.pathname + location.search)
+  }
+  
   window.Core.render()
 })
 document.addEventListener("turbolinks:before-render", ()=> {
