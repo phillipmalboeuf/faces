@@ -16,7 +16,6 @@ class Gallery extends Overlay {
     super.componentDidMount()
     this.flkty = new Flickity(this.slider, {
       wrapAround: true,
-      prevNextButtons: false,
       pageDots: false,
       adaptiveHeight: false,
       accessibility: false,

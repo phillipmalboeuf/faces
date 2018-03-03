@@ -779,7 +779,6 @@ var Gallery = function (_Overlay3) {
       _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "componentDidMount", this).call(this);
       this.flkty = new Flickity(this.slider, {
         wrapAround: true,
-        prevNextButtons: false,
         pageDots: false,
         adaptiveHeight: false,
         accessibility: false,
