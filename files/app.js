@@ -766,7 +766,8 @@ var Gallery = function (_Overlay3) {
     _this21.togglers = "data-toggle-gallery";
 
     _this21.state = {
-      showed: false
+      showed: false,
+      loaded: false
     };
     _this21.left = _this21.left.bind(_this21);
     _this21.right = _this21.right.bind(_this21);
@@ -800,6 +801,9 @@ var Gallery = function (_Overlay3) {
     key: "toggle",
     value: function toggle(e) {
       this.flkty.select(e.target.getAttribute(this.togglers), false, true);
+      this.setState({
+        loaded: true
+      });
       _get(Gallery.prototype.__proto__ || Object.getPrototypeOf(Gallery.prototype), "toggle", this).call(this, e);
     }
   }, {
@@ -830,7 +834,7 @@ var Gallery = function (_Overlay3) {
             return React.createElement(
               "div",
               { key: index, className: "slide" },
-              React.createElement("img", { src: _this22.state.showed && photo })
+              React.createElement("img", { src: _this22.state.loaded && photo })
             );
           })
         ),

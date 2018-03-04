@@ -6,7 +6,8 @@ class Gallery extends Overlay {
   constructor(props) {
     super(props)
     this.state = {
-      showed: false
+      showed: false,
+      loaded: false
     }
     this.left = this.left.bind(this)
     this.right = this.right.bind(this)
@@ -35,6 +36,9 @@ class Gallery extends Overlay {
 
   toggle(e) {
     this.flkty.select(e.target.getAttribute(this.togglers), false, true)
+    this.setState({
+      loaded: true
+    })
     super.toggle(e)
   }
 
@@ -52,7 +56,7 @@ class Gallery extends Overlay {
       <Button className="button--transparent overlay__back" />
       <div ref={(element)=> this.slider = element} className="slider">
         {this.props.photos.map((photo, index)=> <div key={index} className="slide">
-          <img src={this.state.showed && photo} />
+          <img src={this.state.loaded && photo} />
         </div>)}
       </div>
       <Button className="button--transparent overlay__close" label="Close" onClick={this.hide} />
