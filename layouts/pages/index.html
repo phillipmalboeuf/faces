@@ -27,15 +27,19 @@
     })
   </script>
 
-  <div class="grid grid--tight_guttered big_bottom full_images">
+  <div class="big_bottom full_images">
+    <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_0.jpg?auto=format,compress">
+  </div>
+
+  {# <div class="grid grid--tight_guttered big_bottom full_images">
     {% for photo in ['/faces/home_1.png', '/faces/home_4.png', '/faces/home_3.png', '/faces/home_6.png'] %}
     <div class="col col--3of12 col--tablet_portrait--6of12">
       <a href="https://montrealuploads.imgix.net{{photo}}?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" data-toggle-gallery="{{loop.index0}}"></a>
     </div>
     {% endfor %}
-  </div>
+  </div> #}
 
-  <div id="gallery"></div>
+  {# <div id="gallery"></div>
   <script>
     window.components.push({
       element: "#gallery",
@@ -44,7 +48,7 @@
         photos: [{% for photo in ['/faces/home_1.png', '/faces/home_4.png', '/faces/home_3.png', '/faces/home_6.png', '/faces/home_7.png', '/faces/home_8.jpeg', '/faces/home_9.png'] %}"https://montrealuploads.imgix.net{{photo}}?auto=format,compress&w=1333"{% if not loop.last %},{% endif %}{% endfor %}]
       }
     })
-  </script>
+  </script> #}
 
   <div class="padded text_center">
     <h2>Join the Club</h2>
@@ -56,11 +60,13 @@
       <p>Good Faces is a party, and you’re invited! We celebrate diversity and we want to help brands use Faces that look like the people who use their product IRL.</p>
     </div>
     <div class="col col--6of12 col--tablet_portrait--first col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
-      <a href="https://montrealuploads.imgix.net/faces/home_7.png?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_7.png?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="4"></a>
+      {# <a href="https://montrealuploads.imgix.net/faces/home_7.png?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_7.png?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="4"></a> #}
+      <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_1_2.jpg?auto=format,compress">
       <div class="absolute absolute--bottom_right absolute--behind">{% include 'vectors/background_1.svg' %}</div>
     </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
-      <a href="https://montrealuploads.imgix.net/faces/home_8.jpeg?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_8.jpeg?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="5"></a>
+      {# <a href="https://montrealuploads.imgix.net/faces/home_8.jpeg?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_8.jpeg?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="5"></a> #}
+      <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_2_2.jpg?auto=format,compress">
       <div class="absolute absolute--top_left absolute--behind">{% include 'vectors/background_2.svg' %}</div>
     </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded">
@@ -72,7 +78,8 @@
       <p>Maybe you love being in front of the camera, need some extra cash or are looking for new opportunities to collaborate and create something Good with brands you love. You will be in control of which brands you work with and what you receive in return.</p>
     </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
-      <a href="https://montrealuploads.imgix.net/faces/home_9.png?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_9.png?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="6"></a>
+      {# <a href="https://montrealuploads.imgix.net/faces/home_9.png?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_9.png?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="6"></a> #}
+      <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_3_2.jpg?auto=format,compress">
       <div class="absolute absolute--top_right absolute--behind">{% include 'vectors/background_3.svg' %}</div>
     </div>
   </div>
