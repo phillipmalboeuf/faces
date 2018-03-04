@@ -73,13 +73,29 @@ footer {
   }
 }
 
-.absolute_container { position: relative; }
+.absolute_container { 
+  position: relative;
+}
 .absolute {
   position: absolute;
 
+  &.absolute--behind {
+    z-index: -1;
+  }
+
   &.absolute--top_right {
-    top: $vertical_rythm/4;
-    right: $vertical_rythm/4;
+    top: -10%;
+    right: -10%;
+  }
+
+  &.absolute--top_left {
+    top: -10%;
+    left: -10%;
+  }
+
+  &.absolute--bottom_right {
+    bottom: -10%;
+    right: -10%;
   }
 }
 

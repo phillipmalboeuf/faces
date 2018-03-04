@@ -450,9 +450,17 @@ footer {
 
 .absolute {
   position: absolute; }
+  .absolute.absolute--behind {
+    z-index: -1; }
   .absolute.absolute--top_right {
-    top: 0.5rem;
-    right: 0.5rem; }
+    top: -10%;
+    right: -10%; }
+  .absolute.absolute--top_left {
+    top: -10%;
+    left: -10%; }
+  .absolute.absolute--bottom_right {
+    bottom: -10%;
+    right: -10%; }
 
 .padded {
   padding: 4rem; }
@@ -545,7 +553,7 @@ html {
 
 body {
   color: #383838;
-  background-color: #F4F4F4; }
+  background-color: #FFF; }
 
 .turbolinks-progress-bar {
   height: 3px;
@@ -1592,7 +1600,9 @@ input[type="file"] {
 
 img {
   display: block;
-  max-width: 100%; }
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto; }
   .full_images img, img.img--full {
     width: 100%; }
   img.img--clickable {
