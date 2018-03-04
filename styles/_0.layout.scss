@@ -81,6 +81,10 @@ footer {
 
   &.absolute--behind {
     z-index: -1;
+
+    @media #{$phone} {
+      display: none;
+    }
   }
 
   &.absolute--top_right {
