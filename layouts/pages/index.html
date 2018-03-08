@@ -5,7 +5,7 @@
 <div class="grid grid--middle grid--spaced">
   <div class="tablet_portrait_only"></div>
   <div class="">{{super()}}</div>
-  <div><span class="hide_on_tablet_portrait">Book the right people for your next photoshoot.</span></div>
+  <div><span class="hide_on_tablet_portrait">{{pieces.seo.tagline}}</span></div>
   {# <div class="col col--3of12">{% if request.current_session %}<a href="/faces/" class="underline" data-toggle-account>Your account</a>{% else %}<a href="/login" data-toggle-account>Login</a> / <a href="/faces/new">Sign up</a>{% endif %}</div> #}
 </div>
 {% endblock %}
@@ -13,7 +13,7 @@
 {% block main %}
 <div class="padded padded--big_top">
   <div class="medium_bottom max_width max_width--center text_center">
-    <h1>A people-powered platform connecting Good Brands with Good Faces. ✌</h1>
+    <h1>{{pieces.landing.title}}</h1>
     {# <h1 class="h1--logo">Good Faces</h1> #}
     <p>Coming in: <span id="timer">-- days -- hours -- minutes -- seconds</span></p>
   </div>
@@ -51,34 +51,31 @@
   </script> #}
 
   <div class="padded text_center">
-    <h2>Join the Club</h2>
+    <h2>{{pieces.landing.join}}</h2>
   </div>
 
   <div class="grid grid--middle max_width max_width--big max_width--center big_bottom">
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded">
-      <h3>It's a Party 🎉</h3>
-      <p>Good Faces is a party, and you’re invited! We celebrate diversity and we want to help brands use Faces that look like the people who use their product IRL.</p>
+      <h3>{{pieces.landing.party}}</h3>
+      <p>{{pieces.landing.party_body}}</p>
     </div>
     <div class="col col--6of12 col--tablet_portrait--first col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
-      {# <a href="https://montrealuploads.imgix.net/faces/home_7.png?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_7.png?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="4"></a> #}
       <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_2_2.jpg?auto=format,compress">
       <div class="absolute absolute--bottom_right absolute--behind">{% include 'vectors/background_1.svg' %}</div>
     </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
-      {# <a href="https://montrealuploads.imgix.net/faces/home_8.jpeg?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_8.jpeg?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="5"></a> #}
       <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_1_2.jpg?auto=format,compress">
       <div class="absolute absolute--top_left absolute--behind">{% include 'vectors/background_2.svg' %}</div>
     </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded">
-      <h3>Hassle-Free 🙌</h3>
-      <p>Forget the middle-man or scouring the Gram’ for ages! With our filters, you can see who is available in a given city, and more importantly, who has the right look and personality for the job!</p>
+      <h3>{{pieces.landing.no_hassle}}</h3>
+      <p>{{pieces.landing.no_hassle_body}}</p>
     </div>
     <div class="col col--6of12 col--tablet_portrait--last col--tablet_portrait--9of12 col--phone--12of12 padded">
-      <h3>You call the shots 😍</h3>
-      <p>Maybe you love being in front of the camera, need some extra cash or are looking for new opportunities to collaborate and create something Good with brands you love. You will be in control of which brands you work with and what you receive in return.</p>
+      <h3>{{pieces.landing.shots}}</h3>
+      <p>{{pieces.landing.shots_body}}</p>
     </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
-      {# <a href="https://montrealuploads.imgix.net/faces/home_9.png?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net/faces/home_9.png?auto=format,compress&fit=crop&w=333&h=366&crop=faces" data-toggle-gallery="6"></a> #}
       <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_3_2.jpg?auto=format,compress">
       <div class="absolute absolute--top_right absolute--behind">{% include 'vectors/background_3.svg' %}</div>
     </div>
@@ -86,13 +83,13 @@
 
   <div class="absolute_container">
     <div class="padded grey_back max_width max_width--big max_width--center big_bottom">
-      <h2 class="text_center">How can I join the club?</h2>
+      <h2 class="text_center">{{pieces.landing.how_title}}</h2>
       <div class="grid grid--center grid--guttered">
         <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12">
-          <p><strong>Create a profile and request to join the club.</strong><br><br>Profiles on Good Faces are curated. We want to make sure the Good Brands we work with can find the right models for their shoots.</p>
+          {{pieces.landing.how_1|safe}}
         </div>
         <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12">
-          To help make sure your profile gets approved:<ul><li>The more photos the better! Provide at least 2 headshots and 2 full-body shots.</li><li>No tags are obligatory on your profile, but make sure the tags you choose are accurate and represent you best.</li></ul>
+          {{pieces.landing.how_2|safe}}
         </div>
       </div>
     </div>
@@ -100,7 +97,7 @@
   </div>
 
   <div class="padded text_center">
-    <h2>Apply to become a Good Face</h2>
+    <h2>{{pieces.landing.apply}}</h2>
   </div>
 
   <div class="grid grid--center big_bottom" id="newsletter"></div>
@@ -110,20 +107,20 @@
       component: "Form",
       data: {
         model: "NewsletterEmail",
-        cta: "Send Request",
+        cta: "{{pieces.landing.apply_cta}}",
         redirect: "/thanks",
         className: "col col--5of12 col--tablet_landscape--7of12 col--tablet_portrait--9of12 col--phone--12of12",
         fields: [
           {
             type: "email",
             name: "email",
-            label: "Email address",
+            label: "{{pieces.faces.email}}",
             placeholder: "your.email.address@gmail.com"
           },
           {
             type: "text",
             name: "instagram_handle",
-            label: "Instagram Handle",
+            label: "{{pieces.faces.instagram_handle}}",
             placeholder: "goodfaces",
             optional: true
           }

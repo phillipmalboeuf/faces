@@ -15,7 +15,6 @@ with app.app_context():
 
 		schema = {
 			'title': validation_rules['text'],
-			'is_online': validation_rules['bool'],
 			'content': validation_rules['content'],
 			'metadata': validation_rules['metadata']
 		}
@@ -93,7 +92,6 @@ with app.app_context():
 				except KeyError:
 					pass
 
-
 				if lang is not None:
 					try:
 						for (key, value) in document['translations'][lang]['content'].items():
@@ -102,8 +100,6 @@ with app.app_context():
 					except KeyError:
 						pass
 
-
-				del values[title]['is_online']
 
 			return values
 

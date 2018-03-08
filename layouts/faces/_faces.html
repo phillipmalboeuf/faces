@@ -1,13 +1,13 @@
 
 <form class="padded padded--tight shadowed white_back" action="/faces/_search">
-  <input class="input--transparent" type="search" name="q" placeholder="Search profiles by name, city..."{% if results %} value="{{results.query}}" autofocus{% endif %}>
+  <input class="input--transparent" type="search" name="q" placeholder="Search profiles by name, city, description..."{% if results %} value="{{results.query}}" autofocus{% endif %}>
 </form>
 
 <div class="padded">
   <div class="padded padded--tight">
     <div class="grid grid--guttered">
       <div class="col col--5of12">Name</div>
-      <div class="col col--3of12">Is a</div>
+      <div class="col col--3of12">Occupation</div>
       <div class="col col--2of12">City</div>
       <div class="col col--2of12">Available?</div>
     </div>

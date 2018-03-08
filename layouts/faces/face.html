@@ -1,6 +1,7 @@
  
 {% extends '_layout.html' %}
 
+{% block title %}{{face.first_name}} {{face.last_name}} – {{super()}}{% endblock %}
 {% block favicon %}https://montrealuploads.imgix.net{{face.profile_photo}}?auto=compress&format=png&fit=crop&w=32&h=32&crop=faces{% endblock %}
 
 {% block header %}
@@ -100,7 +101,7 @@
         {
           type: "url",
           name: "portfolio_url",
-          label: "Portfolio Link",
+          label: "Portfolio / Blog Link",
           placeholder: "https://yourporfolio.com",
           optional: true
         },
@@ -114,7 +115,7 @@
           type: "textarea",
           name: "bio",
           label: "Bio",
-          placeholder: "A few lines about yourself"
+          placeholder: "Tell us a few things about you!"
         },
         {
           type: "photos",

@@ -38,6 +38,18 @@ header {
   }
 }
 
+  .header__bottom_right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    padding: $vertical_rythm/2 $vertical_rythm*2;
+   
+    @media #{$tablet_portrait} {
+      padding: $vertical_rythm/2 $vertical_rythm;
+    } 
+  }
+
 
 // #MAIN
 
@@ -51,10 +63,10 @@ header {
 // #FOOTER
 
 footer {
-  padding: $vertical_rythm $vertical_rythm*2;
+  padding: $vertical_rythm $vertical_rythm*2 $vertical_rythm*2;
 
   @media #{$tablet_portrait} {
-    padding: $vertical_rythm;
+    padding: $vertical_rythm $vertical_rythm $vertical_rythm*2;
   }
 }
 

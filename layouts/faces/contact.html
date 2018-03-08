@@ -19,13 +19,10 @@
       <p>We review all contact requests before sending it to the model. You'll be notified if and when the message was passed through.</p>
     </div>
     <div class="col col--5of12 col--tablet_portrait--6of12 col--phone--12of12">
-      {% if session %}
-      <p>Please logout before creating a new profile.</p>
-      {% else %}
-      <div id="face"></div>
+      <div id="message"></div>
       <script>
         window.components.push({
-          element: "#face",
+          element: "#message",
           component: "Form",
           data: {
             model: "Message",
@@ -87,7 +84,6 @@
           }
         })
       </script>
-      {% endif %}
     </div>
   </div>
 </div>
