@@ -4,6 +4,7 @@ from flask import request, abort
 from core.models.auth.user import User
 
 from core.helpers.validation_rules import validation_rules
+from core.tasks.airtable import airtable
 
 import urllib
 import re
@@ -157,8 +158,11 @@ with app.app_context():
     def create(cls, document):
 
       document['categories'] = ['model']
+      new_document = super().create(document)
 
-      return super().create(document)
+      airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'phil@boeuf.coffee'}}))
+
+      return new_document
 
 
     @classmethod

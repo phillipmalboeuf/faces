@@ -1613,9 +1613,7 @@ input[type="file"] {
 
 img {
   display: block;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto; }
+  max-width: 100%; }
   .full_images img, img.img--full {
     width: 100%; }
   img.img--clickable {

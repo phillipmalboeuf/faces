@@ -37,7 +37,7 @@ CELERY_RESULT_SERIALIZER = 'super-json'
 CELERY_EVENT_QUEUE_PREFIX = 'faces'
 
 # RABBITMQ
-RABBITMQ_URL = os.getenv('RABBITMQ_URL', '')
+RABBITMQ_URL = os.getenv('RABBITMQ_URL', 'amqp://')
 
 # ALGOLIA
 ALGOLIA_ID = os.getenv('ALGOLIA_ID', '')

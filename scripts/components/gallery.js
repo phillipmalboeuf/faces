@@ -56,7 +56,7 @@ class Gallery extends Overlay {
       <Button className="button--transparent overlay__back" />
       <div ref={(element)=> this.slider = element} className="slider">
         {this.props.photos.map((photo, index)=> <div key={index} className="slide">
-          <img src={this.state.loaded && photo} />
+          <img src={this.state.loaded ? photo : undefined} />
         </div>)}
       </div>
       <Button className="button--transparent overlay__close" label="Close" onClick={this.hide} />
