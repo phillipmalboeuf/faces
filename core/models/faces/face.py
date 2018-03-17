@@ -160,7 +160,7 @@ with app.app_context():
       document['categories'] = ['model']
       new_document = super().create(document)
 
-      airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'phil@boeuf.coffee'}}))
+      airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'hello@goodfaces.club'}}))
 
       return new_document
 

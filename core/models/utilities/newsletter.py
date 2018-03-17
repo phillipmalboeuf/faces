@@ -27,7 +27,7 @@ with app.app_context():
 
 			response = requests.post('https://api.airtable.com/v0/apps4zma9HfDnpDrJ/Emails',
 				headers={'Authorization': 'Bearer {}'.format(app.config['AIRTABLE_KEY']), 'Content-type': 'application/json'},
-				data=json.dumps({'fields': {'Email': data['email'], 'Instagram handle': data['instagram_handle'], 'Notify': {'email': 'phil@boeuf.coffee'}}}))
+				data=json.dumps({'fields': {'Email': data['email'], 'Instagram handle': data['instagram_handle'], 'Notify': {'email': 'hello@goodfaces.club'}}}))
 
 			return cls._format_response(response.json())
 
