@@ -12,7 +12,8 @@
     {% if request.current_session and request.current_session.user_id == face._id %}
     <button data-toggle-edit class="button button--small button--grey">Edit your profile</button>
     {% else %}
-    <a href="/faces/{{face.handle}}/contact" class="button">Message {{face.first_name}}</a>
+    {# <a href="/faces/{{face.handle}}/contact" class="button">Message {{face.first_name}}</a> #}
+    {% if request.current_session %}<a href="/faces/" class="underline" data-toggle-account>Your account</a>{% else %}<a href="/login" data-toggle-account>Login</a> / <a href="/faces/new">Sign up</a>{% endif %}
     {% endif %}
   </div>
 </div>
@@ -29,9 +30,11 @@
     <div class="col col--12of12">
       <div class="grid grid--guttered full_images">
         {% for photo in face.photos %}
+        {% if loop.index0 < 4 %}
         <div class="col col--3of12 col--tablet_portrait--6of12">
           <a href="https://montrealuploads.imgix.net{{photo}}" target="_blank"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress&fit=crop&w=900&h=900&crop=faces" data-toggle-gallery="{{loop.index0}}"></a>
         </div>
+        {% endif %}
         {% endfor %}
       </div>
       <div id="gallery"></div>
