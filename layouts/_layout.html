@@ -11,12 +11,12 @@
 
     <header class="header">
       {% block header %}<a href="{{lang_route}}" class="highlight">{% include 'vectors/logo.svg' %}</a>{% endblock %}
-      <nav class="header__bottom_right">
+      {# <nav class="header__bottom_right">
         <a href="{{current_path}}">En</a>
         <a href="/fr{{current_path}}">Fr</a>
         <a href="/kr{{current_path}}">Kr</a>
         <a href="/ja{{current_path}}">Ja</a>
-      </nav>
+      </nav> #}
     </header>
     
     <section class="main" role="main">{% block main %}{% endblock %}</section>
