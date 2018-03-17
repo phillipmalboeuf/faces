@@ -15,8 +15,8 @@ CATEGORIES = [
         'type': 'gender'
       },
       {
-        'title': 'Androgynus',
-        'key': 'androgynus',
+        'title': 'Androgynous',
+        'key': 'androgynous',
         'type': 'gender'
       },
       {
@@ -70,28 +70,18 @@ CATEGORIES = [
         'type': 'ethnicity'
       },
       {
-        'title': 'Bleached',
+        'title': 'Bleached/Dyed',
         'key': 'bleached',
         'type': 'things'
       },
       {
-        'title': 'Ginger',
-        'key': 'ginger',
+        'title': 'Redhead',
+        'key': 'redhead',
         'type': 'things'
       },
       {
         'title': 'Salt-and-pepper',
         'key': 'salt-and-pepper',
-        'type': 'things'
-      },
-      {
-        'title': 'Curly',
-        'key': 'curly',
-        'type': 'things'
-      },
-      {
-        'title': 'Bald',
-        'key': 'bald',
         'type': 'things'
       },
       {
@@ -135,8 +125,13 @@ CATEGORIES = [
         'type': 'things'
       },
       {
-        'title': 'Tatoos',
-        'key': 'tatoos',
+        'title': 'Tattoos',
+        'key': 'tattoos',
+        'type': 'things'
+      },
+      {
+        'title': 'Freckles',
+        'key': 'freckles',
         'type': 'things'
       },
       {
