@@ -980,6 +980,8 @@ var Photos = function (_React$Component3) {
   }, {
     key: "click",
     value: function click(e, index) {
+      e.stopPropagation();
+      e.preventDefault();
       this.file.click();
     }
   }, {

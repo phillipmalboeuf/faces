@@ -31,6 +31,8 @@ class Photos extends React.Component {
   }
 
   click(e, index) {
+    e.stopPropagation()
+    e.preventDefault()
     this.file.click()
   }
 

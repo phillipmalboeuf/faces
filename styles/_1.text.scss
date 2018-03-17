@@ -162,6 +162,16 @@ a {
     }
   }
 
+  &.a--translates {
+    transition: transform $fast;
+
+    &:hover,
+    &:focus {
+      color: $black;
+      transform: translateY(-4px);
+    }
+  }
+
   &:active {
     top: 1px;
   }

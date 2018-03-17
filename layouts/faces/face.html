@@ -54,8 +54,8 @@
         <h4>Bio</h4>
         <p>{{face.bio}}</p>
 
-        <h4>Appeared in</h4>
-        <p>{% for link in face.links %}<a href="{{link.url}}" target="_blank">{{link.label}}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+        {# <h4>Appeared in</h4>
+        <p>{% for link in face.links %}<a href="{{link.url}}" target="_blank">{{link.label}}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p> #}
 
         <h4>Tags</h4>
         <p>{% for tag in face.tags %}<a href="/faces/tagged/{{tag}}" class="tag">{{tag|tag('model')}}</a>{% endfor %}</p>
@@ -81,13 +81,13 @@
         {
           type: "text",
           name: "first_name",
-          label: "First name",
+          label: "First Name",
           placeholder: "Good"
         },
         {
           type: "text",
           name: "last_name",
-          label: "Last name",
+          label: "Last Name",
           placeholder: "Face",
           optional: true
         },
@@ -108,7 +108,7 @@
         {
           type: "text",
           name: "city",
-          label: "City",
+          label: "Current City",
           placeholder: "Montreal"
         },
         {

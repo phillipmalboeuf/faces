@@ -466,8 +466,8 @@ footer {
       .absolute.absolute--behind {
         display: none; } }
   .absolute.absolute--top_right {
-    top: -10%;
-    right: -10%; }
+    top: -5%;
+    right: -5%; }
   .absolute.absolute--top_left {
     top: -10%;
     left: -10%; }
@@ -650,6 +650,11 @@ a {
     color: #14AF6E; }
     a:focus.highlight, a:hover.highlight, a.a--focus.highlight {
       color: #383838; }
+  a.a--translates {
+    transition: transform 0.333s; }
+    a.a--translates:hover, a.a--translates:focus {
+      color: #383838;
+      transform: translateY(-4px); }
   a:active {
     top: 1px; }
   a.a--anchor {
@@ -1618,13 +1623,9 @@ img {
     width: 100%; }
   img.img--clickable {
     cursor: pointer;
-    position: relative;
-    transition: transform 0.333s; }
+    position: relative; }
     img.img--clickable:active {
       top: 1px; }
-    a:hover img.img--clickable,
-    a:focus img.img--clickable {
-      transform: translateY(-5px); }
   img.img--small {
     width: 12rem; }
 
