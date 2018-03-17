@@ -7,13 +7,20 @@ from tornado.ioloop import IOLoop
 
 from core import app
 
-
 @app.route('/browser')
 def browser():
   import webbrowser
   webbrowser.open_new('http://localhost:8080')
   
   return redirect('/start')
+
+
+@app.route('/<string:route>')
+def short_route(route):
+  if request.host == 'goodfac.es':
+    return redirect('https://goodfaces.club/faces/' + route)
+  else:
+    abort(404)
 
 
 if __name__ == '__main__':
