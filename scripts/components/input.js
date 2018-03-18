@@ -18,11 +18,11 @@ const Input = props => {
     ]
   } else if (props.type == "textarea") {
     return [
-      props.label && <label key="label" htmlFor={`${props.name}_${random}`}>{props.label}</label>,
+      props.label && <label key="label" htmlFor={`${props.name}_${random}`}>{props.label}{props.optional ? "" : " *" }</label>,
       <textarea key="input" name={props.name} id={`${props.name}_${random}`} 
         defaultValue={props.value}
         placeholder={props.placeholder}
-        required={props.required ? true : false}
+        required={props.optional ? false : true}
         onChange={props.onChange} />
     ]
   } else if (props.type == "checkbox") {
@@ -55,7 +55,7 @@ const Input = props => {
     ]
   } else {
     return [
-      props.label && <label key="label" htmlFor={`${props.name}_${random}`}>{props.label}{props.optional ? " (Optional)" : "" }</label>,
+      props.label && <label key="label" htmlFor={`${props.name}_${random}`}>{props.label}{props.optional ? "" : " *" }</label>,
       <input key="input" name={props.name} id={`${props.name}_${random}`} className={props.inline ? "input--inline" : undefined}
         type={props.type ? props.type : 'text'}
         defaultValue={props.type == "date" && props.value ? props.value.split("T")[0] : props.value}

@@ -52,15 +52,18 @@ class Gallery extends Overlay {
 
 
   render() {
-    return <div className={`overlay${this.state.showed ? " overlay--show" : ""}`}>
-      <Button className="button--transparent overlay__back" />
-      <div ref={(element)=> this.slider = element} className="slider">
-        {this.props.photos.map((photo, index)=> <div key={index} className="slide">
-          <img src={this.state.loaded ? photo : undefined} />
-        </div>)}
+    return [
+      
+      <div key="overlay" className={`overlay${this.state.showed ? " overlay--show" : ""}`}>
+        <Button className="button--transparent overlay__back" />
+        <div ref={(element)=> this.slider = element} className="slider">
+          {this.props.photos.map((photo, index)=> <div key={index} className="slide">
+            <img src={this.state.loaded ? photo : undefined} />
+          </div>)}
+        </div>
+        <Button className="button--transparent overlay__close" label="Close" onClick={this.hide} />
       </div>
-      <Button className="button--transparent overlay__close" label="Close" onClick={this.hide} />
-    </div>
+    ]
   }
 
 }

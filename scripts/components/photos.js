@@ -66,7 +66,7 @@ class Photos extends React.Component {
   render() {
     return [
       this.props.label && <label key="label" htmlFor={this.props.name}>{this.props.label}{this.props.optional ? " (Optional)" : "" }</label>,
-      <div key="photos" ref={(element) => this.container = element} className="grid grid--tight_guttered grid--stretch medium_bottom full_images">
+      <div key="photos" ref={(element) => this.container = element} className="grid grid--tight_guttered grid--stretch big_bottom full_images">
         {this.state.photos.map((photo, index)=> (
         <div key={index} className="col col--4of12 absolute_container">
           <div className="absolute absolute--top_right"><Button className="button--small button--grey button--faded" onClick={(e)=> this.remove(e, index)} label="Remove" /></div>

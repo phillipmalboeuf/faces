@@ -43,16 +43,16 @@ class Tags extends React.Component {
     }
 
     return <div className="normal_bottom">
-      <label>Gender (Optional)</label>
+      <label>Gender (optional)</label>
       {renderTags("gender")}
 
-      <label>Ethnicity (Optional)</label>
+      <label>Ethnicity (optional)</label>
       {renderTags("ethnicity")}
 
-      <label>Particularities (Optional)</label>
+      <label>Particularities (optional)</label>
       {renderTags("things")}
 
-      <label>Style (Optional)</label>
+      <label>Style (optional)</label>
       {renderTags("style")}
     </div>
   }

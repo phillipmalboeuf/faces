@@ -94,11 +94,13 @@ class Form extends React.Component {
         onSubmit={this.onSubmit}>
         {this.props.fields.map((field, index)=> {
           if (field.type == "header") {
-            return <h3 className="padded padded--tight flat_bottom text_center" key={index}>{field.body}</h3>
+            return <h3 key={index}>{field.body}</h3>
+          } else if (field.type == "separator") {
+            return <hr key={index} />
           } else if (field.type == "info") {
-            return <p className="padded padded--tight flat_bottom text_center" key={index}>{field.body}</p>
+            return <p key={index}>{field.body}</p>
           } else if (field.type == "link") {
-            return <p className="padded padded--tight flat_bottom text_center" key={index}><a href={field.url} target={field.target} className="underline highlight">{field.body ? field.body : field.url}</a></p>
+            return <p key={index}><a href={field.url} target={field.target} className="underline highlight">{field.body ? field.body : field.url}</a></p>
           } else if (field.type == "photos") {
             return <Photos key={index} name={field.name}
               editable
@@ -127,7 +129,7 @@ class Form extends React.Component {
           }
         })}
 
-        <Button className="button--dark" key="button" label={this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta} disabled={this.state.waiting} />
+        <Button className="normal_top" key="button" label={this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta} disabled={this.state.waiting} />
       </form>,
       this.state.errors && <Overlay key="errors" show>
         <div className="text_center">

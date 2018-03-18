@@ -7,7 +7,14 @@
 
 @font-face {
     font-family: 'HK Grotesk Pro';
+    src: url('/files/fonts/HKGroteskPro-SemiBold.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HK Grotesk Pro';
     src: url('/files/fonts/HKGroteskPro-Bold.woff') format('woff');
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal;
 }

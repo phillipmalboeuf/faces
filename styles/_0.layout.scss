@@ -63,10 +63,10 @@ header {
 // #FOOTER
 
 footer {
-  padding: $vertical_rythm $vertical_rythm*2 $vertical_rythm*2;
+  padding: $vertical_rythm $vertical_rythm*2;
 
   @media #{$tablet_portrait} {
-    padding: $vertical_rythm $vertical_rythm $vertical_rythm*2;
+    padding: $vertical_rythm $vertical_rythm;
   }
 }
 
@@ -85,6 +85,11 @@ footer {
   }
 }
 
+.relative { position: relative; }
+.sticky {
+  position: sticky;
+  top: 0;
+}
 .absolute_container { 
   position: relative;
 }
@@ -126,6 +131,18 @@ footer {
     padding: $vertical_rythm*1.5 $vertical_rythm/2;
   }
 
+  &.padded--thick {
+    padding: $vertical_rythm*3 $vertical_rythm*2;
+
+    @media #{$tablet_portrait} {
+      padding: $vertical_rythm*2 $vertical_rythm;
+    }
+
+    @media #{$phone} {
+      padding: $vertical_rythm*1.5 $vertical_rythm/2;
+    }
+  }
+
   &.padded--tight {
     padding: $vertical_rythm/2 $vertical_rythm;
   }
@@ -155,9 +172,10 @@ footer {
 .overflow_top {margin-top: -$vertical_rythm*2; }
 
 .border_top { border-top: 1px solid $grey; }
+.border_right { border-right: 1px solid $grey; }
 .border_bottom { border-bottom: 1px solid $grey; }
+.border_left { border-left: 1px solid $grey; }
 
-.relative { position: relative; }
 .hide { display: none !important; }
 .invisible { visibility: hidden; }
 .block { display: block; }

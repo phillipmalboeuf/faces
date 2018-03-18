@@ -11,7 +11,7 @@ label,
 
   color: inherit;
   font-size: $small_size;
-  font-weight: $bold;
+  font-weight: $semi_bold;
   letter-spacing: $letter_spacing;
 
   margin-bottom: $vertical_rythm/6;
@@ -58,7 +58,7 @@ textarea,
   color: $black;
   background: $white;
   padding: $vertical_rythm/2;
-  margin-bottom: $vertical_rythm/2;
+  margin-bottom: $vertical_rythm/1.5;
   border: 1px solid $grey--dark;
   border-radius: $border_radius;
   // max-width: $max_width/3;
@@ -141,8 +141,8 @@ input[type="radio"] {
     @extend .grid--middle;
 
     position: relative;
-    font-size: inherit;
-    color: fade-out($grey--dark, 0.42);
+    font-size: $small_size;
+    color: $black;
 
     &:hover,
     input:focus + & {
@@ -161,27 +161,18 @@ input[type="radio"] {
       width: $checkbox_size;
       height: $checkbox_size;
 
-      border: 2px solid;
+      border: 1px solid $grey--dark;
       border-radius: $border_radius;
     }
 
     &:after {
       content: "";
-      // width: $checkbox_size * 0.8;
-      // height: $checkbox_size * 0.8;
-      // border-radius: $border_radius;
-      // background-color: transparent;
 
       position: absolute;
       left: 0;
-      font-weight: bold;
+      font-weight: $semi_bold;
       width: $checkbox_size;
       text-align: center;
-      // left: 3px;
-      // top: $checkbox_size * 0.2;
-
-      // transition: transform $fast;
-      // transform: scale(0);
     }
   }
 
@@ -191,7 +182,7 @@ input[type="radio"] {
       color: $highlight;
 
       &:before {
-        // border-color: $black;
+        border-color: $highlight;
       }
 
       &:after {

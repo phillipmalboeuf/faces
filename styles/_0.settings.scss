@@ -5,7 +5,7 @@ $white: #FFF;
 $black: #383838;
 $black--dark: #111111;
 $grey: #F4F4F4;
-$grey--dark: #AAAAAA;
+$grey--dark: #CCCCCC;
 $yellow: #CC9900;
 $blue: #1B52DD;
 $red: #E14B3C;
@@ -19,7 +19,8 @@ $body_font: "HK Grotesk Pro", sans-serif;
 $headings_font: "HK Grotesk Pro", Arial, sans-serif;
 $alternate_font: "HK Grotesk Pro", sans-serif;
 
-$bold: bold;
+$bold: 700;
+$semi_bold: 500;
 
 
 // #LAYOUT
@@ -28,7 +29,7 @@ $base: 16;
 $base_size: ($base) * 1px;
 $massive_size: (133/$base) * 1rem;
 $big_size: (46/$base) * 1rem;
-$medium_size: (24/$base) * 1rem;
+$medium_size: (26/$base) * 1rem;
 $slight_size: (20/$base) * 1rem;
 $small_size: (14/$base) * 1rem;
 
@@ -36,7 +37,7 @@ $vertical_rythm: 2rem;
 $max_width: 1666px;
 $letter_spacing: 0.01em;
 $border_radius: 3px;
-$checkbox_size: 1.5em;
+$checkbox_size: 1.33em;
 
 $number_of_columns: 12;
 $gutter: $vertical_rythm;

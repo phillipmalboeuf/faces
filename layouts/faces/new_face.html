@@ -1,19 +1,29 @@
  
 {% extends '_layout.html' %}
 
+{% block header %}
+<div class="grid grid--middle grid--spaced">
+  <div class="col col--3of12">{{super()}}</div>
+  <div><span class="hide_on_tablet_portrait">You have a good face. You have an amazing face.</span></div>
+  <div class="col col--3of12 text_right"><a href="/faces" class="underline">View Profiles</a></div>
+</div>
+{% endblock %}
 
 
 {% block main %}
-<div class="padded padded--big_top white_back">
-  <div class="grid grid--guttered">
-    <div class="col col--3of12 col--tablet_portrait--4of12 col--phone--12of12">
-      <h1 class="h1--medium">New Face</h1>
-      <p>You have a good face. You have a great face. You have an amazing face. You have a jaw-dropping face.</p>
-      <p>We never publicly share your contact information and all shoot offers are filtered by us before they get to you.</p>
-      <p><a href="/login" data-toggle-account class="underline highlight">I already have a profile</a></p>
+<div class="padded padded--big_top grey_back">
+  <div class="grid grid--center">
+    <div class="col col--3of12 col--tablet_portrait--4of12 col--phone--12of12 padded padded--thick white_back relative">
+      <div class="sticky">
+        <img class="normal_bottom" style="max-width: 100px;" src="https://montrealuploads.imgix.net/faces/samia_round.jpg?auto=format,compress">
+        <h1 class="h1--medium">Welcome to Good Faces 👋</h1>
+        <p>My name’s Samia and I'd love to get to know you better :)</p>
+        <p><a class="button button--outline button--small" href="mailto:hello@goodfaces.club">Contact Us</a></p>
+        <p>We never publicly share your contact information and all shoot offers are filtered by us before they get to you.</p>
+        <p><a href="/login" data-toggle-account class="underline highlight">I already have a profile</a></p>
+      </div>
     </div>
-    <div class="col col--1of12"></div>
-    <div class="col col--6of12 col--tablet_portrait--7of12 col--phone--12of12">
+    <div class="col col--6of12 col--tablet_portrait--7of12 col--phone--12of12 padded padded--thick white_back border_left">
       {% if session %}
       <p>Please logout before creating a new profile.</p>
       {% else %}
@@ -24,37 +34,37 @@
           component: "Form",
           data: {
             model: "Face",
-            cta: "Join Good Faces",
+            cta: "Create Account",
             fields: [
               {
-                type: "info",
-                body: "We want to get to know you better!"
+                type: "header",
+                body: "1. Profile information *"
               },
               {
                 type: "text",
                 name: "first_name",
                 label: "First Name",
-                placeholder: "Good"
+                placeholder: "Kanye"
               },
               {
                 type: "text",
                 name: "last_name",
                 label: "Last Name",
-                placeholder: "Face",
+                placeholder: "West",
                 optional: true
               },
               {
                 type: "text",
                 name: "instagram_handle",
                 label: "Instagram Handle",
-                placeholder: "goodfaces",
+                placeholder: "@privatekanye",
                 optional: true
               },
               {
                 type: "url",
                 name: "portfolio_url",
                 label: "Portfolio / Blog Link",
-                placeholder: "https://yourporfolio.com",
+                placeholder: "https://goodfaces.club",
                 optional: true
               },
               {
@@ -66,20 +76,34 @@
               {
                 type: "textarea",
                 name: "bio",
-                label: "Bio",
+                label: "Short Bio",
                 placeholder: "Tell us a few things about you!"
               },
               {
+                type: "separator"
+              },
+              {
+                type: "header",
+                body: "2. Add a few photos *"
+              },
+              {
                 type: "info",
-                body: "Upload a few photos:"
+                body: "We recommend uploading 4 photos total. Note that photos will often be cropped square."
               },
               {
                 type: "photos",
                 name: "photos"
               },
               {
+                type: "separator"
+              },
+              {
+                type: "header",
+                body: "3. Discoverability"
+              },
+              {
                 type: "info",
-                body: "How would you describe yourself? Choose as many or as few as you’d like! All of these tags are optional, but will help brands find your face!"
+                body: "How would you describe yourself? Choose as many or as few as you’d like! All of these tags are optional, but they will help brands find your face."
               },
               {
                 type: "tags",
@@ -87,35 +111,46 @@
                 tags: {{categories[0].tags|tojson}}
               },
               {
+                type: "separator"
+              },
+              {
+                type: "header",
+                body: "4. Renumeration"
+              },
+              {
                 type: "info",
-                body: "What kind of offers would you accept for a typical photoshoot?"
+                body: "What kind of offers would you accept for a typical photoshoot? (Optional)"
               },
               {
                 type: "textarea",
                 name: "accepted_offers",
                 label: "Accepted Offers",
+                optional: true,
                 placeholder: "Money, clothing, photos, food..."
               },
               {
-                type: "info",
-                body: "Great! Now for your login information:"
+                type: "separator"
+              },
+              {
+                type: "header",
+                body: "5. Create your account *"
               },
               {
                 type: "text",
                 name: "handle",
                 label: "Username",
-                placeholder: "goodfaceclub"
+                placeholder: "KanyeWest"
               },
               {
                 type: "email",
                 name: "email",
-                label: "Email address",
-                placeholder: "your.email.address@gmail.com"
+                label: "Email Address",
+                placeholder: "kanye@west.com"
               },
               {
                 type: "password",
                 name: "password",
-                label: "Create a password",
+                label: "Password",
                 placeholder: "********",
                 new: true
               }

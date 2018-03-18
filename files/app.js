@@ -684,19 +684,21 @@ var Form = function (_React$Component2) {
           if (field.type == "header") {
             return React.createElement(
               "h3",
-              { className: "padded padded--tight flat_bottom text_center", key: index },
+              { key: index },
               field.body
             );
+          } else if (field.type == "separator") {
+            return React.createElement("hr", { key: index });
           } else if (field.type == "info") {
             return React.createElement(
               "p",
-              { className: "padded padded--tight flat_bottom text_center", key: index },
+              { key: index },
               field.body
             );
           } else if (field.type == "link") {
             return React.createElement(
               "p",
-              { className: "padded padded--tight flat_bottom text_center", key: index },
+              { key: index },
               React.createElement(
                 "a",
                 { href: field.url, target: field.target, className: "underline highlight" },
@@ -730,7 +732,7 @@ var Form = function (_React$Component2) {
               "new": field.new });
           }
         }),
-        React.createElement(Button, { className: "button--dark", key: "button", label: this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta, disabled: this.state.waiting })
+        React.createElement(Button, { className: "normal_top", key: "button", label: this.state.waiting ? this.state.success ? "Success!" : "One moment..." : this.props.cta, disabled: this.state.waiting })
       ), this.state.errors && React.createElement(
         Overlay,
         { key: "errors", show: true },
@@ -821,9 +823,9 @@ var Gallery = function (_Overlay3) {
     value: function render() {
       var _this22 = this;
 
-      return React.createElement(
+      return [React.createElement(
         "div",
-        { className: "overlay" + (this.state.showed ? " overlay--show" : "") },
+        { key: "overlay", className: "overlay" + (this.state.showed ? " overlay--show" : "") },
         React.createElement(Button, { className: "button--transparent overlay__back" }),
         React.createElement(
           "div",
@@ -839,7 +841,7 @@ var Gallery = function (_Overlay3) {
           })
         ),
         React.createElement(Button, { className: "button--transparent overlay__close", label: "Close", onClick: this.hide })
-      );
+      )];
     }
   }]);
 
@@ -869,11 +871,12 @@ var Input = function Input(props) {
     return [props.label && React.createElement(
       "label",
       { key: "label", htmlFor: props.name + "_" + random },
-      props.label
+      props.label,
+      props.optional ? "" : " *"
     ), React.createElement("textarea", { key: "input", name: props.name, id: props.name + "_" + random,
       defaultValue: props.value,
       placeholder: props.placeholder,
-      required: props.required ? true : false,
+      required: props.optional ? false : true,
       onChange: props.onChange })];
   } else if (props.type == "checkbox") {
     return [React.createElement("input", { key: "input", name: props.name, id: props.name + "_" + random + "_" + props.value,
@@ -924,7 +927,7 @@ var Input = function Input(props) {
       "label",
       { key: "label", htmlFor: props.name + "_" + random },
       props.label,
-      props.optional ? " (Optional)" : ""
+      props.optional ? "" : " *"
     ), React.createElement("input", { key: "input", name: props.name, id: props.name + "_" + random, className: props.inline ? "input--inline" : undefined,
       type: props.type ? props.type : 'text',
       defaultValue: props.type == "date" && props.value ? props.value.split("T")[0] : props.value,
@@ -1029,7 +1032,7 @@ var Photos = function (_React$Component3) {
         "div",
         { key: "photos", ref: function ref(element) {
             return _this25.container = element;
-          }, className: "grid grid--tight_guttered grid--stretch medium_bottom full_images" },
+          }, className: "grid grid--tight_guttered grid--stretch big_bottom full_images" },
         this.state.photos.map(function (photo, index) {
           return React.createElement(
             "div",
@@ -1127,25 +1130,25 @@ var Tags = function (_React$Component4) {
         React.createElement(
           "label",
           null,
-          "Gender (Optional)"
+          "Gender (optional)"
         ),
         renderTags("gender"),
         React.createElement(
           "label",
           null,
-          "Ethnicity (Optional)"
+          "Ethnicity (optional)"
         ),
         renderTags("ethnicity"),
         React.createElement(
           "label",
           null,
-          "Particularities (Optional)"
+          "Particularities (optional)"
         ),
         renderTags("things"),
         React.createElement(
           "label",
           null,
-          "Style (Optional)"
+          "Style (optional)"
         ),
         renderTags("style")
       );

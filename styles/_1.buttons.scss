@@ -9,6 +9,7 @@ button {
   text-decoration: none;
   font-size: $slight_size;
   font-family: $alternate_font;
+  font-weight: $semi_bold;
   text-align: center;
 
   background: $highlight;
@@ -27,13 +28,14 @@ button {
     text-decoration: none;
   }
 
-  &.button--dark {
-    color: $white;
-    background: $black;
+  &.button--outline {
+    color: $black;
+    background: transparent;
+    border: 1px solid;
 
     &:hover,
     &:focus {
-      background: $highlight;
+      color: $highlight;
     }
   }
 
@@ -43,7 +45,7 @@ button {
 
   &.button--small {
     font-size: $small_size;
-    padding: $vertical_rythm/4 $vertical_rythm/2;
+    padding: $vertical_rythm/4 $vertical_rythm/2 $vertical_rythm/6;
   }
 
   &.button--dashed {
