@@ -55,7 +55,7 @@
         <p><a href="/faces/cities/{{face.city}}" class="underline">{{face.city}}</a></p>
 
         <h4>Bio</h4>
-        <p>{{face.bio}}</p>
+        <p class="underline_links">{{face.bio|urlize(33, true)}}</p>
 
         {# <h4>Appeared in</h4>
         <p>{% for link in face.links %}<a href="{{link.url}}" target="_blank">{{link.label}}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p> #}
