@@ -1223,7 +1223,7 @@ var Timer = function (_React$Component5) {
 
 window.Core = {
   init: function init() {
-    console.log('c:c:');
+    console.log('You have a great face!');
     this.render();
   },
   render: function render() {

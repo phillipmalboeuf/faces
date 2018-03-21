@@ -9,8 +9,8 @@
   <div class="col col--1of12 col--phone--5of12">{{super()}}</div>
   <div class="col col--6of12 hide_on_phone"><a class="pill" href="https://goodfac.es/{{face.handle}}">goodfac.es/{{face.handle}}</a></div>
   <div class="col col--5of12 col--phone--7of12 text_right">
-    {% if request.current_session and request.current_session.user_id == face._id %}
-    <button data-toggle-edit class="button button--small button--grey">Edit your profile</button>
+    {% if request.current_session and (request.current_session.user_id == face._id or request.current_session.is_admin) %}
+    <button data-toggle-edit class="button button--small button--grey">Edit profile</button>
     {% else %}
     {# <a href="/faces/{{face.handle}}/contact" class="button">Message {{face.first_name}}</a> #}
     {% if request.current_session %}<a href="/faces/" class="underline" data-toggle-account>Your account</a>{% else %}<a href="/login" data-toggle-account>Login</a> / <a href="/faces/new">Sign up</a>{% endif %}
@@ -70,7 +70,7 @@
   </div>
 </div>
 
-{% if request.current_session and request.current_session.user_id == face._id %}
+{% if request.current_session and (request.current_session.user_id == face._id or request.current_session.is_admin) %}
 <div id="edit"></div>
 <script>
   window.components.push({

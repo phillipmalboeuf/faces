@@ -3,7 +3,7 @@
 
 window.Core = {
   init() {
-    console.log('c:c:')
+    console.log('You have a great face!')
     this.render()
   },
 
