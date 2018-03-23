@@ -5,6 +5,7 @@
   font-size: 0px;
 
   position: absolute;
+  display: inline-block;
   top: -$vertical_rythm/3.333;
   left: -$vertical_rythm/3.333;
 
@@ -18,5 +19,16 @@
   &.dot--available {
     background: $highlight;
     box-shadow: 0 0 20px $highlight;
+  }
+
+  &.dot--inline {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    @media #{$tablet_portrait} {
+      height: $vertical_rythm/2;
+      width: $vertical_rythm/2;
+    }
   }
 }

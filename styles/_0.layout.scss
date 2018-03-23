@@ -145,6 +145,10 @@ footer {
 
   &.padded--tight {
     padding: $vertical_rythm/2 $vertical_rythm;
+
+    @media #{$tablet_portrait} {
+      padding: $vertical_rythm/2;
+    }
   }
 
   &.padded--big_top {
