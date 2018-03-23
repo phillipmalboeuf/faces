@@ -26,17 +26,17 @@
     })
   </script> #}
 
-  <div class="big_bottom full_images hide_on_tablet_portrait">
+  {# <div class="big_bottom full_images hide_on_tablet_portrait">
     <img class="rounded shadowed" src="https://montrealuploads.imgix.net/faces/home_0.jpg?auto=format,compress">
-  </div>
+  </div> #}
 
-  {# <div class="grid grid--tight_guttered big_bottom full_images">
-    {% for photo in ['/faces/home_1.png', '/faces/home_4.png', '/faces/home_3.png', '/faces/home_6.png'] %}
+  <div class="grid grid--guttered full_images big_bottom">
+    {% for face in faces %}
     <div class="col col--3of12 col--tablet_portrait--6of12">
-      <a href="https://montrealuploads.imgix.net{{photo}}?auto=format,compress"><img class="rounded shadowed img--clickable" src="https://montrealuploads.imgix.net{{photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" data-toggle-gallery="{{loop.index0}}"></a>
+      <a href="/faces/{{face.handle}}" class="a--translates block"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces"></a>
     </div>
     {% endfor %}
-  </div> #}
+  </div>
 
   {# <div id="gallery"></div>
   <script>
@@ -49,23 +49,23 @@
     })
   </script> #}
 
-  <div class="padded text_center">
+  {# <div class="padded text_center">
     <h2>{{pieces.landing.join}}</h2>
-  </div>
+  </div> #}
 
-  <div class="grid grid--middle max_width max_width--big max_width--center big_bottom">
+  <div class="grid grid--middle max_width max_width--big max_width--center">
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded">
       <h3>{{pieces.landing.party}}</h3>
       <p>{{pieces.landing.party_body}}</p>
     </div>
-    <div class="col col--6of12 col--tablet_portrait--first col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
+    {# <div class="col col--6of12 col--tablet_portrait--first col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
       <img class="rounded shadowed img--center" src="https://montrealuploads.imgix.net/faces/home_2_2.jpg?auto=format,compress">
       <div class="absolute absolute--bottom_right absolute--behind">{% include 'vectors/background_1.svg' %}</div>
     </div>
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
       <img class="rounded shadowed img--center" src="https://montrealuploads.imgix.net/faces/home_1_2.jpg?auto=format,compress">
       <div class="absolute absolute--top_left absolute--behind">{% include 'vectors/background_2.svg' %}</div>
-    </div>
+    </div> #}
     <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded">
       <h3>{{pieces.landing.no_hassle}}</h3>
       <p>{{pieces.landing.no_hassle_body}}</p>
@@ -74,10 +74,10 @@
       <h3>{{pieces.landing.shots}}</h3>
       <p>{{pieces.landing.shots_body}}</p>
     </div>
-    <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
+    {# <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12 padded padded--thick absolute_container">
       <img class="rounded shadowed img--center" src="https://montrealuploads.imgix.net/faces/home_3_2.jpg?auto=format,compress">
       <div class="absolute absolute--top_right absolute--behind">{% include 'vectors/background_3.svg' %}</div>
-    </div>
+    </div> #}
   </div>
 
   <div class="absolute_container">
@@ -92,7 +92,7 @@
         </div>
       </div>
     </div>
-    <div class="absolute absolute--bottom_right absolute--behind">{% include 'vectors/background_4.svg' %}</div>
+    {# <div class="absolute absolute--bottom_right absolute--behind">{% include 'vectors/background_4.svg' %}</div> #}
   </div>
 
   <div class="padded text_center">

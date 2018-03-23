@@ -20,7 +20,7 @@ def page(lang=None):
 
 	response = {
 		'pieces': Piece._values(lang),
-		# 'faces': Face.list(lang=lang),
+		'faces': Face.list(lang=lang),
 		'categories': app.config['CATEGORIES'],
 		'timestamp': app.timestamp if app.config['ENVIRONMENT'] != 'DEVELOPMENT' else datetime.now(timezone(app.config['TIMEZONE'])).isoformat(),
 		'current_path': request.path,
