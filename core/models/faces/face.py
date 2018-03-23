@@ -88,6 +88,12 @@ with app.app_context():
         'methods': ['GET']
       },
       {
+        'route': '/unapproved',
+        'view_function': 'unapproved_view',
+        'methods': ['GET'],
+        'requires_admin': True
+      },
+      {
         'route': '/_search',
         'view_function': 'search_view',
         'methods': ['GET']
@@ -118,6 +124,11 @@ with app.app_context():
       {
         'view_function': 'city_view',
         'template': 'faces/city.html',
+        'response_key': 'response'
+      },
+      {
+        'view_function': 'unapproved_view',
+        'template': 'faces/unapproved.html',
         'response_key': 'response'
       },
       {
@@ -213,6 +224,17 @@ with app.app_context():
       return cls._format_response({
         'city': city,
         'faces': cls.list({'city': city}, limit=limit, skip=skip)
+      })
+
+
+    @classmethod
+    def unapproved_view(cls):
+      limit = int(request.args.get('limit', 0))
+      skip = int(request.args.get('skip', 0))
+
+      return cls._format_response({
+        'is_approved': False,
+        'faces': super().list({'is_approved': False}, limit=limit, skip=skip)
       })
 
 

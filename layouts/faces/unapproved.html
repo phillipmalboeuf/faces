@@ -1,0 +1,12 @@
+{% extends 'pages/index.html' %}
+
+
+
+{% block main %}
+<div class="padded padded--big_top white_back">
+  <h1>Unapproved</h1>
+</div>
+
+{% set faces = response.faces %}
+{% include 'faces/_faces.html' %}
+{% endblock %}
