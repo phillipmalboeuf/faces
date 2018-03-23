@@ -155,7 +155,7 @@ with app.app_context():
 		@classmethod
 		def preprocess(cls, document, lang=None):
 
-			if not request.current_session_is_admin:
+			if not request.from_admin:
 				try:
 					del document['is_admin']
 				except KeyError:

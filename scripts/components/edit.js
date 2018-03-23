@@ -22,7 +22,7 @@ class Edit extends Overlay {
   render() {
     return <div className={`overlay${this.state.showed ? " overlay--show" : ""}`}>
       <Button className="button--transparent overlay__back" onClick={this.hide} />
-      <div className="padded padded--tight overlay__container">
+      <div className="padded overlay__container">
         <Form
           model={this.props.model}
           modelId={this.props.modelId}

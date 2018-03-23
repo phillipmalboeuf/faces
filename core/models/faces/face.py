@@ -31,6 +31,8 @@ with app.app_context():
       'portfolio_url': validation_rules['text'],
       'instagram_handle': validation_rules['text'],
       'brands': validation_rules['links_list'],
+      'is_available': validation_rules['bool'],
+      'is_approved': validation_rules['bool'],
       'metadata': validation_rules['metadata']
     }
 
@@ -151,6 +153,12 @@ with app.app_context():
       except KeyError:
         pass
 
+      if not request.from_admin:
+        try:
+          del document['is_approved']
+        except KeyError:
+          pass
+
       return super().preprocess(document, lang)
 
 
@@ -158,6 +166,8 @@ with app.app_context():
     def create(cls, document):
 
       document['categories'] = ['model']
+      document['is_available'] = True
+      document['is_approved'] = False
       new_document = super().create(document)
 
       airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'hello@goodfaces.club'}}))

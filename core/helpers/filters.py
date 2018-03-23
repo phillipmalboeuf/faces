@@ -78,7 +78,7 @@ def editable(editable, key, data, contenteditable=True):
 	for (data_key, data_value) in data.items():
 		data_tags += ' data-{}="{}"'.format(data_key, data_value)
 
-	if request.current_session_is_admin:
+	if request.from_admin:
 		return Markup(markup.format(data_tags, key, editable))
 	else:
 		return Markup(editable)
@@ -93,7 +93,7 @@ def editable_image(editable, format, key, data):
 		data_tags += ' data-{}="{}"'.format(data_key, data_value)
 
 
-	if request.current_session_is_admin:
+	if request.from_admin:
 		return Markup(markup.format(data_tags, key, editable, format, "img--clickable"))
 	else:
 		return Markup(markup.format("", key, editable, format, ""))
@@ -109,7 +109,7 @@ def editable_image(editable, format, key, data):
 
 # 	markup = ''
 
-# 	if request.current_session_is_admin:
+# 	if request.from_admin:
 # 		for image in editable_gallery:
 # 			markup += f'<img src="https://montrealuploads.imgix.net{image}?{format}">'
 

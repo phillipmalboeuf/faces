@@ -1,0 +1,6 @@
+
+<div class="absolute_container">
+  <div class="dot{% if face.is_available %} dot--available{% endif %}">{% if face.is_available %}available{% else %}not available{% endif %}</div>
+  <img class="img--small rounded" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" alt="{{face.first_name}}'s Photo">
+</div>
+  

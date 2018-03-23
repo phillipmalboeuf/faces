@@ -756,6 +756,9 @@ sub {
 .green {
   color: #14AF6E; }
 
+.grey {
+  color: #CCCCCC; }
+
 .red {
   color: #E14B3C; }
 
@@ -1718,6 +1721,20 @@ button.overlay__close {
   border-radius: 1em;
   font-weight: normal;
   padding: 0.5rem 1rem; }
+
+.dot {
+  font-size: 0px;
+  position: absolute;
+  top: -0.600060006rem;
+  left: -0.600060006rem;
+  height: 1.2004801921rem;
+  width: 1.2004801921rem;
+  border-radius: 50%;
+  background: #CCCCCC;
+  box-shadow: 0 0 20px #CCCCCC; }
+  .dot.dot--available {
+    background: #14AF6E;
+    box-shadow: 0 0 20px #14AF6E; }
 
 .slider {
   width: 100%;

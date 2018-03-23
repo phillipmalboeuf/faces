@@ -23,8 +23,10 @@
 <div class="padded padded--big_top white_back">
   <div class="grid grid--center grid--guttered">
     <div class="col col--10of12">
-      <div class="medium_bottom"><img class="img--small rounded" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" alt="{{face.first_name}}'s Photo"></div>
-      <h1 class="max_width">{{face.first_name}} {{face.last_name}} is <span class="highlight">available</span> for freelance {% for category in face.categories %}<a href="/faces" class="underline">{{category|category_action}}</a>{% if not loop.last %} / {% endif %}{% endfor %}.</h1>
+      <div class="medium_bottom">
+        {% include 'faces/_profile_photo.html' %}
+      </div>
+      <h1 class="max_width">{{face.first_name}} {{face.last_name}} is {% if face.is_available %}<span class="highlight">available</span>{% else %}<span class="grey">not available</span>{% endif %} for freelance {% for category in face.categories %}<a href="/faces" class="underline">{{category|category_action}}</a>{% if not loop.last %} / {% endif %}{% endfor %}.</h1>
     </div>
     <div class="col col--12of12"></div>
     <div class="col col--12of12">
@@ -81,6 +83,21 @@
       modelId: "{{face._id}}",
       values: {{face|json}},
       fields: [
+        {
+          type: "checkbox",
+          name: "is_available",
+          label: "Are you available?"
+        },
+        {% if request.current_session.is_admin%}
+        {
+          type: "checkbox",
+          name: "is_approved",
+          label: "Are they approved?"
+        },
+        {% endif %}
+        {
+          type: "separator"
+        },
         {
           type: "text",
           name: "first_name",

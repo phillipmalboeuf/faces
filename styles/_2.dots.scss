@@ -1,0 +1,22 @@
+
+
+// #DOTS
+.dot {
+  font-size: 0px;
+
+  position: absolute;
+  top: -$vertical_rythm/3.333;
+  left: -$vertical_rythm/3.333;
+
+  height: $vertical_rythm/1.666;
+  width: $vertical_rythm/1.666;
+  border-radius: 50%;
+
+  background: $grey--dark;
+  box-shadow: 0 0 20px $grey--dark;
+
+  &.dot--available {
+    background: $highlight;
+    box-shadow: 0 0 20px $highlight;
+  }
+}

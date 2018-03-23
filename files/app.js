@@ -563,7 +563,7 @@ var Edit = function (_Overlay2) {
         React.createElement(Button, { className: "button--transparent overlay__back", onClick: this.hide }),
         React.createElement(
           "div",
-          { className: "padded padded--tight overlay__container" },
+          { className: "padded overlay__container" },
           React.createElement(Form, {
             model: this.props.model,
             modelId: this.props.modelId,
@@ -662,7 +662,7 @@ var Form = function (_React$Component2) {
   }, {
     key: "onChange",
     value: function onChange(e) {
-      this.setState(_defineProperty({}, e.currentTarget.name, e.currentTarget.value));
+      this.setState(_defineProperty({}, e.currentTarget.name, e.currentTarget.checked ? e.currentTarget.checked : e.currentTarget.value));
     }
   }, {
     key: "hideErrors",
@@ -718,6 +718,12 @@ var Form = function (_React$Component2) {
               onChange: _this20.onChange,
               tags: field.tags || [],
               selected: _this20.props.values && _this20.props.values[field.name] || field.value || [] });
+          } else if (field.type == "checkbox") {
+            return React.createElement(Input, { key: index, name: field.name,
+              onChange: _this20.onChange,
+              type: field.type,
+              checked: _this20.props.values && _this20.props.values[field.name] || field.value,
+              label: field.label });
           } else {
             return React.createElement(Input, { key: index, name: field.name,
               onChange: _this20.onChange,

@@ -75,8 +75,10 @@ def verify_headers():
 
 
 		try: 
-			request.current_session_is_admin = request.current_session['is_admin']
+			request.from_admin = request.current_session['is_admin']
 		except AttributeError:
-			request.current_session_is_admin = False
+			request.from_admin = False
+
+		
 
 

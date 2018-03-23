@@ -77,7 +77,7 @@ class Form extends React.Component {
 
   onChange(e) {
     this.setState({
-      [e.currentTarget.name]: e.currentTarget.value
+      [e.currentTarget.name]: e.currentTarget.checked ? e.currentTarget.checked : e.currentTarget.value
     })
   }
 
@@ -114,6 +114,12 @@ class Form extends React.Component {
               onChange={this.onChange}
               tags={field.tags || []}
               selected={this.props.values && this.props.values[field.name] || field.value || []} />
+          } else if (field.type == "checkbox") {
+            return <Input key={index} name={field.name}
+              onChange={this.onChange}
+              type={field.type}
+              checked={this.props.values && this.props.values[field.name] || field.value}
+              label={field.label} />
           } else {
             return <Input key={index} name={field.name}
               onChange={this.onChange}
@@ -140,3 +146,5 @@ class Form extends React.Component {
     ]
   }
 }
+
+
