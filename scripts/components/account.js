@@ -24,10 +24,12 @@ class Account extends Overlay {
 
   componentDidMount() {
     super.componentDidMount()
+    key("⌘+escape", this.toggle)
   }
 
   componentWillUnmount() {
     super.componentWillUnmount()
+    key.unbind("⌘+escape", this.toggle)
   }
 
   fetchUser() {
@@ -62,7 +64,7 @@ class Account extends Overlay {
 
     return <div className={`overlay${this.state.showed ? " overlay--show" : ""}`}>
       <Button className="button--transparent overlay__back" onClick={this.hide} />
-      <div className="padded padded--tight overlay__container">
+      <div className="padded overlay__container">
         {this.state.session.id && this.state.user 
         ? <div className="text_center">
           <h2>Hi {this.state.user.attributes.first_name}!</h2>
