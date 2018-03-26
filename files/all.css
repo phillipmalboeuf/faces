@@ -1756,8 +1756,7 @@ button.overlay__close {
   height: 100%;
   width: 66%; }
   .slide img {
-    max-height: 88vh;
-    padding: 0 1rem; }
+    max-height: 88vh; }
 
 .flickity-prev-next-button {
   border-radius: 3px;
