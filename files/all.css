@@ -690,8 +690,7 @@ a {
     top: -4rem;
     visibility: hidden; }
   a[disabled] {
-    pointer-events: none;
-    text-decoration: line-through; }
+    pointer-events: none; }
 
 ol,
 ul {
@@ -1322,6 +1321,9 @@ button {
   padding: 1rem 2rem;
   border: none;
   border-radius: 3px; }
+  a + .button, a +
+  button {
+    margin-left: 1rem; }
   .button.button--grey,
   button.button--grey {
     background: #CCCCCC; }
@@ -1333,13 +1335,13 @@ button {
     text-decoration: none; }
   .button.button--outline,
   button.button--outline {
-    color: #383838;
+    color: #14AF6E;
     background: transparent;
     border: 1px solid; }
     .button.button--outline:hover, .button.button--outline:focus,
     button.button--outline:hover,
     button.button--outline:focus {
-      color: #14AF6E; }
+      color: #383838; }
   .button:active,
   button:active {
     top: 1px; }
@@ -1384,6 +1386,9 @@ button {
   button[disabled] {
     pointer-events: none;
     opacity: 0.2; }
+    .button[disabled] small,
+    button[disabled] small {
+      text-decoration: none; }
 
 label,
 .label {

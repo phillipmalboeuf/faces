@@ -17,6 +17,10 @@ button {
   border: none;
   border-radius: $border_radius;
 
+  a + & {
+    margin-left: $vertical_rythm/2;
+  }
+
   &.button--grey {
     background: $grey--dark;
   }
@@ -29,13 +33,13 @@ button {
   }
 
   &.button--outline {
-    color: $black;
+    color: $highlight;
     background: transparent;
     border: 1px solid;
 
     &:hover,
     &:focus {
-      color: $highlight;
+      color: $black;
     }
   }
 
@@ -91,5 +95,9 @@ button {
   &[disabled] {
     pointer-events: none;
     opacity: 0.2;
+
+    small {
+      text-decoration: none;
+    }
   }
 }

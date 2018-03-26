@@ -12,8 +12,8 @@
     {% if request.current_session and (request.current_session.user_id == face._id or request.current_session.is_admin) %}
     <button data-toggle-edit class="button button--small button--grey">Edit profile</button>
     {% else %}
-    {# <a href="/faces/{{face.handle}}/contact" class="button">Message {{face.first_name}}</a> #}
-    {% if request.current_session %}<a href="/faces/" class="underline" data-toggle-account>Your account</a>{% else %}<a href="/login" data-toggle-account>Login</a> / <a href="/faces/new">Sign up</a>{% endif %}
+    {% if request.current_session %}<a href="/faces/" class="button button--small button--outline" data-toggle-account>Your account</a>{% else %}<a href="/login" data-toggle-account>Login</a> <a href="/faces/new" class="button button--small button--outline">Sign up</a>{% endif %}
+    {# <a href="/faces/{{face.handle}}/contact" class="button" disabled>Message {{face.first_name}}<br><small>(Coming soon...)</small></a> #}
     {% endif %}
   </div>
 </div>

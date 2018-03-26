@@ -419,11 +419,13 @@ var Account = function (_Overlay) {
     key: "componentDidMount",
     value: function componentDidMount() {
       _get(Account.prototype.__proto__ || Object.getPrototypeOf(Account.prototype), "componentDidMount", this).call(this);
+      key("⌘+escape", this.toggle);
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       _get(Account.prototype.__proto__ || Object.getPrototypeOf(Account.prototype), "componentWillUnmount", this).call(this);
+      key.unbind("⌘+escape", this.toggle);
     }
   }, {
     key: "fetchUser",
@@ -469,7 +471,7 @@ var Account = function (_Overlay) {
         React.createElement(Button, { className: "button--transparent overlay__back", onClick: this.hide }),
         React.createElement(
           "div",
-          { className: "padded padded--tight overlay__container" },
+          { className: "padded overlay__container" },
           this.state.session.id && this.state.user ? React.createElement(
             "div",
             { className: "text_center" },
