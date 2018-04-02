@@ -161,6 +161,8 @@ with app.app_context():
           document['city'] = 'New York City'
         elif document['city'] in ['toronto', 'to']:
           document['city'] = 'Toronto'
+        elif document['city'] in ['seoul']:
+          document['city'] = 'Seoul'
       except KeyError:
         pass
 
@@ -234,7 +236,7 @@ with app.app_context():
 
       return cls._format_response({
         'is_approved': False,
-        'faces': super().list({'is_approved': False}, limit=limit, skip=skip)
+        'faces': super().list({'$or': [{'is_approved': False}, {'is_approved': {'$exists': False}}]}, limit=limit, skip=skip)
       })
 
 
