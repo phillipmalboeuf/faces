@@ -155,6 +155,7 @@ with app.app_context():
         pass
 
       try:
+        document['city'] = document['city'].strip()
         if document['city'] in ['Montreal', 'montreal', 'mtl', 'MTL']:
           document['city'] = 'Montréal'
         elif document['city'] in ['nyc', 'NYC', 'new york', 'New York', 'new york city']:
@@ -180,7 +181,6 @@ with app.app_context():
 
       document['categories'] = ['model']
       document['is_available'] = True
-      document['is_approved'] = False
       new_document = super().create(document)
 
       airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'hello@goodfaces.club'}}))
