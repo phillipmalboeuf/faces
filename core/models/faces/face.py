@@ -33,6 +33,7 @@ with app.app_context():
       'brands': validation_rules['links_list'],
       'is_available': validation_rules['bool'],
       'is_approved': validation_rules['bool'],
+      'is_featured': validation_rules['bool'],
       'metadata': validation_rules['metadata']
     }
 
@@ -170,6 +171,11 @@ with app.app_context():
       if not request.from_admin:
         try:
           del document['is_approved']
+        except KeyError:
+          pass
+
+        try:
+          del document['is_featured']
         except KeyError:
           pass
 

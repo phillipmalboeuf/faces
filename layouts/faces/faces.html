@@ -5,18 +5,20 @@
 <div class="grid grid--middle grid--spaced">
   <div class="col col--3of12">{{super()}}</div>
   <div class="hide_on_tablet_portrait">{{pieces.seo.tagline}}</div>
-  <div class="col col--3of12 text_right"><a href="/about">About</a>{% if request.current_session %} <a href="/faces/" class="button button--small button--outline" data-toggle-account>Your account</a>{% else %} &nbsp;&nbsp; <a href="/login" data-toggle-account>Login</a> <a href="/faces/new" class="button button--small button--outline">Sign up</a>{% endif %}</div>
+  <div class="col col--3of12 col--tablet_portrait--9of12 text_right"><a href="/about">About</a>{% if request.current_session %} <a href="/faces/" class="button button--small button--outline" data-toggle-account>Your account</a>{% else %} &nbsp;&nbsp; <a href="/login" data-toggle-account>Login</a> <a href="/faces/new" class="button button--small button--outline">Sign up</a>{% endif %}</div>
 </div>
 {% endblock %}
 
 {% block main %}
 <div class="padded padded--big_top white_back">
-  <h1 class="h1--logo">{{pieces.seo.title}}</h1>
+  <h1 class="h1--logo">Good&nbsp;Faces</h1>
   <div class="grid grid--guttered full_images">
     {% for face in faces %}
+    {% if face.is_featured %}
     <div class="col col--3of12 col--tablet_portrait--6of12">
       <a href="/faces/{{face.handle}}" class="a--translates block"><img class="rounded shadowed" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces"></a>
     </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>

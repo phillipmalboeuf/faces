@@ -639,7 +639,9 @@ h1,
     line-height: 2rem; }
   h1.h1--logo,
   .h1.h1--logo {
-    font-size: 14vw; }
+    text-align: center;
+    font-size: 17vw;
+    line-height: 0.8; }
 
 h2 {
   font-size: 2.875rem;
