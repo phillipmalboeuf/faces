@@ -219,6 +219,6 @@ input[type="file"] {
   -moz-outline-style: none;
 }
 
-::-webkit-input-placeholder, ::-webkit-input-placeholder { color: fade-out($grey--dark, 0.5); }
-:-moz-placeholder, :-moz-placeholder { color: fade-out($grey--dark, 0.5); }
+::-webkit-input-placeholder, ::-webkit-input-placeholder { color: fade-out($black, 0.333); }
+:-moz-placeholder, :-moz-placeholder { color: fade-out($black, 0.333); }
 

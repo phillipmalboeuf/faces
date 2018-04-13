@@ -1652,10 +1652,10 @@ input[type="file"] {
   -moz-outline-style: none; }
 
 ::-webkit-input-placeholder, ::-webkit-input-placeholder {
-  color: rgba(204, 204, 204, 0.5); }
+  color: rgba(56, 56, 56, 0.667); }
 
 :-moz-placeholder, :-moz-placeholder {
-  color: rgba(204, 204, 204, 0.5); }
+  color: rgba(56, 56, 56, 0.667); }
 
 img {
   display: block;
