@@ -77,7 +77,7 @@ class Form extends React.Component {
 
   onChange(e) {
     this.setState({
-      [e.currentTarget.name]: e.currentTarget.checked ? e.currentTarget.checked : e.currentTarget.value
+      [e.currentTarget.name]: e.currentTarget.checked !== undefined ? e.currentTarget.checked : e.currentTarget.value
     })
   }
 
