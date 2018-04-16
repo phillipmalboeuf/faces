@@ -664,7 +664,7 @@ var Form = function (_React$Component2) {
   }, {
     key: "onChange",
     value: function onChange(e) {
-      this.setState(_defineProperty({}, e.currentTarget.name, e.currentTarget.checked !== undefined ? e.currentTarget.checked : e.currentTarget.value));
+      this.setState(_defineProperty({}, e.currentTarget.name, e.currentTarget.type === "checkbox" ? e.currentTarget.checked : e.currentTarget.value));
     }
   }, {
     key: "hideErrors",
