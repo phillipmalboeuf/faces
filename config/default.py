@@ -28,7 +28,7 @@ CELERY_TIMEZONE = TIMEZONE
 CELERYBEAT_SCHEDULE = {
   'batch_faces': {
     'task': 'batch_faces',
-    'schedule': crontab(minute='*/15')
+    'schedule': crontab(hour='*/2')
   }
 }
 CELERY_ACCEPT_CONTENT = ['super-json']
