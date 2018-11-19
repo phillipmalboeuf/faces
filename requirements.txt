@@ -1,7 +1,7 @@
 Flask==0.12.2
 Flask-Celery==2.4.3
 Flask-Script==2.0.6
-celery==4.1.0
+celery==4.2.1
 Cerberus==1.1
 mandrill==1.0.57
 Markdown==2.6.11
