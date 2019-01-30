@@ -49,8 +49,6 @@ register('super-json', dumps, loads, content_type='application/x-super-json', co
 celery = Celery(app.import_name, broker=app.config['RABBITMQ_URL'])
 celery.config_from_object(app.config)
 
-from core.tasks.search import batch_faces
-
 
 from core.pages.pages import *
 from core.pages.errors import *

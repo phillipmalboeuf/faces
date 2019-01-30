@@ -25,12 +25,7 @@ AIRTABLE_KEY = os.getenv('AIRTABLE_KEY', '')
 
 # CELERY
 CELERY_TIMEZONE = TIMEZONE
-CELERYBEAT_SCHEDULE = {
-  'batch_faces': {
-    'task': 'batch_faces',
-    'schedule': crontab(hour='*/2')
-  }
-}
+CELERYBEAT_SCHEDULE = {}
 CELERY_ACCEPT_CONTENT = ['super-json']
 CELERY_TASK_SERIALIZER = 'super-json'
 CELERY_RESULT_SERIALIZER = 'super-json'

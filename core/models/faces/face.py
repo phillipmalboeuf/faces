@@ -5,6 +5,7 @@ from core.models.auth.user import User
 
 from core.helpers.validation_rules import validation_rules
 from core.tasks.airtable import airtable
+from core.tasks.search import index_face
 
 import urllib
 import re
@@ -189,9 +190,19 @@ with app.app_context():
       document['is_available'] = True
       new_document = super().create(document)
 
-      airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'hello@goodfaces.club'}}))
+      airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'hello@goodfaces.club'}}))\
 
+      index_face.apply_async((document))
       return new_document
+
+
+    @classmethod
+    def update(cls, _id, document, other_operators={}, projection={}, lang=None):
+
+      document = super().update(_id, document, other_operators, projection, lang)
+
+      index_face.apply_async((document))
+      return document
 
 
     @classmethod
