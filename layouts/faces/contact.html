@@ -11,14 +11,14 @@
 
 
 {% block main %}
-<div class="padded padded--big_top white_back">
-  <div class="grid grid--guttered">
-    <div class="col col--4of12 col--tablet_portrait--6of12 col--phone--12of12">
+<div class="padded padded--big_top grey_back">
+  <div class="grid grid--center">
+    <div class="col col--3of12 col--tablet_portrait--4of12 col--phone--12of12 padded padded--thick white_back relative">
       <div class="normal_bottom"><img class="img--small" src="https://montrealuploads.imgix.net{{face.profile_photo}}?auto=format,compress&fit=crop&w=600&h=600&crop=faces" alt="{{face.first_name}}'s Photo"></div>
       <h1 class="h1--medium">Contact {{face.first_name}}</h1>
       <p>We review all contact requests before sending it to the model. You'll be notified if and when the message was passed through.</p>
     </div>
-    <div class="col col--5of12 col--tablet_portrait--6of12 col--phone--12of12">
+    <div class="col col--6of12 col--tablet_portrait--7of12 col--phone--12of12 padded padded--thick white_back border_left">
       <div id="message"></div>
       <script>
         window.components.push({
@@ -26,7 +26,7 @@
           component: "Form",
           data: {
             model: "Message",
-            cta: "Send Message",
+            cta: "Send Contact Request",
             fields: [
               {
                 type: "info",
@@ -65,20 +65,33 @@
               {
                 type: "textarea",
                 name: "description",
-                label: "Shoot description",
-                placeholder: "A few lines on the concept of the shoot"
+                label: "What's the shoot?",
+                placeholder: "Please describe the purpose and context of your shoot. Who will be present? Where the photos will go? What will the Good Face be modeling?"
+              },
+              {
+                type: "textarea",
+                name: "requirements",
+                label: "What to bring?",
+                placeholder: "Does the Good Face need to bring anything? Should they prepare any of their own clothes, makeup, etc?",
+                optional: true
               },
               {
                 type: "text",
-                name: "offer",
-                label: "Shoot offer",
-                placeholder: "Money, clothing, photos, food..."
+                name: "location",
+                label: "Shoot location",
+                placeholder: "The corner coffee shop"
               },
               {
                 type: "text",
                 name: "dates",
-                label: "Shoot dates",
+                label: "Shoot date and time",
                 placeholder: "Thursday next week, 2pm"
+              },
+              {
+                type: "textarea",
+                name: "offer",
+                label: "Shoot offer",
+                placeholder: "Money, clothing, photos, food..."
               }
             ]
           }

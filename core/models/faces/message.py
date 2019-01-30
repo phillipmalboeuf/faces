@@ -4,6 +4,7 @@ from flask import request, abort
 from core.models.core.model import Model
 from core.models.core.has_routes import HasRoutes
 from core.models.core.with_templates import WithTemplates
+from core.tasks.airtable import airtable
 
 from core.helpers.validation_rules import validation_rules
 
@@ -22,8 +23,10 @@ with app.app_context():
       'name': validation_rules['text'],
       'email': validation_rules['email'],
       'description': validation_rules['text'],
-      'offer': validation_rules['text'],
+      'requirements': validation_rules['text'],
+      'location': validation_rules['text'],
       'dates': validation_rules['text'],
+      'offer': validation_rules['text'],
       'metadata': validation_rules['metadata']
     }
 
@@ -77,5 +80,22 @@ with app.app_context():
       document['face_name'] = face['first_name']
       document['face_email'] = face['email']
 
-      return super().create(document)
+      new_document = super().create(document)
+      
+      airtable.apply_async(('Contact Requests', {
+        'Face Name': document['face_name'],
+        'Face Email': document['face_email'],
+        'Contact Name': document['name'],
+        'Contact Email': document['email'],
+        'Brand Name': document['brand'],
+        'Brand URL': document['brand_url'],
+        'Shoot description': document['description'],
+        'Shoot requirements': document['requirements'],
+        'Shoot location': document['location'],
+        'Shoot dates': document['dates'],
+        'Shoot offer': document['offer'],
+        'Notify': {'email': 'hello@goodfaces.club'}
+      }))
+
+      return new_document
 

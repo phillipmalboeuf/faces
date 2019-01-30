@@ -112,6 +112,7 @@ textarea,
 textarea {
   height: $vertical_rythm*4;
   padding: $vertical_rythm/2;
+  line-height: 1.33;
 
   &.textarea--one_line {
     padding: $vertical_rythm/4;

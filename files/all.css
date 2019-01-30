@@ -1581,7 +1581,8 @@ textarea,
 
 textarea {
   height: 8rem;
-  padding: 1rem; }
+  padding: 1rem;
+  line-height: 1.33; }
   textarea.textarea--one_line {
     padding: 0.5rem;
     height: auto; }
