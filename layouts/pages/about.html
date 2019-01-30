@@ -82,7 +82,7 @@
   </div>
 
   <div class="absolute_container">
-    <div class="padded grey_back max_width max_width--big max_width--center big_bottom">
+    <div class="padded grey_back max_width max_width--big max_width--center medium_bottom">
       <h2 class="text_center">{{pieces.landing.how_title}}</h2>
       <div class="grid grid--center grid--guttered">
         <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12">
@@ -91,43 +91,11 @@
         <div class="col col--6of12 col--tablet_portrait--9of12 col--phone--12of12">
           {{pieces.landing.how_2|safe}}
         </div>
+        <div class="col"><a href="/faces/new" class="button">Create a profile</a></div>
       </div>
     </div>
     <div class="absolute absolute--bottom_right absolute--behind">{% include 'vectors/background_4.svg' %}</div>
   </div>
-
-  <div class="padded text_center">
-    <h2>{{pieces.landing.apply}}</h2>
-  </div>
-
-  <div class="grid grid--center big_bottom" id="newsletter"></div>
-  <script>
-    window.components.push({
-      element: "#newsletter",
-      component: "Form",
-      data: {
-        model: "NewsletterEmail",
-        cta: "{{pieces.landing.apply_cta}}",
-        redirect: "/thanks",
-        className: "col col--5of12 col--tablet_landscape--7of12 col--tablet_portrait--9of12 col--phone--12of12",
-        fields: [
-          {
-            type: "email",
-            name: "email",
-            label: "{{pieces.faces.email}}",
-            placeholder: "your.email.address@gmail.com"
-          },
-          {
-            type: "text",
-            name: "instagram_handle",
-            label: "{{pieces.faces.instagram_handle}}",
-            placeholder: "goodfaces",
-            optional: true
-          }
-        ]
-      }
-    })
-  </script>
 </div>
 
 {# <div>{% include 'vectors/background.svg' %}</div> #}
