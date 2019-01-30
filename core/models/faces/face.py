@@ -190,9 +190,9 @@ with app.app_context():
       document['is_available'] = True
       new_document = super().create(document)
 
-      airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'hello@goodfaces.club'}}))\
+      airtable.apply_async(('New Faces', {'Email': document['email'], 'Link': f'https://goodfaces.club/faces/{document["handle"]}', 'Notify': {'email': 'hello@goodfaces.club'}}))
 
-      index_face.apply_async((document))
+      index_face.apply_async((document, ))
       return new_document
 
 
@@ -201,7 +201,7 @@ with app.app_context():
 
       document = super().update(_id, document, other_operators, projection, lang)
 
-      index_face.apply_async((document))
+      index_face.apply_async((document, ))
       return document
 
 

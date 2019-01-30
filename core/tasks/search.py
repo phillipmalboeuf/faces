@@ -6,11 +6,20 @@ from flask import request, abort, json
 @celery.task(name='index_face')
 def index_face(face):
 
-  ctx = app.test_request_context()
-  ctx.push()
+  if not app.app_context():
+    ctx = app.test_request_context()
+    ctx.push()
+
+  try:
+    del face['password']
+    del face['password_salt']
+  except KeyError:
+    pass
 
   index = app.search.init_index('faces')
-  index.save_object({**face, 'objectID': face['_id']})
+  response = index.save_object({**face, 'objectID': face['_id']})
+
+  return response
 
 
 @celery.task(name='batch_faces')
